@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "58073383530",
+    "project_id": "class-calendar-applicat-4pbwai",
+    "storage_bucket": "class-calendar-applicat-4pbwai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58073383530:android:486ee5bb292c4653c74013",
+        "android_client_info": {
+          "package_name": "com.mycompany.classcalendarapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58073383530-t23c17oiqpf1t3kbhk8r8cfcrk71qlcd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.classcalendarapplication",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "58073383530-t59rm7mu2r6bivi5ntrgfcjj4ifqv6a9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX3nuB42VP62OKyKDHZkF4HaW_2Fy5et8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58073383530-t59rm7mu2r6bivi5ntrgfcjj4ifqv6a9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "58073383530-pcqhknrb87kpg6deohs6habdljkjq525.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.classcalendarapplication"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
