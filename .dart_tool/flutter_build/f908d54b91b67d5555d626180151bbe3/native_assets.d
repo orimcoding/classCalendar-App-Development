@@ -1,0 +1,1 @@
+ C:\\Users\\orima\\OneDrive\\Desktop\\classCalendar\ Development\\classCalendar-App-Development\\.dart_tool\\flutter_build\\f908d54b91b67d5555d626180151bbe3\\native_assets.yaml: 
