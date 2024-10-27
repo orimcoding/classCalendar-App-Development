@@ -7,7 +7,6 @@ class CreateNewAssignmentModel
     extends FlutterFlowModel<CreateNewAssignmentWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for task widget.
   FocusNode? taskFocusNode;

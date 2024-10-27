@@ -1,11 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'create_class_model.dart';
 export 'create_class_model.dart';
@@ -17,69 +16,21 @@ class CreateClassWidget extends StatefulWidget {
   State<CreateClassWidget> createState() => _CreateClassWidgetState();
 }
 
-class _CreateClassWidgetState extends State<CreateClassWidget>
-    with TickerProviderStateMixin {
+class _CreateClassWidgetState extends State<CreateClassWidget> {
   late CreateClassModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => CreateClassModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'CreateClass'});
     _model.usernameCreateTextController ??= TextEditingController();
     _model.usernameCreateFocusNode ??= FocusNode();
 
-    animationsMap.addAll({
-      'columnOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.linear,
-            delay: 0.0.ms,
-            duration: 950.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'textOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 50.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'buttonOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 1000.0.ms,
-            color: const Color(0x80FFFFFF),
-            angle: 0.524,
-          ),
-        ],
-      ),
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -100,15 +51,26 @@ class _CreateClassWidgetState extends State<CreateClassWidget>
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 350.0, 0.0),
-              child: Icon(
-                Icons.close_sharp,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                size: 30.0,
+              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 350.0, 0.0),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  logFirebaseEvent('CREATE_CLASS_PAGE_Icon_jdtdms8v_ON_TAP');
+                  logFirebaseEvent('Icon_navigate_back');
+                  context.safePop();
+                },
+                child: Icon(
+                  Icons.close_sharp,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 30.0,
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 10.0),
               child: GradientText(
                 'Enter the class name',
                 textAlign: TextAlign.center,
@@ -125,7 +87,7 @@ class _CreateClassWidgetState extends State<CreateClassWidget>
                 ],
                 gradientDirection: GradientDirection.ltr,
                 gradientType: GradientType.linear,
-              ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+              ),
             ),
             Text(
               'Make sure to include the full name of the class',
@@ -139,16 +101,19 @@ class _CreateClassWidgetState extends State<CreateClassWidget>
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 250.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 150.0, 0.0, 0.0),
                 child: SizedBox(
                   width: double.infinity,
                   child: TextFormField(
                     controller: _model.usernameCreateTextController,
                     focusNode: _model.usernameCreateFocusNode,
                     onFieldSubmitted: (_) async {
+                      logFirebaseEvent(
+                          'CREATE_CLASS_username_create_ON_TEXTFIEL');
+                      logFirebaseEvent('username_create_update_app_state');
                       FFAppState().userName =
                           _model.usernameCreateTextController.text;
-                      setState(() {});
+                      safeSetState(() {});
                     },
                     autofocus: false,
                     obscureText: false,
@@ -204,19 +169,30 @@ class _CreateClassWidgetState extends State<CreateClassWidget>
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 5.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 10.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  logFirebaseEvent('CREATE_CLASS_CREATE_CLASS_BTN_ON_TAP');
+                  logFirebaseEvent('Button_backend_call');
+
                   await ClassesRecord.collection
-                      .doc(getCurrentTimestamp.toString())
+                      .doc(random_data.randomString(
+                        9,
+                        900,
+                        true,
+                        true,
+                        true,
+                      ))
                       .set(createClassesRecordData(
                         className: _model.usernameCreateTextController.text,
                         ownerId: currentUserUid,
                         deleted: false,
                       ));
+                  logFirebaseEvent('Button_navigate_to');
 
                   context.pushNamed('AssignmentNotebook');
 
+                  logFirebaseEvent('Button_show_snack_bar');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -255,10 +231,10 @@ class _CreateClassWidgetState extends State<CreateClassWidget>
                   hoverColor: FlutterFlowTheme.of(context).secondary,
                 ),
                 showLoadingIndicator: false,
-              ).animateOnPageLoad(animationsMap['buttonOnPageLoadAnimation']!),
+              ),
             ),
           ],
-        ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
+        ),
       ),
     );
   }

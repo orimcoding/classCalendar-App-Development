@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class Page1Model extends FlutterFlowModel<Page1Widget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
 

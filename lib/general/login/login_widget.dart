@@ -32,11 +32,12 @@ class _LoginWidgetState extends State<LoginWidget>
     super.initState();
     _model = createModel(context, () => LoginModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Login'});
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
     _model.emailAddressCreateTextController ??= TextEditingController();
     _model.emailAddressCreateFocusNode ??= FocusNode();
 
@@ -89,21 +90,9 @@ class _LoginWidgetState extends State<LoginWidget>
           ),
         ],
       ),
-      'buttonOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 1190.0.ms,
-            color: const Color(0xFF8DFF00),
-            angle: 0.524,
-          ),
-        ],
-      ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -162,6 +151,7 @@ class _LoginWidgetState extends State<LoginWidget>
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 170.0, 0.0, 0.0),
                   child: SingleChildScrollView(
+                    primary: false,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -247,734 +237,564 @@ class _LoginWidgetState extends State<LoginWidget>
                                     child: TabBarView(
                                       controller: _model.tabBarController,
                                       children: [
-                                        Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, -1.0),
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 16.0, 24.0, 0.0),
-                                            child: SingleChildScrollView(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  if (responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                    tablet: false,
-                                                  ))
-                                                    Container(
-                                                      width: 230.0,
-                                                      height: 40.0,
-                                                      decoration: const BoxDecoration(
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  Text(
-                                                    'Create Account',
-                                                    textAlign: TextAlign.start,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Plus Jakarta Sans',
-                                                          color:
-                                                              const Color(0xFF101213),
-                                                          fontSize: 24.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
+                                        Stack(
+                                          children: [
+                                            Align(
+                                              alignment: const AlignmentDirectional(
+                                                  0.0, -1.0),
+                                              child: Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 16.0, 24.0, 0.0),
+                                                child: SingleChildScrollView(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      if (responsiveVisibility(
+                                                        context: context,
+                                                        phone: false,
+                                                        tablet: false,
+                                                      ))
+                                                        Container(
+                                                          width: 230.0,
+                                                          height: 40.0,
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            color: Colors.white,
+                                                          ),
                                                         ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                0.0, 24.0),
-                                                    child: Text(
-                                                      'Let\'s get started by filling out the form below.',
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .labelMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Plus Jakarta Sans',
-                                                            color: const Color(
-                                                                0xFF57636C),
-                                                            fontSize: 14.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
-                                                    child: SizedBox(
-                                                      width: double.infinity,
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .emailAddressCreateTextController,
-                                                        focusNode: _model
-                                                            .emailAddressCreateFocusNode,
-                                                        onChanged: (_) =>
-                                                            EasyDebounce
-                                                                .debounce(
-                                                          '_model.emailAddressCreateTextController',
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  2000),
-                                                          () => setState(() {}),
-                                                        ),
-                                                        onFieldSubmitted:
-                                                            (_) async {
-                                                          GoRouter.of(context)
-                                                              .prepareAuthEvent();
-
-                                                          final user =
-                                                              await authManager
-                                                                  .createAccountWithEmail(
-                                                            context,
-                                                            _model
-                                                                .emailAddressCreateTextController
-                                                                .text,
-                                                            _model
-                                                                .passwordCreateTextController
-                                                                .text,
-                                                          );
-                                                          if (user == null) {
-                                                            return;
-                                                          }
-
-                                                          await UsersRecord
-                                                              .collection
-                                                              .doc(user.uid)
-                                                              .update({
-                                                            ...createUsersRecordData(
-                                                              email:
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                _model
-                                                                    .emailAddressCreateTextController
-                                                                    .text,
-                                                                'example@gmail.com',
-                                                              ),
-                                                              createdTime:
-                                                                  getCurrentTimestamp,
-                                                              password: _model
-                                                                  .passwordCreateTextController
-                                                                  .text,
-                                                              coins: 2000,
-                                                              deleted: false,
-                                                              dailyAds: 0,
-                                                              selectedAccessories:
-                                                                  'Blank',
-                                                              selectedClothes:
-                                                                  'Hoodie',
-                                                              selectedColorFabric:
-                                                                  'Black',
-                                                              selectedEyebrows:
-                                                                  'Default',
-                                                              selectedEyes:
-                                                                  'Default',
-                                                              selectedFacialHairColors:
-                                                                  'Black',
-                                                              selectedFacialHairs:
-                                                                  'Blank',
-                                                              selectedHairColors:
-                                                                  'Black',
-                                                              selectedHatColors:
-                                                                  'Black',
-                                                              selectedMouth:
-                                                                  'Default',
-                                                              selectedTop:
-                                                                  'NoHair',
-                                                              selectedSkin:
-                                                                  'Tanned',
-                                                            ),
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'ownedAccessories':
-                                                                    FFAppState()
-                                                                        .ownedAccessories,
-                                                                'ownedClothes':
-                                                                    FFAppState()
-                                                                        .ownedClothes,
-                                                                'ownedColorFabric':
-                                                                    FFAppState()
-                                                                        .ownedClothingColor,
-                                                                'ownedEyebrows':
-                                                                    FFAppState()
-                                                                        .ownedEyebrow,
-                                                                'ownedEyes':
-                                                                    FFAppState()
-                                                                        .ownedEyes,
-                                                                'ownedFacialHair':
-                                                                    FFAppState()
-                                                                        .ownedFacialHair,
-                                                                'ownedFacialHairColors':
-                                                                    FFAppState()
-                                                                        .ownedFacialHairColor,
-                                                                'ownedHairColors':
-                                                                    FFAppState()
-                                                                        .ownedHairColor,
-                                                                'ownedHatColors':
-                                                                    FFAppState()
-                                                                        .ownedHatColor,
-                                                                'ownedMouth':
-                                                                    FFAppState()
-                                                                        .ownedMouth,
-                                                                'ownedTops':
-                                                                    FFAppState()
-                                                                        .ownedTop,
-                                                                'shopAccessories':
-                                                                    FFAppState()
-                                                                        .accessories,
-                                                                'shopClothes':
-                                                                    FFAppState()
-                                                                        .clothes,
-                                                                'shopColorFabric':
-                                                                    FFAppState()
-                                                                        .ClothingColor,
-                                                                'shopEyebrows':
-                                                                    FFAppState()
-                                                                        .eyebrow,
-                                                                'shopEyes':
-                                                                    FFAppState()
-                                                                        .eyes,
-                                                                'shopFacialHairColors':
-                                                                    FFAppState()
-                                                                        .facialHairColor,
-                                                                'shopFacialHairs':
-                                                                    FFAppState()
-                                                                        .facialHair,
-                                                                'shopHairColors':
-                                                                    FFAppState()
-                                                                        .hairColor,
-                                                                'shopHatColors':
-                                                                    FFAppState()
-                                                                        .hatColor,
-                                                                'shopMouth':
-                                                                    FFAppState()
-                                                                        .mouth,
-                                                                'shopTops':
-                                                                    FFAppState()
-                                                                        .top,
-                                                                'skins':
-                                                                    FFAppState()
-                                                                        .allSkins,
-                                                              },
-                                                            ),
-                                                          });
-
-                                                          context.goNamedAuth(
-                                                              'HomePage',
-                                                              context.mounted);
-                                                        },
-                                                        autofocus: true,
-                                                        autofillHints: const [
-                                                          AutofillHints.email
-                                                        ],
-                                                        textInputAction:
-                                                            TextInputAction
-                                                                .next,
-                                                        obscureText: false,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelText: 'Email',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF57636C),
-                                                                    fontSize:
-                                                                        16.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFFE0E3E7),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFF4B39EF),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          errorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFFFF5963),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          focusedErrorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFFFF5963),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          filled: true,
-                                                          fillColor:
-                                                              Colors.white,
-                                                          contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  24.0),
-                                                          suffixIcon: _model
-                                                                  .emailAddressCreateTextController!
-                                                                  .text
-                                                                  .isNotEmpty
-                                                              ? InkWell(
-                                                                  onTap:
-                                                                      () async {
-                                                                    _model
-                                                                        .emailAddressCreateTextController
-                                                                        ?.clear();
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  child: const Icon(
-                                                                    Icons.clear,
-                                                                    color: Color(
-                                                                        0xFF757575),
-                                                                    size: 24.0,
-                                                                  ),
-                                                                )
-                                                              : null,
-                                                        ),
+                                                      Text(
+                                                        'Create Account',
+                                                        textAlign:
+                                                            TextAlign.start,
                                                         style: FlutterFlowTheme
                                                                 .of(context)
-                                                            .bodyLarge
+                                                            .headlineMedium
                                                             .override(
                                                               fontFamily:
                                                                   'Plus Jakarta Sans',
                                                               color: const Color(
                                                                   0xFF101213),
-                                                              fontSize: 16.0,
+                                                              fontSize: 24.0,
                                                               letterSpacing:
                                                                   0.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
                                                             ),
-                                                        keyboardType:
-                                                            TextInputType
-                                                                .emailAddress,
-                                                        validator: _model
-                                                            .emailAddressCreateTextControllerValidator
-                                                            .asValidator(
-                                                                context),
                                                       ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
-                                                    child: SizedBox(
-                                                      width: double.infinity,
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .passwordCreateTextController,
-                                                        focusNode: _model
-                                                            .passwordCreateFocusNode,
-                                                        autofocus: false,
-                                                        autofillHints: const [
-                                                          AutofillHints.password
-                                                        ],
-                                                        textInputAction:
-                                                            TextInputAction
-                                                                .next,
-                                                        obscureText: !_model
-                                                            .passwordCreateVisibility,
-                                                        decoration:
-                                                            InputDecoration(
-                                                          labelText: 'Password',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: const Color(
-                                                                        0xFF57636C),
-                                                                    fontSize:
-                                                                        16.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                          enabledBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFFE0E3E7),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFF4B39EF),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          errorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFFFF5963),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          focusedErrorBorder:
-                                                              OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xFFFF5963),
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        40.0),
-                                                          ),
-                                                          filled: true,
-                                                          fillColor:
-                                                              Colors.white,
-                                                          contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  24.0),
-                                                          suffixIcon: InkWell(
-                                                            onTap: () =>
-                                                                setState(
-                                                              () => _model
-                                                                      .passwordCreateVisibility =
-                                                                  !_model
-                                                                      .passwordCreateVisibility,
-                                                            ),
-                                                            focusNode: FocusNode(
-                                                                skipTraversal:
-                                                                    true),
-                                                            child: Icon(
-                                                              _model.passwordCreateVisibility
-                                                                  ? Icons
-                                                                      .visibility_outlined
-                                                                  : Icons
-                                                                      .visibility_off_outlined,
-                                                              color: const Color(
-                                                                  0xFF57636C),
-                                                              size: 24.0,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyLarge
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Plus Jakarta Sans',
-                                                              color: const Color(
-                                                                  0xFF101213),
-                                                              fontSize: 16.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                        validator: _model
-                                                            .passwordCreateTextControllerValidator
-                                                            .asValidator(
-                                                                context),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        GoRouter.of(context)
-                                                            .prepareAuthEvent();
-
-                                                        final user =
-                                                            await authManager
-                                                                .createAccountWithEmail(
-                                                          context,
-                                                          _model
-                                                              .emailAddressCreateTextController
-                                                              .text,
-                                                          _model
-                                                              .passwordCreateTextController
-                                                              .text,
-                                                        );
-                                                        if (user == null) {
-                                                          return;
-                                                        }
-
-                                                        await UsersRecord
-                                                            .collection
-                                                            .doc(user.uid)
-                                                            .update({
-                                                          ...createUsersRecordData(
-                                                            email:
-                                                                valueOrDefault<
-                                                                    String>(
-                                                              _model
-                                                                  .emailAddressCreateTextController
-                                                                  .text,
-                                                              'example@gmail.com',
-                                                            ),
-                                                            createdTime:
-                                                                getCurrentTimestamp,
-                                                            password: _model
-                                                                .passwordCreateTextController
-                                                                .text,
-                                                            coins: 2000,
-                                                            deleted: false,
-                                                            dailyAds: 0,
-                                                            selectedAccessories:
-                                                                'Blank',
-                                                            selectedClothes:
-                                                                'Hoodie',
-                                                            selectedColorFabric:
-                                                                'Black',
-                                                            selectedEyebrows:
-                                                                'Default',
-                                                            selectedEyes:
-                                                                'Default',
-                                                            selectedFacialHairColors:
-                                                                'Black',
-                                                            selectedFacialHairs:
-                                                                'Blank',
-                                                            selectedHairColors:
-                                                                'Black',
-                                                            selectedHatColors:
-                                                                'Black',
-                                                            selectedMouth:
-                                                                'Default',
-                                                            selectedTop:
-                                                                'NoHair',
-                                                            selectedSkin:
-                                                                'Tanned',
-                                                          ),
-                                                          ...mapToFirestore(
-                                                            {
-                                                              'ownedAccessories':
-                                                                  FFAppState()
-                                                                      .ownedAccessories,
-                                                              'ownedClothes':
-                                                                  FFAppState()
-                                                                      .ownedClothes,
-                                                              'ownedColorFabric':
-                                                                  FFAppState()
-                                                                      .ownedClothingColor,
-                                                              'ownedEyebrows':
-                                                                  FFAppState()
-                                                                      .ownedEyebrow,
-                                                              'ownedEyes':
-                                                                  FFAppState()
-                                                                      .ownedEyes,
-                                                              'ownedFacialHair':
-                                                                  FFAppState()
-                                                                      .ownedFacialHair,
-                                                              'ownedFacialHairColors':
-                                                                  FFAppState()
-                                                                      .ownedFacialHairColor,
-                                                              'ownedHairColors':
-                                                                  FFAppState()
-                                                                      .ownedHairColor,
-                                                              'ownedHatColors':
-                                                                  FFAppState()
-                                                                      .ownedHatColor,
-                                                              'ownedMouth':
-                                                                  FFAppState()
-                                                                      .ownedMouth,
-                                                              'ownedTops':
-                                                                  FFAppState()
-                                                                      .ownedTop,
-                                                              'shopAccessories':
-                                                                  FFAppState()
-                                                                      .accessories,
-                                                              'shopClothes':
-                                                                  FFAppState()
-                                                                      .clothes,
-                                                              'shopColorFabric':
-                                                                  FFAppState()
-                                                                      .ClothingColor,
-                                                              'shopEyebrows':
-                                                                  FFAppState()
-                                                                      .eyebrow,
-                                                              'shopEyes':
-                                                                  FFAppState()
-                                                                      .eyes,
-                                                              'shopFacialHairColors':
-                                                                  FFAppState()
-                                                                      .facialHairColor,
-                                                              'shopFacialHairs':
-                                                                  FFAppState()
-                                                                      .facialHair,
-                                                              'shopHairColors':
-                                                                  FFAppState()
-                                                                      .hairColor,
-                                                              'shopHatColors':
-                                                                  FFAppState()
-                                                                      .hatColor,
-                                                              'shopMouth':
-                                                                  FFAppState()
-                                                                      .mouth,
-                                                              'shopTops':
-                                                                  FFAppState()
-                                                                      .top,
-                                                              'skins':
-                                                                  FFAppState()
-                                                                      .allSkins,
-                                                            },
-                                                          ),
-                                                        });
-
-                                                        FFAppState().userEmail =
-                                                            _model
-                                                                .emailAddressCreateTextController
-                                                                .text;
-                                                        setState(() {});
-                                                        FFAppState()
-                                                                .userPassword =
-                                                            _model
-                                                                .passwordCreateTextController
-                                                                .text;
-                                                        setState(() {});
-
-                                                        context.goNamedAuth(
-                                                            'Page1',
-                                                            context.mounted);
-
-                                                        await currentUserReference!
-                                                            .update(
-                                                                createUsersRecordData());
-                                                      },
-                                                      text: 'Get Started',
-                                                      options: FFButtonOptions(
-                                                        width: 200.0,
-                                                        height: 52.0,
+                                                      Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    24.0,
                                                                     0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
+                                                                    4.0,
+                                                                    0.0,
+                                                                    24.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'LOGIN_PAGE_Text_qrbbju16_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Text_launch_u_r_l');
+                                                            await launchURL(
+                                                                'https://classcalendarapp.com/terms-and-conditions');
+                                                          },
+                                                          child: Text(
+                                                            'By signing up, you agree to our Terms and Conditions & Privacy Policy. Click to access.',
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  color: const Color(
+                                                                      0xFF57636C),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
                                                                     0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                                    16.0),
+                                                        child: SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: TextFormField(
+                                                            controller: _model
+                                                                .emailAddressCreateTextController,
+                                                            focusNode: _model
+                                                                .emailAddressCreateFocusNode,
+                                                            onChanged: (_) =>
+                                                                EasyDebounce
+                                                                    .debounce(
+                                                              '_model.emailAddressCreateTextController',
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      2000),
+                                                              () =>
+                                                                  safeSetState(
+                                                                      () {}),
+                                                            ),
+                                                            onFieldSubmitted:
+                                                                (_) async {
+                                                              logFirebaseEvent(
+                                                                  'LOGIN_emailAddress_Create_ON_TEXTFIELD_S');
+                                                              logFirebaseEvent(
+                                                                  'emailAddress_Create_auth');
+                                                              GoRouter.of(
+                                                                      context)
+                                                                  .prepareAuthEvent();
+
+                                                              final user =
+                                                                  await authManager
+                                                                      .createAccountWithEmail(
+                                                                context,
+                                                                _model
+                                                                    .emailAddressCreateTextController
+                                                                    .text,
+                                                                _model
+                                                                    .passwordCreateTextController
+                                                                    .text,
+                                                              );
+                                                              if (user ==
+                                                                  null) {
+                                                                return;
+                                                              }
+
+                                                              context.goNamedAuth(
+                                                                  'TestHome',
+                                                                  context
+                                                                      .mounted);
+                                                            },
+                                                            autofocus: false,
+                                                            autofillHints: const [
+                                                              AutofillHints
+                                                                  .email
+                                                            ],
+                                                            textInputAction:
+                                                                TextInputAction
+                                                                    .next,
+                                                            obscureText: false,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  'Email',
+                                                              labelStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Plus Jakarta Sans',
+                                                                        color: const Color(
+                                                                            0xFF57636C),
+                                                                        fontSize:
+                                                                            16.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFE0E3E7),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFF4B39EF),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              errorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFFF5963),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              focusedErrorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFFF5963),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              filled: true,
+                                                              fillColor:
+                                                                  Colors.white,
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                      .all(
+                                                                          24.0),
+                                                              suffixIcon: _model
+                                                                      .emailAddressCreateTextController!
+                                                                      .text
+                                                                      .isNotEmpty
+                                                                  ? InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        _model
+                                                                            .emailAddressCreateTextController
+                                                                            ?.clear();
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      child:
+                                                                          const Icon(
+                                                                        Icons
+                                                                            .clear,
+                                                                        color: Color(
+                                                                            0xFF757575),
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                    )
+                                                                  : null,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyLarge
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Outfit',
+                                                                      'Plus Jakarta Sans',
+                                                                  color: const Color(
+                                                                      0xFF101213),
+                                                                  fontSize:
+                                                                      16.0,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
                                                                 ),
-                                                        elevation: 10.0,
-                                                        borderSide: const BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .emailAddress,
+                                                            validator: _model
+                                                                .emailAddressCreateTextControllerValidator
+                                                                .asValidator(
+                                                                    context),
+                                                          ),
                                                         ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(17.0),
-                                                        hoverColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
                                                       ),
-                                                      showLoadingIndicator:
-                                                          false,
-                                                    ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0),
+                                                        child: SizedBox(
+                                                          width:
+                                                              double.infinity,
+                                                          child: TextFormField(
+                                                            controller: _model
+                                                                .passwordCreateTextController,
+                                                            focusNode: _model
+                                                                .passwordCreateFocusNode,
+                                                            autofocus: false,
+                                                            autofillHints: const [
+                                                              AutofillHints
+                                                                  .password
+                                                            ],
+                                                            textInputAction:
+                                                                TextInputAction
+                                                                    .next,
+                                                            obscureText: !_model
+                                                                .passwordCreateVisibility,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              labelText:
+                                                                  'Password',
+                                                              labelStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Plus Jakarta Sans',
+                                                                        color: const Color(
+                                                                            0xFF57636C),
+                                                                        fontSize:
+                                                                            16.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                              enabledBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFE0E3E7),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFF4B39EF),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              errorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFFF5963),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              focusedErrorBorder:
+                                                                  OutlineInputBorder(
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFFF5963),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                              ),
+                                                              filled: true,
+                                                              fillColor:
+                                                                  Colors.white,
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                      .all(
+                                                                          24.0),
+                                                              suffixIcon:
+                                                                  InkWell(
+                                                                onTap: () =>
+                                                                    safeSetState(
+                                                                  () => _model
+                                                                          .passwordCreateVisibility =
+                                                                      !_model
+                                                                          .passwordCreateVisibility,
+                                                                ),
+                                                                focusNode: FocusNode(
+                                                                    skipTraversal:
+                                                                        true),
+                                                                child: Icon(
+                                                                  _model.passwordCreateVisibility
+                                                                      ? Icons
+                                                                          .visibility_outlined
+                                                                      : Icons
+                                                                          .visibility_off_outlined,
+                                                                  color: const Color(
+                                                                      0xFF57636C),
+                                                                  size: 24.0,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Plus Jakarta Sans',
+                                                                  color: const Color(
+                                                                      0xFF101213),
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                ),
+                                                            validator: _model
+                                                                .passwordCreateTextControllerValidator
+                                                                .asValidator(
+                                                                    context),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: FFButtonWidget(
+                                                          onPressed: () async {
+                                                            logFirebaseEvent(
+                                                                'LOGIN_PAGE_GET_STARTED_BTN_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Button_auth');
+                                                            GoRouter.of(context)
+                                                                .prepareAuthEvent();
+
+                                                            final user =
+                                                                await authManager
+                                                                    .createAccountWithEmail(
+                                                              context,
+                                                              _model
+                                                                  .emailAddressCreateTextController
+                                                                  .text,
+                                                              _model
+                                                                  .passwordCreateTextController
+                                                                  .text,
+                                                            );
+                                                            if (user == null) {
+                                                              return;
+                                                            }
+
+                                                            logFirebaseEvent(
+                                                                'Button_update_app_state');
+                                                            FFAppState()
+                                                                    .userEmail =
+                                                                _model
+                                                                    .emailAddressCreateTextController
+                                                                    .text;
+                                                            safeSetState(() {});
+                                                            logFirebaseEvent(
+                                                                'Button_update_app_state');
+                                                            FFAppState()
+                                                                    .userPassword =
+                                                                _model
+                                                                    .passwordCreateTextController
+                                                                    .text;
+                                                            safeSetState(() {});
+                                                            logFirebaseEvent(
+                                                                'Button_navigate_to');
+
+                                                            context.goNamedAuth(
+                                                                'Page1',
+                                                                context
+                                                                    .mounted);
+
+                                                            logFirebaseEvent(
+                                                                'Button_backend_call');
+
+                                                            await currentUserReference!
+                                                                .update(
+                                                                    createUsersRecordData());
+                                                          },
+                                                          text: 'Get Started',
+                                                          options:
+                                                              FFButtonOptions(
+                                                            width: 200.0,
+                                                            height: 52.0,
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondary,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Outfit',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            elevation: 10.0,
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        17.0),
+                                                            hoverColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                          ),
+                                                          showLoadingIndicator:
+                                                              false,
+                                                        ),
+                                                      ),
                                                       Align(
                                                         alignment:
                                                             const AlignmentDirectional(
@@ -1014,134 +834,243 @@ class _LoginWidgetState extends State<LoginWidget>
                                                         alignment:
                                                             const AlignmentDirectional(
                                                                 0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      16.0),
-                                                          child: Wrap(
-                                                            spacing: 16.0,
-                                                            runSpacing: 0.0,
-                                                            alignment:
-                                                                WrapAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                WrapCrossAlignment
-                                                                    .center,
-                                                            direction:
-                                                                Axis.horizontal,
-                                                            runAlignment:
-                                                                WrapAlignment
-                                                                    .center,
-                                                            verticalDirection:
-                                                                VerticalDirection
-                                                                    .down,
-                                                            clipBehavior:
-                                                                Clip.none,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            16.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    GoRouter.of(
-                                                                            context)
-                                                                        .prepareAuthEvent();
-                                                                    final user =
-                                                                        await authManager
-                                                                            .signInWithGoogle(context);
-                                                                    if (user ==
-                                                                        null) {
-                                                                      return;
-                                                                    }
+                                                        child: Wrap(
+                                                          spacing: 16.0,
+                                                          runSpacing: 0.0,
+                                                          alignment:
+                                                              WrapAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              WrapCrossAlignment
+                                                                  .center,
+                                                          direction:
+                                                              Axis.horizontal,
+                                                          runAlignment:
+                                                              WrapAlignment
+                                                                  .center,
+                                                          verticalDirection:
+                                                              VerticalDirection
+                                                                  .down,
+                                                          clipBehavior:
+                                                              Clip.none,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0),
+                                                              child:
+                                                                  FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  logFirebaseEvent(
+                                                                      'LOGIN_CONTINUE_WITH_GOOGLE_BTN_ON_TAP');
+                                                                  logFirebaseEvent(
+                                                                      'Button_auth');
+                                                                  GoRouter.of(
+                                                                          context)
+                                                                      .prepareAuthEvent();
+                                                                  final user =
+                                                                      await authManager
+                                                                          .signInWithGoogle(
+                                                                              context);
+                                                                  if (user ==
+                                                                      null) {
+                                                                    return;
+                                                                  }
+                                                                  logFirebaseEvent(
+                                                                      'Button_navigate_to');
 
-                                                                    context.goNamedAuth(
-                                                                        'HomePage',
-                                                                        context
-                                                                            .mounted);
-                                                                  },
-                                                                  text:
-                                                                      'Continue with Google',
-                                                                  icon: const FaIcon(
-                                                                    FontAwesomeIcons
-                                                                        .google,
-                                                                    size: 20.0,
+                                                                  context.goNamedAuth(
+                                                                      'Page1',
+                                                                      context
+                                                                          .mounted);
+
+                                                                  logFirebaseEvent(
+                                                                      'Button_backend_call');
+
+                                                                  await currentUserReference!
+                                                                      .update(
+                                                                          createUsersRecordData(
+                                                                    coins: 15,
+                                                                    deleted:
+                                                                        false,
+                                                                    createdTime:
+                                                                        getCurrentTimestamp,
+                                                                  ));
+                                                                },
+                                                                text:
+                                                                    'Continue with Google',
+                                                                icon: const FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .google,
+                                                                  size: 20.0,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 230.0,
+                                                                  height: 44.0,
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  iconPadding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Plus Jakarta Sans',
+                                                                        color: const Color(
+                                                                            0xFF101213),
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                      ),
+                                                                  elevation:
+                                                                      0.0,
+                                                                  borderSide:
+                                                                      const BorderSide(
+                                                                    color: Color(
+                                                                        0xFFE0E3E7),
+                                                                    width: 2.0,
                                                                   ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width:
-                                                                        230.0,
-                                                                    height:
-                                                                        44.0,
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: Colors
-                                                                        .white,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Plus Jakarta Sans',
-                                                                          color:
-                                                                              const Color(0xFF101213),
-                                                                          fontSize:
-                                                                              14.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                    elevation:
-                                                                        0.0,
-                                                                    borderSide:
-                                                                        const BorderSide(
-                                                                      color: Color(
-                                                                          0xFFE0E3E7),
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            40.0),
-                                                                    hoverColor:
-                                                                        const Color(
-                                                                            0xFFF1F4F8),
-                                                                  ),
-                                                                ).animateOnPageLoad(
-                                                                        animationsMap[
-                                                                            'buttonOnPageLoadAnimation']!),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                  hoverColor: const Color(
+                                                                      0xFFF1F4F8),
+                                                                ),
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                            isAndroid
+                                                                ? Container()
+                                                                : Align(
+                                                                    alignment:
+                                                                        const AlignmentDirectional(
+                                                                            0.05,
+                                                                            0.78),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0),
+                                                                      child:
+                                                                          FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          logFirebaseEvent(
+                                                                              'LOGIN_CONTINUE_WITH_APPLE_BTN_ON_TAP');
+                                                                          logFirebaseEvent(
+                                                                              'Button_auth');
+                                                                          GoRouter.of(context)
+                                                                              .prepareAuthEvent();
+                                                                          final user =
+                                                                              await authManager.signInWithApple(context);
+                                                                          if (user ==
+                                                                              null) {
+                                                                            return;
+                                                                          }
+                                                                          logFirebaseEvent(
+                                                                              'Button_navigate_to');
+
+                                                                          context.pushNamedAuth(
+                                                                              'Page1',
+                                                                              context.mounted);
+
+                                                                          logFirebaseEvent(
+                                                                              'Button_backend_call');
+
+                                                                          await currentUserReference!
+                                                                              .update(createUsersRecordData(
+                                                                            coins:
+                                                                                15,
+                                                                            deleted:
+                                                                                false,
+                                                                            createdTime:
+                                                                                getCurrentTimestamp,
+                                                                          ));
+                                                                        },
+                                                                        text:
+                                                                            'Continue with Apple',
+                                                                        icon:
+                                                                            const FaIcon(
+                                                                          FontAwesomeIcons
+                                                                              .apple,
+                                                                          size:
+                                                                              20.0,
+                                                                        ),
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              230.0,
+                                                                          height:
+                                                                              44.0,
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              Colors.white,
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Plus Jakarta Sans',
+                                                                                color: const Color(0xFF101213),
+                                                                                fontSize: 14.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.bold,
+                                                                              ),
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderSide:
+                                                                              const BorderSide(
+                                                                            color:
+                                                                                Color(0xFFE0E3E7),
+                                                                            width:
+                                                                                2.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(40.0),
+                                                                          hoverColor:
+                                                                              const Color(0xFFF1F4F8),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
                                         Align(
                                           alignment:
@@ -1228,7 +1157,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           const Duration(
                                                               milliseconds:
                                                                   2000),
-                                                          () => setState(() {}),
+                                                          () => safeSetState(
+                                                              () {}),
                                                         ),
                                                         autofocus: false,
                                                         autofillHints: const [
@@ -1330,7 +1260,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                     _model
                                                                         .emailAddressTextController
                                                                         ?.clear();
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   },
                                                                   child: const Icon(
@@ -1472,7 +1402,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                       24.0),
                                                           suffixIcon: InkWell(
                                                             onTap: () =>
-                                                                setState(
+                                                                safeSetState(
                                                               () => _model
                                                                       .passwordVisibility =
                                                                   !_model
@@ -1532,6 +1462,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                     16.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
+                                                            logFirebaseEvent(
+                                                                'LOGIN_PAGE_Logi_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Logi_update_app_state');
                                                             FFAppState()
                                                                     .userEmail =
                                                                 _model
@@ -1544,6 +1478,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                     .text;
                                                             FFAppState()
                                                                 .update(() {});
+                                                            logFirebaseEvent(
+                                                                'Logi_auth');
                                                             GoRouter.of(context)
                                                                 .prepareAuthEvent();
 
@@ -1562,8 +1498,20 @@ class _LoginWidgetState extends State<LoginWidget>
                                                               return;
                                                             }
 
+                                                            logFirebaseEvent(
+                                                                'Logi_backend_call');
+
+                                                            await currentUserReference!
+                                                                .update(
+                                                                    createUsersRecordData(
+                                                              lastTaskDate:
+                                                                  getCurrentTimestamp,
+                                                            ));
+                                                            logFirebaseEvent(
+                                                                'Logi_navigate_to');
+
                                                             context.pushNamedAuth(
-                                                                'HomePage',
+                                                                'TestHome',
                                                                 context
                                                                     .mounted);
                                                           },
@@ -1686,6 +1634,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
+                                                              logFirebaseEvent(
+                                                                  'LOGIN_CONTINUE_WITH_GOOGLE_BTN_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Button_auth');
                                                               GoRouter.of(
                                                                       context)
                                                                   .prepareAuthEvent();
@@ -1699,7 +1651,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                               }
 
                                                               context.goNamedAuth(
-                                                                  'HomePage',
+                                                                  'TestHome',
                                                                   context
                                                                       .mounted);
                                                             },
@@ -1765,6 +1717,105 @@ class _LoginWidgetState extends State<LoginWidget>
                                                       ],
                                                     ),
                                                   ),
+                                                  isAndroid
+                                                      ? Container()
+                                                      : Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.05, 0.78),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        16.0),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                logFirebaseEvent(
+                                                                    'LOGIN_CONTINUE_WITH_APPLE_BTN_ON_TAP');
+                                                                logFirebaseEvent(
+                                                                    'Button_auth');
+                                                                GoRouter.of(
+                                                                        context)
+                                                                    .prepareAuthEvent();
+                                                                final user =
+                                                                    await authManager
+                                                                        .signInWithApple(
+                                                                            context);
+                                                                if (user ==
+                                                                    null) {
+                                                                  return;
+                                                                }
+
+                                                                context.goNamedAuth(
+                                                                    'TestHome',
+                                                                    context
+                                                                        .mounted);
+                                                              },
+                                                              text:
+                                                                  'Continue with Apple',
+                                                              icon: const FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .apple,
+                                                                size: 20.0,
+                                                              ),
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 230.0,
+                                                                height: 44.0,
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                iconPadding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                color: Colors
+                                                                    .white,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Plus Jakarta Sans',
+                                                                      color: const Color(
+                                                                          0xFF101213),
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                elevation: 0.0,
+                                                                borderSide:
+                                                                    const BorderSide(
+                                                                  color: Color(
+                                                                      0xFFE0E3E7),
+                                                                  width: 2.0,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                                hoverColor: const Color(
+                                                                    0xFFF1F4F8),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
                                                   Align(
                                                     alignment:
                                                         const AlignmentDirectional(
@@ -1779,6 +1830,11 @@ class _LoginWidgetState extends State<LoginWidget>
                                                                   16.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
+                                                          logFirebaseEvent(
+                                                              'LOGIN_PAGE_FORGOT_PASSWORD_BTN_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'Button_navigate_to');
+
                                                           context.pushNamed(
                                                             'forgotPassword',
                                                             extra: <String,

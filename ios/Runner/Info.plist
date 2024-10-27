@@ -55,7 +55,14 @@
 
 
 	<key>PermissionGroupNotification</key>
-    <string>Let classCalendar send you notifcations to ensure you stay up-to-date with your tasks!</string>
+    <string>Allow classCalendar to send you notifications for important reminders and updates?</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>This app requires access to certain features to enhance your experience while respecting your privacy.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 	<key>UILaunchStoryboardName</key>

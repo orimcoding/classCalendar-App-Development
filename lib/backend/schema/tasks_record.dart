@@ -30,11 +30,6 @@ class TasksRecord extends FirestoreRecord {
   DateTime? get start => _start;
   bool hasStart() => _start != null;
 
-  // "end" field.
-  DateTime? _end;
-  DateTime? get end => _end;
-  bool hasEnd() => _end != null;
-
   // "completed" field.
   bool? _completed;
   bool get completed => _completed ?? false;
@@ -55,15 +50,20 @@ class TasksRecord extends FirestoreRecord {
   String get ownerId => _ownerId ?? '';
   bool hasOwnerId() => _ownerId != null;
 
+  // "subject" field.
+  String? _subject;
+  String get subject => _subject ?? '';
+  bool hasSubject() => _subject != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
     _start = snapshotData['start'] as DateTime?;
-    _end = snapshotData['end'] as DateTime?;
     _completed = snapshotData['completed'] as bool?;
     _user = snapshotData['user'] as DocumentReference?;
     _googleMaps = snapshotData['googleMaps'] as LatLng?;
     _ownerId = snapshotData['ownerId'] as String?;
+    _subject = snapshotData['subject'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -103,22 +103,22 @@ Map<String, dynamic> createTasksRecordData({
   String? name,
   String? description,
   DateTime? start,
-  DateTime? end,
   bool? completed,
   DocumentReference? user,
   LatLng? googleMaps,
   String? ownerId,
+  String? subject,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'name': name,
       'description': description,
       'start': start,
-      'end': end,
       'completed': completed,
       'user': user,
       'googleMaps': googleMaps,
       'ownerId': ownerId,
+      'subject': subject,
     }.withoutNulls,
   );
 
@@ -133,11 +133,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
     return e1?.name == e2?.name &&
         e1?.description == e2?.description &&
         e1?.start == e2?.start &&
-        e1?.end == e2?.end &&
         e1?.completed == e2?.completed &&
         e1?.user == e2?.user &&
         e1?.googleMaps == e2?.googleMaps &&
-        e1?.ownerId == e2?.ownerId;
+        e1?.ownerId == e2?.ownerId &&
+        e1?.subject == e2?.subject;
   }
 
   @override
@@ -145,11 +145,11 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.name,
         e?.description,
         e?.start,
-        e?.end,
         e?.completed,
         e?.user,
         e?.googleMaps,
-        e?.ownerId
+        e?.ownerId,
+        e?.subject
       ]);
 
   @override

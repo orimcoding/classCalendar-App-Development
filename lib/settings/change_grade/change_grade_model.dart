@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class ChangeGradeModel extends FlutterFlowModel<ChangeGradeWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for RadioButton widget.
   FormFieldController<String>? radioButtonValueController;
 

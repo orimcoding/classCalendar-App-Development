@@ -1133,6 +1133,43 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAllSkins(int index, String value) {
     allSkins.insert(index, value);
   }
+
+  List<String> _skin = [
+    'Tanned',
+    'Yellow',
+    'Pale',
+    'Light',
+    'Brown',
+    'DarkBrown',
+    'Black'
+  ];
+  List<String> get skin => _skin;
+  set skin(List<String> value) {
+    _skin = value;
+  }
+
+  void addToSkin(String value) {
+    skin.add(value);
+  }
+
+  void removeFromSkin(String value) {
+    skin.remove(value);
+  }
+
+  void removeAtIndexFromSkin(int index) {
+    skin.removeAt(index);
+  }
+
+  void updateSkinAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    skin[index] = updateFn(_skin[index]);
+  }
+
+  void insertAtIndexInSkin(int index, String value) {
+    skin.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

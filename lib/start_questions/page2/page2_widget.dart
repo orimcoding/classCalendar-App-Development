@@ -31,6 +31,7 @@ class _Page2WidgetState extends State<Page2Widget>
     super.initState();
     _model = createModel(context, () => Page2Model());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Page2'});
     _model.usernameCreateTextController ??= TextEditingController();
     _model.usernameCreateFocusNode ??= FocusNode();
 
@@ -87,7 +88,7 @@ class _Page2WidgetState extends State<Page2Widget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -227,92 +228,100 @@ class _Page2WidgetState extends State<Page2Widget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 16.0),
-                                    child: SizedBox(
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.usernameCreateTextController,
-                                        focusNode:
-                                            _model.usernameCreateFocusNode,
-                                        onFieldSubmitted: (_) async {
-                                          FFAppState().userName = _model
-                                              .usernameCreateTextController
-                                              .text;
-                                          setState(() {});
-                                        },
-                                        autofocus: true,
-                                        autofillHints: const [AutofillHints.email],
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'Username',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelLarge
-                                                  .override(
-                                                    fontFamily: 'Raleway',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              width: 2.0,
+                                  child: Opacity(
+                                    opacity: 0.9999,
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 16.0),
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        child: TextFormField(
+                                          controller: _model
+                                              .usernameCreateTextController,
+                                          focusNode:
+                                              _model.usernameCreateFocusNode,
+                                          onFieldSubmitted: (_) async {
+                                            logFirebaseEvent(
+                                                'PAGE2_username_create_ON_TEXTFIELD_SUBMI');
+                                            logFirebaseEvent(
+                                                'username_create_update_app_state');
+                                            FFAppState().userName = _model
+                                                .usernameCreateTextController
+                                                .text;
+                                            safeSetState(() {});
+                                          },
+                                          autofocus: true,
+                                          autofillHints: const [AutofillHints.email],
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: 'Username',
+                                            labelStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLarge
+                                                    .override(
+                                                      fontFamily: 'Raleway',
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(40.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 2.0,
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(40.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 2.0,
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(40.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                              width: 2.0,
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(40.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
+                                            filled: true,
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            contentPadding:
+                                                const EdgeInsets.all(24.0),
                                           ),
-                                          filled: true,
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          contentPadding: const EdgeInsets.all(24.0),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyLarge
+                                              .override(
+                                                fontFamily: 'Inter Tight',
+                                                letterSpacing: 0.0,
+                                              ),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          validator: _model
+                                              .usernameCreateTextControllerValidator
+                                              .asValidator(context),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily: 'Inter Tight',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        validator: _model
-                                            .usernameCreateTextControllerValidator
-                                            .asValidator(context),
                                       ),
                                     ),
                                   ),
@@ -336,11 +345,16 @@ class _Page2WidgetState extends State<Page2Widget>
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('PAGE2_PAGE_NEXT_QUESTION_BTN_ON_TAP');
+                        logFirebaseEvent('Button_update_app_state');
                         FFAppState().userName =
                             _model.usernameCreateTextController.text;
                         FFAppState().update(() {});
+                        logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed('Page3');
+
+                        logFirebaseEvent('Button_backend_call');
 
                         await currentUserReference!
                             .update(createUsersRecordData(

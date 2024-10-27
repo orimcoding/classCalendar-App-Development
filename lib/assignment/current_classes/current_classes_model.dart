@@ -3,10 +3,6 @@ import 'current_classes_widget.dart' show CurrentClassesWidget;
 import 'package:flutter/material.dart';
 
 class CurrentClassesModel extends FlutterFlowModel<CurrentClassesWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  final unfocusNode = FocusNode();
-
   @override
   void initState(BuildContext context) {}
 

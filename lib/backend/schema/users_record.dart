@@ -256,6 +256,86 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get yesterday => _yesterday;
   bool hasYesterday() => _yesterday != null;
 
+  // "lastDailyCoinTime" field.
+  DateTime? _lastDailyCoinTime;
+  DateTime? get lastDailyCoinTime => _lastDailyCoinTime;
+  bool hasLastDailyCoinTime() => _lastDailyCoinTime != null;
+
+  // "dailyTasks" field.
+  int? _dailyTasks;
+  int get dailyTasks => _dailyTasks ?? 0;
+  bool hasDailyTasks() => _dailyTasks != null;
+
+  // "dailyAssignments" field.
+  int? _dailyAssignments;
+  int get dailyAssignments => _dailyAssignments ?? 0;
+  bool hasDailyAssignments() => _dailyAssignments != null;
+
+  // "lastResetDate" field.
+  DateTime? _lastResetDate;
+  DateTime? get lastResetDate => _lastResetDate;
+  bool hasLastResetDate() => _lastResetDate != null;
+
+  // "streakb" field.
+  bool? _streakb;
+  bool get streakb => _streakb ?? false;
+  bool hasStreakb() => _streakb != null;
+
+  // "lastTaskDate" field.
+  DateTime? _lastTaskDate;
+  DateTime? get lastTaskDate => _lastTaskDate;
+  bool hasLastTaskDate() => _lastTaskDate != null;
+
+  // "streak" field.
+  int? _streak;
+  int get streak => _streak ?? 0;
+  bool hasStreak() => _streak != null;
+
+  // "lastVisit" field.
+  DateTime? _lastVisit;
+  DateTime? get lastVisit => _lastVisit;
+  bool hasLastVisit() => _lastVisit != null;
+
+  // "lastvisitsince" field.
+  int? _lastvisitsince;
+  int get lastvisitsince => _lastvisitsince ?? 0;
+  bool hasLastvisitsince() => _lastvisitsince != null;
+
+  // "lastex" field.
+  DateTime? _lastex;
+  DateTime? get lastex => _lastex;
+  bool hasLastex() => _lastex != null;
+
+  // "lastexsince" field.
+  int? _lastexsince;
+  int get lastexsince => _lastexsince ?? 0;
+  bool hasLastexsince() => _lastexsince != null;
+
+  // "homeWalk" field.
+  bool? _homeWalk;
+  bool get homeWalk => _homeWalk ?? false;
+  bool hasHomeWalk() => _homeWalk != null;
+
+  // "profileWalk" field.
+  bool? _profileWalk;
+  bool get profileWalk => _profileWalk ?? false;
+  bool hasProfileWalk() => _profileWalk != null;
+
+  // "taskWalk" field.
+  bool? _taskWalk;
+  bool get taskWalk => _taskWalk ?? false;
+  bool hasTaskWalk() => _taskWalk != null;
+
+  // "AssWalk" field.
+  bool? _assWalk;
+  bool get assWalk => _assWalk ?? false;
+  bool hasAssWalk() => _assWalk != null;
+
+  // "lastAssignmentDate" field.
+  DateTime? _lastAssignmentDate;
+  DateTime? get lastAssignmentDate => _lastAssignmentDate;
+  bool hasLastAssignmentDate() => _lastAssignmentDate != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -306,6 +386,22 @@ class UsersRecord extends FirestoreRecord {
     _selectedSkin = snapshotData['selectedSkin'] as String?;
     _dailyLimit = snapshotData['dailyLimit'] as bool?;
     _yesterday = snapshotData['yesterday'] as DateTime?;
+    _lastDailyCoinTime = snapshotData['lastDailyCoinTime'] as DateTime?;
+    _dailyTasks = castToType<int>(snapshotData['dailyTasks']);
+    _dailyAssignments = castToType<int>(snapshotData['dailyAssignments']);
+    _lastResetDate = snapshotData['lastResetDate'] as DateTime?;
+    _streakb = snapshotData['streakb'] as bool?;
+    _lastTaskDate = snapshotData['lastTaskDate'] as DateTime?;
+    _streak = castToType<int>(snapshotData['streak']);
+    _lastVisit = snapshotData['lastVisit'] as DateTime?;
+    _lastvisitsince = castToType<int>(snapshotData['lastvisitsince']);
+    _lastex = snapshotData['lastex'] as DateTime?;
+    _lastexsince = castToType<int>(snapshotData['lastexsince']);
+    _homeWalk = snapshotData['homeWalk'] as bool?;
+    _profileWalk = snapshotData['profileWalk'] as bool?;
+    _taskWalk = snapshotData['taskWalk'] as bool?;
+    _assWalk = snapshotData['AssWalk'] as bool?;
+    _lastAssignmentDate = snapshotData['lastAssignmentDate'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -367,6 +463,22 @@ Map<String, dynamic> createUsersRecordData({
   String? selectedSkin,
   bool? dailyLimit,
   DateTime? yesterday,
+  DateTime? lastDailyCoinTime,
+  int? dailyTasks,
+  int? dailyAssignments,
+  DateTime? lastResetDate,
+  bool? streakb,
+  DateTime? lastTaskDate,
+  int? streak,
+  DateTime? lastVisit,
+  int? lastvisitsince,
+  DateTime? lastex,
+  int? lastexsince,
+  bool? homeWalk,
+  bool? profileWalk,
+  bool? taskWalk,
+  bool? assWalk,
+  DateTime? lastAssignmentDate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -395,6 +507,22 @@ Map<String, dynamic> createUsersRecordData({
       'selectedSkin': selectedSkin,
       'dailyLimit': dailyLimit,
       'yesterday': yesterday,
+      'lastDailyCoinTime': lastDailyCoinTime,
+      'dailyTasks': dailyTasks,
+      'dailyAssignments': dailyAssignments,
+      'lastResetDate': lastResetDate,
+      'streakb': streakb,
+      'lastTaskDate': lastTaskDate,
+      'streak': streak,
+      'lastVisit': lastVisit,
+      'lastvisitsince': lastvisitsince,
+      'lastex': lastex,
+      'lastexsince': lastexsince,
+      'homeWalk': homeWalk,
+      'profileWalk': profileWalk,
+      'taskWalk': taskWalk,
+      'AssWalk': assWalk,
+      'lastAssignmentDate': lastAssignmentDate,
     }.withoutNulls,
   );
 
@@ -456,7 +584,23 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         listEquality.equals(e1?.skins, e2?.skins) &&
         e1?.selectedSkin == e2?.selectedSkin &&
         e1?.dailyLimit == e2?.dailyLimit &&
-        e1?.yesterday == e2?.yesterday;
+        e1?.yesterday == e2?.yesterday &&
+        e1?.lastDailyCoinTime == e2?.lastDailyCoinTime &&
+        e1?.dailyTasks == e2?.dailyTasks &&
+        e1?.dailyAssignments == e2?.dailyAssignments &&
+        e1?.lastResetDate == e2?.lastResetDate &&
+        e1?.streakb == e2?.streakb &&
+        e1?.lastTaskDate == e2?.lastTaskDate &&
+        e1?.streak == e2?.streak &&
+        e1?.lastVisit == e2?.lastVisit &&
+        e1?.lastvisitsince == e2?.lastvisitsince &&
+        e1?.lastex == e2?.lastex &&
+        e1?.lastexsince == e2?.lastexsince &&
+        e1?.homeWalk == e2?.homeWalk &&
+        e1?.profileWalk == e2?.profileWalk &&
+        e1?.taskWalk == e2?.taskWalk &&
+        e1?.assWalk == e2?.assWalk &&
+        e1?.lastAssignmentDate == e2?.lastAssignmentDate;
   }
 
   @override
@@ -508,7 +652,23 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.skins,
         e?.selectedSkin,
         e?.dailyLimit,
-        e?.yesterday
+        e?.yesterday,
+        e?.lastDailyCoinTime,
+        e?.dailyTasks,
+        e?.dailyAssignments,
+        e?.lastResetDate,
+        e?.streakb,
+        e?.lastTaskDate,
+        e?.streak,
+        e?.lastVisit,
+        e?.lastvisitsince,
+        e?.lastex,
+        e?.lastexsince,
+        e?.homeWalk,
+        e?.profileWalk,
+        e?.taskWalk,
+        e?.assWalk,
+        e?.lastAssignmentDate
       ]);
 
   @override

@@ -31,6 +31,8 @@ class _ChangeUsernameWidgetState extends State<ChangeUsernameWidget>
     super.initState();
     _model = createModel(context, () => ChangeUsernameModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ChangeUsername'});
     _model.usernameCreateTextController ??= TextEditingController();
     _model.usernameCreateFocusNode ??= FocusNode();
 
@@ -87,7 +89,7 @@ class _ChangeUsernameWidgetState extends State<ChangeUsernameWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -107,24 +109,43 @@ class _ChangeUsernameWidgetState extends State<ChangeUsernameWidget>
         appBar: AppBar(
           backgroundColor: const Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
-          title: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-            child: GradientText(
-              'Change Username',
-              style: FlutterFlowTheme.of(context).displaySmall.override(
-                    fontFamily: 'Outfit',
-                    color: const Color(0xFF0F1113),
-                    fontSize: 32.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-              colors: [
-                FlutterFlowTheme.of(context).primary,
-                FlutterFlowTheme.of(context).secondary,
-                FlutterFlowTheme.of(context).tertiary
-              ],
-              gradientDirection: GradientDirection.ltr,
-              gradientType: GradientType.linear,
+          leading: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              logFirebaseEvent('CHANGE_USERNAME_Icon_z9re8wvo_ON_TAP');
+              logFirebaseEvent('Icon_navigate_back');
+              context.safePop();
+            },
+            child: Icon(
+              Icons.chevron_left_sharp,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 24.0,
+            ),
+          ),
+          title: Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 48.0, 0.0),
+              child: GradientText(
+                'Change Username',
+                style: FlutterFlowTheme.of(context).displaySmall.override(
+                      fontFamily: 'Outfit',
+                      color: const Color(0xFF0F1113),
+                      fontSize: 30.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                colors: [
+                  FlutterFlowTheme.of(context).primary,
+                  FlutterFlowTheme.of(context).secondary,
+                  FlutterFlowTheme.of(context).tertiary
+                ],
+                gradientDirection: GradientDirection.ltr,
+                gradientType: GradientType.linear,
+              ),
             ),
           ),
           actions: const [],
@@ -133,243 +154,265 @@ class _ChangeUsernameWidgetState extends State<ChangeUsernameWidget>
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
-                        child: LinearPercentIndicator(
-                          percent: 1.0,
-                          width: MediaQuery.sizeOf(context).width * 0.96,
-                          lineHeight: 12.0,
-                          animation: true,
-                          animateFromLastPercent: true,
-                          progressColor: const Color(0xFF827AE1),
-                          backgroundColor: const Color(0xFFE0E3E7),
-                          barRadius: const Radius.circular(24.0),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 100.0, 0.0, 0.0),
-                        child: Text(
-                          'Type in a username.',
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: const Color(0xFF0F1113),
-                                fontSize: 32.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
-                              ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation1']!),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
-                        child: Text(
-                          'Please be appropriate.',
-                          style:
-                              FlutterFlowTheme.of(context).labelLarge.override(
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                8.0, 12.0, 8.0, 0.0),
+                            child: LinearPercentIndicator(
+                              percent: 1.0,
+                              width: MediaQuery.sizeOf(context).width * 0.96,
+                              lineHeight: 12.0,
+                              animation: true,
+                              animateFromLastPercent: true,
+                              progressColor: const Color(0xFF827AE1),
+                              backgroundColor: const Color(0xFFE0E3E7),
+                              barRadius: const Radius.circular(24.0),
+                              padding: EdgeInsets.zero,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 100.0, 0.0, 0.0),
+                            child: Text(
+                              'Type in a username.',
+                              style: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    color: const Color(0xFF0F1113),
+                                    fontSize: 32.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation1']!),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 0.0, 0.0),
+                            child: Text(
+                              'Please be appropriate.',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
                                     fontFamily: 'Plus Jakarta Sans',
                                     color: const Color(0xFF57636C),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                   ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation2']!),
-                      ),
-                      Wrap(
-                        spacing: 0.0,
-                        runSpacing: 0.0,
-                        alignment: WrapAlignment.start,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        direction: Axis.horizontal,
-                        runAlignment: WrapAlignment.center,
-                        verticalDirection: VerticalDirection.down,
-                        clipBehavior: Clip.none,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 12.0, 16.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 16.0),
-                                    child: SizedBox(
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        controller:
-                                            _model.usernameCreateTextController,
-                                        focusNode:
-                                            _model.usernameCreateFocusNode,
-                                        onFieldSubmitted: (_) async {
-                                          FFAppState().userName = _model
-                                              .usernameCreateTextController
-                                              .text;
-                                          setState(() {});
-                                        },
-                                        autofocus: true,
-                                        autofillHints: const [AutofillHints.email],
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'Username',
-                                          labelStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelLarge
-                                                  .override(
-                                                    fontFamily: 'Raleway',
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
+                            ).animateOnPageLoad(
+                                animationsMap['textOnPageLoadAnimation2']!),
+                          ),
+                          Wrap(
+                            spacing: 0.0,
+                            runSpacing: 0.0,
+                            alignment: WrapAlignment.start,
+                            crossAxisAlignment: WrapCrossAlignment.start,
+                            direction: Axis.horizontal,
+                            runAlignment: WrapAlignment.center,
+                            verticalDirection: VerticalDirection.down,
+                            clipBehavior: Clip.none,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 12.0, 16.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: SizedBox(
+                                          width: double.infinity,
+                                          child: TextFormField(
+                                            controller: _model
+                                                .usernameCreateTextController,
+                                            focusNode:
+                                                _model.usernameCreateFocusNode,
+                                            onFieldSubmitted: (_) async {
+                                              logFirebaseEvent(
+                                                  'CHANGE_USERNAME_username_create_ON_TEXTF');
+                                              logFirebaseEvent(
+                                                  'username_create_update_app_state');
+                                              FFAppState().userName = _model
+                                                  .usernameCreateTextController
+                                                  .text;
+                                              safeSetState(() {});
+                                            },
+                                            autofocus: false,
+                                            autofillHints: const [
+                                              AutofillHints.email
+                                            ],
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText: 'Username',
+                                              labelStyle:
                                                   FlutterFlowTheme.of(context)
+                                                      .labelLarge
+                                                      .override(
+                                                        fontFamily: 'Raleway',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .alternate,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .primary,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .error,
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .error,
-                                              width: 2.0,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                              ),
+                                              filled: true,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              contentPadding:
+                                                  const EdgeInsets.all(24.0),
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(40.0),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily: 'Inter Tight',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                            keyboardType:
+                                                TextInputType.emailAddress,
+                                            validator: _model
+                                                .usernameCreateTextControllerValidator
+                                                .asValidator(context),
                                           ),
-                                          filled: true,
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          contentPadding: const EdgeInsets.all(24.0),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              fontFamily: 'Inter Tight',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        validator: _model
-                                            .usernameCreateTextControllerValidator
-                                            .asValidator(context),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        FFAppState().userName =
-                            _model.usernameCreateTextController.text;
-                        FFAppState().update(() {});
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            logFirebaseEvent(
+                                'CHANGE_USERNAME_PAGE_CONFIRM_BTN_ON_TAP');
+                            logFirebaseEvent('Button_update_app_state');
+                            FFAppState().userName =
+                                _model.usernameCreateTextController.text;
+                            FFAppState().update(() {});
+                            logFirebaseEvent('Button_navigate_to');
 
-                        context.pushNamed('Settings');
+                            context.pushNamed('SettingsCopy');
 
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          displayName: _model.usernameCreateTextController.text,
-                        ));
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Username Changed',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
+                            logFirebaseEvent('Button_backend_call');
+
+                            await currentUserReference!
+                                .update(createUsersRecordData(
+                              displayName:
+                                  _model.usernameCreateTextController.text,
+                            ));
+                            logFirebaseEvent('Button_show_snack_bar');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Username Changed',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
                               ),
-                            ),
-                            duration: const Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).secondary,
-                          ),
-                        );
-                      },
-                      text: 'Confirm',
-                      options: FFButtonOptions(
-                        width: 300.0,
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).secondary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
+                            );
+                          },
+                          text: 'Confirm',
+                          options: FFButtonOptions(
+                            width: 300.0,
+                            height: 50.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24.0, 0.0, 24.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).secondary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
                                   fontFamily: 'Outfit',
                                   letterSpacing: 0.0,
                                 ),
-                        elevation: 10.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
+                            elevation: 10.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(17.0),
+                            hoverColor: FlutterFlowTheme.of(context).secondary,
+                          ),
+                          showLoadingIndicator: false,
                         ),
-                        borderRadius: BorderRadius.circular(17.0),
-                        hoverColor: FlutterFlowTheme.of(context).secondary,
                       ),
-                      showLoadingIndicator: false,
-                    ),
+                    ],
                   ),
                 ],
-              ),
+              ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
             ],
-          ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
+          ),
         ),
       ),
     );

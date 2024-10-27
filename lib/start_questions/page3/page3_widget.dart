@@ -35,6 +35,7 @@ class _Page3WidgetState extends State<Page3Widget>
     super.initState();
     _model = createModel(context, () => Page3Model());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Page3'});
     animationsMap.addAll({
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -88,7 +89,7 @@ class _Page3WidgetState extends State<Page3Widget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -184,7 +185,7 @@ class _Page3WidgetState extends State<Page3Widget>
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 100.0, 0.0, 0.0),
                         child: Text(
-                          'Do you agree to the\nTerms of Conditions and Privacy Policy?',
+                          'Do you understand how \nto use classCalendar?',
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
@@ -200,16 +201,29 @@ class _Page3WidgetState extends State<Page3Widget>
                       Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
-                        child: Text(
-                          'Please answer truthfully.\n',
-                          style:
-                              FlutterFlowTheme.of(context).labelLarge.override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            logFirebaseEvent('PAGE3_PAGE_Text_nyg05jbt_ON_TAP');
+                            logFirebaseEvent('Text_launch_u_r_l');
+                            await launchURL(
+                                'https://classcalendarapp.com/how-to-use');
+                          },
+                          child: Text(
+                            'Click here for more information.\n',
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation2']!),
                       ),
@@ -218,7 +232,7 @@ class _Page3WidgetState extends State<Page3Widget>
                             const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: FlutterFlowRadioButton(
                           options: ['Yes', 'No'].toList(),
-                          onChanged: (val) => setState(() {}),
+                          onChanged: (val) => safeSetState(() {}),
                           controller: _model.radioButtonValueController ??=
                               FormFieldController<String>(null),
                           optionHeight: 50.0,
@@ -258,7 +272,9 @@ class _Page3WidgetState extends State<Page3Widget>
                         const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 32.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('PAGE3_PAGE_FINISH_BTN_ON_TAP');
                         if (_model.radioButtonValue == 'No') {
+                          logFirebaseEvent('Button_show_snack_bar');
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -276,13 +292,63 @@ class _Page3WidgetState extends State<Page3Widget>
                             ),
                           );
                         } else {
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            displayName: FFAppState().userName,
-                            selectedGrade: FFAppState().gradeLevel,
-                          ));
+                          logFirebaseEvent('Button_backend_call');
 
-                          context.pushNamed('HomePage');
+                          await currentUserReference!.update({
+                            ...createUsersRecordData(
+                              dailyTasks: 0,
+                              dailyAssignments: 0,
+                              streak: 0,
+                              selectedTop: 'NoHair',
+                              selectedEyes: 'Default',
+                              selectedSkin: 'Tanned',
+                              selectedMouth: 'Default',
+                              selectedClothes: 'BlazerShirt',
+                              selectedEyebrows: 'Default',
+                              selectedHatColors: 'Black',
+                              selectedAccessories: 'Blank',
+                              selectedHairColors: 'Black',
+                              selectedFacialHairs: 'Blank',
+                              selectedColorFabric: 'Black',
+                              selectedFacialHairColors: 'Black',
+                              lastTaskDate: getCurrentTimestamp,
+                              lastAssignmentDate: getCurrentTimestamp,
+                            ),
+                            ...mapToFirestore(
+                              {
+                                'ownedColorFabric':
+                                    FFAppState().ownedClothingColor,
+                                'shopColorFabric': FFAppState().ClothingColor,
+                                'ownedEyes': FFAppState().ownedEyes,
+                                'shopEyes': FFAppState().eyes,
+                                'shopAccessories': FFAppState().accessories,
+                                'ownedAccessories':
+                                    FFAppState().ownedAccessories,
+                                'shopEyebrows': FFAppState().eyebrow,
+                                'ownedEyebrows': FFAppState().ownedEyebrow,
+                                'shopFacialHairColors':
+                                    FFAppState().facialHairColor,
+                                'ownedFacialHairColors':
+                                    FFAppState().ownedFacialHairColor,
+                                'ownedFacialHair': FFAppState().ownedFacialHair,
+                                'shopFacialHairs': FFAppState().facialHair,
+                                'shopHairColors': FFAppState().hairColor,
+                                'ownedHairColors': FFAppState().ownedHairColor,
+                                'shopHatColors': FFAppState().hatColor,
+                                'ownedHatColors': FFAppState().ownedHatColor,
+                                'shopTops': FFAppState().top,
+                                'ownedTops': FFAppState().ownedTop,
+                                'shopClothes': FFAppState().clothes,
+                                'ownedClothes': FFAppState().ownedClothes,
+                                'shopMouth': FFAppState().mouth,
+                                'ownedMouth': FFAppState().ownedMouth,
+                                'skins': FFAppState().allSkins,
+                              },
+                            ),
+                          });
+                          logFirebaseEvent('Button_navigate_to');
+
+                          context.pushNamed('Success03');
                         }
                       },
                       text: 'Finish',

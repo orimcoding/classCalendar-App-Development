@@ -6,12 +6,14 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
 import 'auth/firebase_auth/auth_util.dart';
 
+import 'backend/push_notifications/push_notifications_util.dart';
 import 'backend/firebase/firebase_config.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'index.dart';
 
 import '/flutter_flow/admob_util.dart';
@@ -20,14 +22,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
-  await initFirebase();
 
-  await FlutterFlowTheme.initialize();
+  await initFirebase();
 
   adMobUpdateRequestConfiguration();
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
+
+  if (!kIsWeb) {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  }
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -49,7 +54,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
 
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = ThemeMode.system;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -57,6 +62,7 @@ class _MyAppState extends State<MyApp> {
   late Stream<BaseAuthUser> userStream;
 
   final authUserSub = authenticatedUserStream.listen((_) {});
+  final fcmTokenSub = fcmTokenUserStream.listen((_) {});
 
   @override
   void initState() {
@@ -78,17 +84,16 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     authUserSub.cancel();
-
+    fcmTokenSub.cancel();
     super.dispose();
   }
 
   void setLocale(String language) {
-    setState(() => _locale = createLocale(language));
+    safeSetState(() => _locale = createLocale(language));
   }
 
-  void setThemeMode(ThemeMode mode) => setState(() {
+  void setThemeMode(ThemeMode mode) => safeSetState(() {
         _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -100,6 +105,8 @@ class _MyAppState extends State<MyApp> {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
+        FallbackMaterialLocalizationDelegate(),
+        FallbackCupertinoLocalizationDelegate(),
       ],
       locale: _locale,
       supportedLocales: const [
@@ -107,15 +114,6 @@ class _MyAppState extends State<MyApp> {
       ],
       theme: ThemeData(
         brightness: Brightness.light,
-        scrollbarTheme: ScrollbarThemeData(
-          thumbVisibility: WidgetStateProperty.all(true),
-          trackVisibility: WidgetStateProperty.all(true),
-          interactive: true,
-        ),
-        useMaterial3: false,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
         scrollbarTheme: ScrollbarThemeData(
           thumbVisibility: WidgetStateProperty.all(true),
           trackVisibility: WidgetStateProperty.all(true),
@@ -141,7 +139,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'HomePage';
+  String _currentPageName = 'TestHome';
   late Widget? _currentPage;
 
   @override
@@ -154,167 +152,61 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'HomePage': const HomePageWidget(),
+      'TestHome': const TestHomeWidget(),
       'Todos': const TodosWidget(),
-      'AssignmentNotebook': const AssignmentNotebookWidget(),
-      'profile': const ProfileWidget(),
-      'Settings': const SettingsWidget(),
+      'TestProfile': const TestProfileWidget(),
+      'SettingsCopy': const SettingsCopyWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
-    final MediaQueryData queryData = MediaQuery.of(context);
-
     return Scaffold(
-      body: MediaQuery(
-          data: queryData
-              .removeViewInsets(removeBottom: true)
-              .removeViewPadding(removeBottom: true),
-          child: _currentPage ?? tabs[_currentPageName]!),
-      extendBody: true,
-      bottomNavigationBar: Visibility(
-        visible: responsiveVisibility(
-          context: context,
-          desktop: false,
-        ),
-        child: FloatingNavbar(
-          currentIndex: currentIndex,
-          onTap: (i) => setState(() {
-            _currentPage = null;
-            _currentPageName = tabs.keys.toList()[i];
-          }),
-          backgroundColor: Colors.white,
-          selectedItemColor: FlutterFlowTheme.of(context).primary,
-          unselectedItemColor: const Color(0x8A000000),
-          selectedBackgroundColor:
-              FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: 8.0,
-          itemBorderRadius: 8.0,
-          margin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-          width: double.infinity,
-          elevation: 0.0,
-          items: [
-            FloatingNavbarItem(
-              customWidget: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.home_outlined,
-                    color: currentIndex == 0
-                        ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x8A000000),
-                    size: 24.0,
-                  ),
-                  Text(
-                    'Home',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: currentIndex == 0
-                          ? FlutterFlowTheme.of(context).primary
-                          : const Color(0x8A000000),
-                      fontSize: 11.0,
-                    ),
-                  ),
-                ],
-              ),
+      body: _currentPage ?? tabs[_currentPageName],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => safeSetState(() {
+          _currentPage = null;
+          _currentPageName = tabs.keys.toList()[i];
+        }),
+        backgroundColor: Colors.white,
+        selectedItemColor: FlutterFlowTheme.of(context).primary,
+        unselectedItemColor: const Color(0x8A000000),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 24.0,
             ),
-            FloatingNavbarItem(
-              customWidget: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    FontAwesomeIcons.tasks,
-                    color: currentIndex == 1
-                        ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x8A000000),
-                    size: 24.0,
-                  ),
-                  Text(
-                    'Tasks',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: currentIndex == 1
-                          ? FlutterFlowTheme.of(context).primary
-                          : const Color(0x8A000000),
-                      fontSize: 11.0,
-                    ),
-                  ),
-                ],
-              ),
+            label: ' ',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.tasks,
+              size: 24.0,
             ),
-            FloatingNavbarItem(
-              customWidget: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.school,
-                    color: currentIndex == 2
-                        ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x8A000000),
-                  ),
-                  Text(
-                    'Assignments',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: currentIndex == 2
-                          ? FlutterFlowTheme.of(context).primary
-                          : const Color(0x8A000000),
-                      fontSize: 11.0,
-                    ),
-                  ),
-                ],
-              ),
+            label: ' ',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.account_circle,
+              size: 24.0,
             ),
-            FloatingNavbarItem(
-              customWidget: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.account_circle_outlined,
-                    color: currentIndex == 3
-                        ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x8A000000),
-                    size: 24.0,
-                  ),
-                  Text(
-                    'Profile',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: currentIndex == 3
-                          ? FlutterFlowTheme.of(context).primary
-                          : const Color(0x8A000000),
-                      fontSize: 11.0,
-                    ),
-                  ),
-                ],
-              ),
+            label: ' ',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.settings,
+              size: 24.0,
             ),
-            FloatingNavbarItem(
-              customWidget: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.settings,
-                    color: currentIndex == 4
-                        ? FlutterFlowTheme.of(context).primary
-                        : const Color(0x8A000000),
-                    size: 24.0,
-                  ),
-                  Text(
-                    'Settings',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: currentIndex == 4
-                          ? FlutterFlowTheme.of(context).primary
-                          : const Color(0x8A000000),
-                      fontSize: 11.0,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+            label: ' ',
+            tooltip: '',
+          )
+        ],
       ),
     );
   }

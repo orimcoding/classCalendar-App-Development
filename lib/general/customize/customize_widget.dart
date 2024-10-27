@@ -27,7 +27,8 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
     super.initState();
     _model = createModel(context, () => CustomizeModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'customize'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -53,7 +54,7 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                 child: GradientText(
                   'Customize',
                   style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -94,10 +95,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedAccessories,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue1 = val);
+                            safeSetState(() => _model.dropDownValue1 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_4ic11x50_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedAccessory =
                                 _model.dropDownValue1!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 149.0,
                           height: 56.0,
@@ -138,9 +142,12 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedTop,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue2 = val);
+                            safeSetState(() => _model.dropDownValue2 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_zjth7lae_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedTop = _model.dropDownValue2!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 142.0,
                           height: 56.0,
@@ -199,12 +206,15 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedHairColor,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue3 = val);
+                            safeSetState(() => _model.dropDownValue3 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_hzhsj5xy_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedHairColor =
                                 _model.dropDownValue3!;
                             FFAppState().selectedHatColor =
                                 _model.dropDownValue3!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 131.0,
                           height: 56.0,
@@ -264,9 +274,12 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedEyes,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue4 = val);
+                            safeSetState(() => _model.dropDownValue4 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_9oeaz21o_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedEyes = _model.dropDownValue4!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 103.0,
                           height: 56.0,
@@ -314,10 +327,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedFacialHair,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue5 = val);
+                            safeSetState(() => _model.dropDownValue5 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_ijs5qzyd_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedFacialHair =
                                 _model.dropDownValue5!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 130.0,
                           height: 56.0,
@@ -358,10 +374,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedFacialHairColor,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue6 = val);
+                            safeSetState(() => _model.dropDownValue6 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_qizdce2f_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedFacialHairColor =
                                 _model.dropDownValue6!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 169.0,
                           height: 56.0,
@@ -411,10 +430,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedClothes,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue7 = val);
+                            safeSetState(() => _model.dropDownValue7 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_uq4kllvp_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedClothing =
                                 _model.dropDownValue7!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 110.0,
                           height: 56.0,
@@ -454,10 +476,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedClothingColor,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue8 = val);
+                            safeSetState(() => _model.dropDownValue8 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_d50ipura_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedClothingColor =
                                 _model.dropDownValue8!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 157.0,
                           height: 56.0,
@@ -508,10 +533,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedEyebrow,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue9 = val);
+                            safeSetState(() => _model.dropDownValue9 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_xnrfxlg5_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedEyebrow =
                                 _model.dropDownValue9!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 130.0,
                           height: 56.0,
@@ -559,9 +587,12 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                             'Black'
                           ],
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue10 = val);
+                            safeSetState(() => _model.dropDownValue10 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_3hbdghet_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedSkin = _model.dropDownValue10!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 90.0,
                           height: 56.0,
@@ -610,10 +641,13 @@ class _CustomizeWidgetState extends State<CustomizeWidget> {
                           ),
                           options: FFAppState().ownedMouth,
                           onChanged: (val) async {
-                            setState(() => _model.dropDownValue11 = val);
+                            safeSetState(() => _model.dropDownValue11 = val);
+                            logFirebaseEvent(
+                                'CUSTOMIZE_DropDown_kzqmee5m_ON_FORM_WIDG');
+                            logFirebaseEvent('DropDown_update_app_state');
                             FFAppState().selectedMouth =
                                 _model.dropDownValue11!;
-                            setState(() {});
+                            safeSetState(() {});
                           },
                           width: 106.0,
                           height: 56.0,

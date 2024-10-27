@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'create_new_assignment_model.dart';
 export 'create_new_assignment_model.dart';
@@ -21,53 +19,25 @@ class CreateNewAssignmentWidget extends StatefulWidget {
       _CreateNewAssignmentWidgetState();
 }
 
-class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
-    with TickerProviderStateMixin {
+class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget> {
   late CreateNewAssignmentModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => CreateNewAssignmentModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'CreateNewAssignment'});
     _model.taskTextController ??= TextEditingController();
     _model.taskFocusNode ??= FocusNode();
 
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
 
-    animationsMap.addAll({
-      'formOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.linear,
-            delay: 0.0.ms,
-            duration: 950.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'buttonOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 1000.0.ms,
-            color: const Color(0x80FFFFFF),
-            angle: 0.524,
-          ),
-        ],
-      ),
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -128,7 +98,10 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  context.pushNamed('HomePage');
+                  logFirebaseEvent('CREATE_NEW_ASSIGNMENT_Icon_jaip73po_ON_T');
+                  logFirebaseEvent('Icon_navigate_to');
+
+                  context.pushNamed('AssignmentNotebook');
                 },
                 child: Icon(
                   Icons.close_sharp,
@@ -139,7 +112,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
             ),
           ],
           centerTitle: false,
-          elevation: 0.0,
+          toolbarHeight: 110.0,
         ),
         body: SafeArea(
           top: true,
@@ -171,7 +144,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                                 TextFormField(
                                   controller: _model.taskTextController,
                                   focusNode: _model.taskFocusNode,
-                                  autofocus: true,
+                                  autofocus: false,
                                   textCapitalization: TextCapitalization.words,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -253,7 +226,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                                 TextFormField(
                                   controller: _model.descriptionTextController,
                                   focusNode: _model.descriptionFocusNode,
-                                  autofocus: true,
+                                  autofocus: false,
                                   textCapitalization: TextCapitalization.words,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -357,6 +330,9 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    logFirebaseEvent(
+                                        'CREATE_NEW_ASSIGNMENT_PAGE_Start_ON_TAP');
+                                    logFirebaseEvent('Start_date_time_picker');
                                     final datePickedDate =
                                         await showDatePicker(
                                       context: context,
@@ -401,12 +377,63 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                                       },
                                     );
 
+                                    TimeOfDay? datePickedTime;
                                     if (datePickedDate != null) {
+                                      datePickedTime = await showTimePicker(
+                                        context: context,
+                                        initialTime: TimeOfDay.fromDateTime(
+                                            getCurrentTimestamp),
+                                        builder: (context, child) {
+                                          return wrapInMaterialTimePickerTheme(
+                                            context,
+                                            child!,
+                                            headerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            headerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            headerTextStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .override(
+                                                      fontFamily: 'Outfit',
+                                                      color: const Color(0xFF15161E),
+                                                      fontSize: 32.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                            pickerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            pickerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            selectedDateTimeBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            selectedDateTimeForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            actionButtonForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 24.0,
+                                          );
+                                        },
+                                      );
+                                    }
+
+                                    if (datePickedDate != null &&
+                                        datePickedTime != null) {
                                       safeSetState(() {
                                         _model.datePicked = DateTime(
                                           datePickedDate.year,
                                           datePickedDate.month,
                                           datePickedDate.day,
+                                          datePickedTime!.hour,
+                                          datePickedTime.minute,
                                         );
                                       });
                                     }
@@ -453,7 +480,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Text(
-                                    'What subject is this assignment?',
+                                    'What subject is this assignment? Hint: Create a class first.',
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -499,7 +526,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                                       options: dropDownClassesRecordList
                                           .map((e) => e.className)
                                           .toList(),
-                                      onChanged: (val) => setState(
+                                      onChanged: (val) => safeSetState(
                                           () => _model.dropDownValue = val),
                                       width: 300.0,
                                       height: 56.0,
@@ -553,8 +580,12 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent(
+                            'CREATE_NEW_ASSIGNMENT_FINISH_BTN_ON_TAP');
+                        logFirebaseEvent('Button_backend_call');
+
                         await AssignmentsRecord.collection
-                            .doc(_model.taskTextController.text)
+                            .doc(getCurrentTimestamp.toString())
                             .set(createAssignmentsRecordData(
                               name: _model.taskTextController.text,
                               description:
@@ -564,9 +595,10 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                               ownerId: currentUserUid,
                               completed: false,
                             ));
+                        logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed(
-                          'HomePage',
+                          'TestHome',
                           extra: <String, dynamic>{
                             kTransitionInfoKey: const TransitionInfo(
                               hasTransition: true,
@@ -575,6 +607,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                           },
                         );
 
+                        logFirebaseEvent('Button_show_snack_bar');
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -612,13 +645,12 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget>
                         hoverColor: FlutterFlowTheme.of(context).secondary,
                       ),
                       showLoadingIndicator: false,
-                    ).animateOnPageLoad(
-                        animationsMap['buttonOnPageLoadAnimation']!),
+                    ),
                   ),
                 ),
               ],
             ),
-          ).animateOnPageLoad(animationsMap['formOnPageLoadAnimation']!),
+          ),
         ),
       ),
     );

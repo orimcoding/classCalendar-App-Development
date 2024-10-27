@@ -1,11 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'assingment_descript_model.dart';
 export 'assingment_descript_model.dart';
@@ -23,35 +22,19 @@ class AssingmentDescriptWidget extends StatefulWidget {
       _AssingmentDescriptWidgetState();
 }
 
-class _AssingmentDescriptWidgetState extends State<AssingmentDescriptWidget>
-    with TickerProviderStateMixin {
+class _AssingmentDescriptWidgetState extends State<AssingmentDescriptWidget> {
   late AssingmentDescriptModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => AssingmentDescriptModel());
 
-    animationsMap.addAll({
-      'columnOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.linear,
-            delay: 0.0.ms,
-            duration: 950.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'AssingmentDescript'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -90,61 +73,41 @@ class _AssingmentDescriptWidgetState extends State<AssingmentDescriptWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            appBar: AppBar(
+              backgroundColor: FlutterFlowTheme.of(context).tertiary,
+              automaticallyImplyLeading: false,
+              leading: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
+                icon: const Icon(
+                  Icons.arrow_back_rounded,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  logFirebaseEvent('ASSINGMENT_DESCRIPT_arrow_back_rounded_I');
+                  logFirebaseEvent('IconButton_navigate_back');
+                  context.pop();
+                },
+              ),
+              title: Text(
+                assingmentDescriptAssignmentsRecord.name,
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Outfit',
+                      color: Colors.white,
+                      fontSize: 28.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              actions: const [],
+              centerTitle: true,
+              elevation: 2.0,
+            ),
             body: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 69.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).tertiary,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('AssignmentNotebook');
-                              },
-                              child: const Icon(
-                                Icons.arrow_back,
-                                color: Colors.black,
-                                size: 50.0,
-                              ),
-                            ),
-                            Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    92.0, 10.0, 0.0, 0.0),
-                                child: Text(
-                                  assingmentDescriptAssignmentsRecord.name,
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: Colors.white,
-                                        fontSize: 32.0,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 Align(
                   alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
@@ -298,18 +261,68 @@ class _AssingmentDescriptWidgetState extends State<AssingmentDescriptWidget>
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      logFirebaseEvent(
+                          'ASSINGMENT_DESCRIPT_PAGE_DONE_BTN_ON_TAP');
+                      logFirebaseEvent('Button_backend_call');
                       await widget.data!.delete();
+                      if (valueOrDefault(
+                              currentUserDocument?.dailyAssignments, 0) <
+                          2) {
+                        logFirebaseEvent('Button_backend_call');
+
+                        await currentUserReference!.update({
+                          ...mapToFirestore(
+                            {
+                              'coins': FieldValue.increment(1),
+                            },
+                          ),
+                        });
+                        logFirebaseEvent('Button_show_snack_bar');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'You got a coin for this!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      }
+                      logFirebaseEvent('Button_backend_call');
 
                       await currentUserReference!.update({
                         ...mapToFirestore(
                           {
-                            'coins': FieldValue.increment(1),
+                            'dailyAssignments': FieldValue.increment(1),
                           },
                         ),
                       });
+                      if (valueOrDefault(
+                              currentUserDocument?.dailyAssignments, 0) ==
+                          2) {
+                        logFirebaseEvent('Button_show_snack_bar');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'You have reached your limit on coins from assignments today!',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            ),
+                            duration: const Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).secondary,
+                          ),
+                        );
+                      }
+                      logFirebaseEvent('Button_navigate_to');
 
                       context.pushNamed(
-                        'HomePage',
+                        'TestHome',
                         extra: <String, dynamic>{
                           kTransitionInfoKey: const TransitionInfo(
                             hasTransition: true,
@@ -317,11 +330,26 @@ class _AssingmentDescriptWidgetState extends State<AssingmentDescriptWidget>
                           ),
                         },
                       );
+
+                      logFirebaseEvent('Button_show_snack_bar');
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Assignment Completed!',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 3300),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
                     },
                     text: 'Done?',
                     options: FFButtonOptions(
                       width: 350.0,
-                      height: 150.0,
+                      height: 120.0,
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
@@ -343,7 +371,7 @@ class _AssingmentDescriptWidgetState extends State<AssingmentDescriptWidget>
                   ),
                 ),
               ],
-            ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
+            ),
           ),
         );
       },

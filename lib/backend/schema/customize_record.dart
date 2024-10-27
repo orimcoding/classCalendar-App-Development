@@ -70,6 +70,11 @@ class CustomizeRecord extends FirestoreRecord {
   String get mouth => _mouth ?? '';
   bool hasMouth() => _mouth != null;
 
+  // "userId" field.
+  String? _userId;
+  String get userId => _userId ?? '';
+  bool hasUserId() => _userId != null;
+
   void _initializeFields() {
     _accessories = snapshotData['Accessories'] as String?;
     _top = snapshotData['Top'] as String?;
@@ -82,6 +87,7 @@ class CustomizeRecord extends FirestoreRecord {
     _eyebrows = snapshotData['Eyebrows'] as String?;
     _skin = snapshotData['Skin'] as String?;
     _mouth = snapshotData['Mouth'] as String?;
+    _userId = snapshotData['userId'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -130,6 +136,7 @@ Map<String, dynamic> createCustomizeRecordData({
   String? eyebrows,
   String? skin,
   String? mouth,
+  String? userId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -144,6 +151,7 @@ Map<String, dynamic> createCustomizeRecordData({
       'Eyebrows': eyebrows,
       'Skin': skin,
       'Mouth': mouth,
+      'userId': userId,
     }.withoutNulls,
   );
 
@@ -165,7 +173,8 @@ class CustomizeRecordDocumentEquality implements Equality<CustomizeRecord> {
         e1?.eyes == e2?.eyes &&
         e1?.eyebrows == e2?.eyebrows &&
         e1?.skin == e2?.skin &&
-        e1?.mouth == e2?.mouth;
+        e1?.mouth == e2?.mouth &&
+        e1?.userId == e2?.userId;
   }
 
   @override
@@ -180,7 +189,8 @@ class CustomizeRecordDocumentEquality implements Equality<CustomizeRecord> {
         e?.eyes,
         e?.eyebrows,
         e?.skin,
-        e?.mouth
+        e?.mouth,
+        e?.userId
       ]);
 
   @override

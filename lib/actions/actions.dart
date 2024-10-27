@@ -1,7 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 
 Future vals(BuildContext context) async {
+  logFirebaseEvent('vals_show_snack_bar');
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(

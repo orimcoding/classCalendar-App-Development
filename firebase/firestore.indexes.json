@@ -13,26 +13,20 @@
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "end",
+          "fieldPath": "start",
           "order": "ASCENDING"
         }
       ]
-    },
+    }
+  ],
+  "fieldOverrides": [
     {
-      "collectionGroup": "Assignments",
-      "queryScope": "COLLECTION",
-      "fields": [
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
         {
-          "fieldPath": "ownerId",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "completed",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "date",
-          "order": "ASCENDING"
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
         }
       ]
     }

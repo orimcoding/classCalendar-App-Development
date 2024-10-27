@@ -1,10 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'todos_model.dart';
 export 'todos_model.dart';
@@ -16,59 +14,18 @@ class TodosWidget extends StatefulWidget {
   State<TodosWidget> createState() => _TodosWidgetState();
 }
 
-class _TodosWidgetState extends State<TodosWidget>
-    with TickerProviderStateMixin {
+class _TodosWidgetState extends State<TodosWidget> {
   late TodosModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => TodosModel());
 
-    animationsMap.addAll({
-      'columnOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.linear,
-            delay: 0.0.ms,
-            duration: 950.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
-      'listViewOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'floatingActionButtonOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          ShimmerEffect(
-            curve: Curves.easeInOut,
-            delay: 300.0.ms,
-            duration: 1300.0.ms,
-            color: const Color(0x80FFFFFF),
-            angle: 0.524,
-          ),
-        ],
-      ),
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Todos'});
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -91,6 +48,9 @@ class _TodosWidgetState extends State<TodosWidget>
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
             child: FloatingActionButton(
               onPressed: () async {
+                logFirebaseEvent('TODOS_FloatingActionButton_65fr90ea_ON_T');
+                logFirebaseEvent('FloatingActionButton_navigate_to');
+
                 context.pushNamed('Create04Task');
               },
               backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -100,45 +60,31 @@ class _TodosWidgetState extends State<TodosWidget>
                 color: FlutterFlowTheme.of(context).info,
                 size: 24.0,
               ),
-            ).animateOnPageLoad(
-                animationsMap['floatingActionButtonOnPageLoadAnimation']!),
+            ),
           ),
+        ),
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).alternate,
+          automaticallyImplyLeading: false,
+          title: Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
+            child: Text(
+              'Current Events',
+              style: FlutterFlowTheme.of(context).headlineLarge.override(
+                    fontFamily: 'Outfit',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
+                  ),
+            ),
+          ),
+          actions: const [],
+          centerTitle: false,
+          elevation: 5.0,
         ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                width: double.infinity,
-                height: 69.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primary,
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(35.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Current Tasks',
-                          style:
-                              FlutterFlowTheme.of(context).titleLarge.override(
-                                    fontFamily: 'Outfit',
-                                    color: Colors.white,
-                                    fontSize: 35.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: StreamBuilder<List<TasksRecord>>(
@@ -171,6 +117,7 @@ class _TodosWidgetState extends State<TodosWidget>
 
                     return ListView.builder(
                       padding: EdgeInsets.zero,
+                      primary: false,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: listViewTasksRecordList.length,
@@ -186,8 +133,12 @@ class _TodosWidgetState extends State<TodosWidget>
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
+                              logFirebaseEvent(
+                                  'TODOS_PAGE_Container_uo2m1a73_ON_TAP');
+                              logFirebaseEvent('Container_navigate_to');
+
                               context.pushNamed(
-                                'TaskDescription',
+                                'TaskDescript',
                                 queryParameters: {
                                   'data': serializeParam(
                                     listViewTasksRecord.reference,
@@ -202,7 +153,6 @@ class _TodosWidgetState extends State<TodosWidget>
                               width: 350.0,
                               height: 100.0,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
                                 boxShadow: const [
                                   BoxShadow(
                                     color: Color(0x33000000),
@@ -212,6 +162,15 @@ class _TodosWidgetState extends State<TodosWidget>
                                     ),
                                   )
                                 ],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    FlutterFlowTheme.of(context).primary,
+                                    FlutterFlowTheme.of(context).secondary
+                                  ],
+                                  stops: const [0.0, 1.0],
+                                  begin: const AlignmentDirectional(0.0, -1.0),
+                                  end: const AlignmentDirectional(0, 1.0),
+                                ),
                                 borderRadius: BorderRadius.circular(30.0),
                               ),
                               child: Row(
@@ -226,12 +185,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 20.0, 0.0, 0.0),
+                                                  15.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             listViewTasksRecord.name
                                                 .maybeHandleOverflow(
-                                              maxChars: 20,
-                                              replacement: '…',
+                                              maxChars: 15,
                                             ),
                                             textAlign: TextAlign.justify,
                                             style: FlutterFlowTheme.of(context)
@@ -256,7 +214,7 @@ class _TodosWidgetState extends State<TodosWidget>
                                                 child: Padding(
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
-                                                          20.0, 5.0, 0.0, 0.0),
+                                                          2.0, 5.0, 0.0, 0.0),
                                                   child: Text(
                                                     valueOrDefault<String>(
                                                       listViewTasksRecord
@@ -288,14 +246,13 @@ class _TodosWidgetState extends State<TodosWidget>
                           ),
                         );
                       },
-                    ).animateOnPageLoad(
-                        animationsMap['listViewOnPageLoadAnimation']!);
+                    );
                   },
                 ),
               ),
             ],
           ),
-        ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
+        ),
       ),
     );
   }

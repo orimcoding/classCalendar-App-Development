@@ -33,6 +33,7 @@ class _Page1WidgetState extends State<Page1Widget>
     super.initState();
     _model = createModel(context, () => Page1Model());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Page1'});
     animationsMap.addAll({
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -86,7 +87,7 @@ class _Page1WidgetState extends State<Page1Widget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -233,7 +234,7 @@ class _Page1WidgetState extends State<Page1Widget>
                                     '12th Grade (Senior)',
                                     'College'
                                   ].toList(),
-                                  onChanged: (val) => setState(() {}),
+                                  onChanged: (val) => safeSetState(() {}),
                                   controller:
                                       _model.radioButtonValueController ??=
                                           FormFieldController<String>(null),
@@ -276,13 +277,17 @@ class _Page1WidgetState extends State<Page1Widget>
                         const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 32.0),
                     child: FFButtonWidget(
                       onPressed: () async {
+                        logFirebaseEvent('PAGE1_PAGE_NEXT_QUESTION_BTN_ON_TAP');
+                        logFirebaseEvent('Button_update_app_state');
                         FFAppState().gradeLevel = _model.radioButtonValue!;
-                        setState(() {});
+                        safeSetState(() {});
+                        logFirebaseEvent('Button_backend_call');
 
                         await currentUserReference!
                             .update(createUsersRecordData(
                           selectedGrade: _model.radioButtonValue,
                         ));
+                        logFirebaseEvent('Button_navigate_to');
 
                         context.pushNamed('Page2');
                       },

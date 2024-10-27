@@ -33,6 +33,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
     super.initState();
     _model = createModel(context, () => ChangeGradeModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'ChangeGrade'});
     animationsMap.addAll({
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -86,7 +87,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -106,24 +107,43 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
         appBar: AppBar(
           backgroundColor: const Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
-          title: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-            child: GradientText(
-              'Change Grade',
-              style: FlutterFlowTheme.of(context).displaySmall.override(
-                    fontFamily: 'Outfit',
-                    color: const Color(0xFF0F1113),
-                    fontSize: 32.0,
-                    letterSpacing: 0.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-              colors: [
-                FlutterFlowTheme.of(context).primary,
-                FlutterFlowTheme.of(context).secondary,
-                FlutterFlowTheme.of(context).tertiary
-              ],
-              gradientDirection: GradientDirection.ltr,
-              gradientType: GradientType.linear,
+          leading: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              logFirebaseEvent('CHANGE_GRADE_PAGE_Icon_jwg3w9w5_ON_TAP');
+              logFirebaseEvent('Icon_navigate_back');
+              context.safePop();
+            },
+            child: Icon(
+              Icons.chevron_left_sharp,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 24.0,
+            ),
+          ),
+          title: Align(
+            alignment: const AlignmentDirectional(0.0, 0.0),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
+              child: GradientText(
+                'Change Grade',
+                style: FlutterFlowTheme.of(context).displaySmall.override(
+                      fontFamily: 'Outfit',
+                      color: const Color(0xFF0F1113),
+                      fontSize: 32.0,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                colors: [
+                  FlutterFlowTheme.of(context).primary,
+                  FlutterFlowTheme.of(context).secondary,
+                  FlutterFlowTheme.of(context).tertiary
+                ],
+                gradientDirection: GradientDirection.ltr,
+                gradientType: GradientType.linear,
+              ),
             ),
           ),
           actions: const [],
@@ -132,170 +152,195 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
+              Stack(
+                children: [
+                  Column(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
-                        child: LinearPercentIndicator(
-                          percent: 1.0,
-                          width: MediaQuery.sizeOf(context).width * 0.96,
-                          lineHeight: 12.0,
-                          animation: true,
-                          animateFromLastPercent: true,
-                          progressColor: const Color(0xFF827AE1),
-                          backgroundColor: const Color(0xFFE0E3E7),
-                          barRadius: const Radius.circular(24.0),
-                          padding: EdgeInsets.zero,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 100.0, 0.0, 0.0),
-                        child: Text(
-                          'What grade are you in?',
-                          style: FlutterFlowTheme.of(context)
-                              .displaySmall
-                              .override(
-                                fontFamily: 'Outfit',
-                                color: const Color(0xFF0F1113),
-                                fontSize: 32.0,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w500,
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    8.0, 12.0, 8.0, 0.0),
+                                child: LinearPercentIndicator(
+                                  percent: 1.0,
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.96,
+                                  lineHeight: 12.0,
+                                  animation: true,
+                                  animateFromLastPercent: true,
+                                  progressColor: const Color(0xFF827AE1),
+                                  backgroundColor: const Color(0xFFE0E3E7),
+                                  barRadius: const Radius.circular(24.0),
+                                  padding: EdgeInsets.zero,
+                                ),
                               ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation1']!),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
-                        child: Text(
-                          'Please answer truthfully.',
-                          style:
-                              FlutterFlowTheme.of(context).labelLarge.override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ).animateOnPageLoad(
-                            animationsMap['textOnPageLoadAnimation2']!),
-                      ),
-                      Wrap(
-                        spacing: 0.0,
-                        runSpacing: 0.0,
-                        alignment: WrapAlignment.start,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        direction: Axis.horizontal,
-                        runAlignment: WrapAlignment.center,
-                        verticalDirection: VerticalDirection.down,
-                        clipBehavior: Clip.none,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 12.0, 16.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                FlutterFlowRadioButton(
-                                  options: [
-                                    '9th Grade (Freshman)',
-                                    '10th Grade (Sophmore)',
-                                    '11th Grade (Junior)',
-                                    '12th Grade (Senior)',
-                                    'College'
-                                  ].toList(),
-                                  onChanged: (val) => setState(() {}),
-                                  controller:
-                                      _model.radioButtonValueController ??=
-                                          FormFieldController<String>(null),
-                                  optionHeight: 50.0,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .labelLarge
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 100.0, 0.0, 0.0),
+                                child: Text(
+                                  'What grade are you in?',
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
                                       .override(
-                                        fontFamily: 'Raleway',
-                                        fontSize: 25.0,
+                                        fontFamily: 'Outfit',
+                                        color: const Color(0xFF0F1113),
+                                        fontSize: 32.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                  buttonPosition: RadioButtonPosition.left,
-                                  direction: Axis.vertical,
-                                  radioButtonColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  inactiveRadioButtonColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                  toggleable: false,
-                                  horizontalAlignment: WrapAlignment.start,
-                                  verticalAlignment: WrapCrossAlignment.start,
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation1']!),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 8.0, 0.0, 0.0),
+                                child: Text(
+                                  'Please answer truthfully.',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: const Color(0xFF57636C),
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation2']!),
+                              ),
+                              Wrap(
+                                spacing: 0.0,
+                                runSpacing: 0.0,
+                                alignment: WrapAlignment.start,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.horizontal,
+                                runAlignment: WrapAlignment.center,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 12.0, 16.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        FlutterFlowRadioButton(
+                                          options: [
+                                            '9th Grade (Freshman)',
+                                            '10th Grade (Sophmore)',
+                                            '11th Grade (Junior)',
+                                            '12th Grade (Senior)',
+                                            'College'
+                                          ].toList(),
+                                          onChanged: (val) =>
+                                              safeSetState(() {}),
+                                          controller: _model
+                                                  .radioButtonValueController ??=
+                                              FormFieldController<String>(null),
+                                          optionHeight: 50.0,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .override(
+                                                    fontFamily: 'Raleway',
+                                                    fontSize: 25.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                          buttonPosition:
+                                              RadioButtonPosition.left,
+                                          direction: Axis.vertical,
+                                          radioButtonColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          inactiveRadioButtonColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          toggleable: false,
+                                          horizontalAlignment:
+                                              WrapAlignment.start,
+                                          verticalAlignment:
+                                              WrapCrossAlignment.start,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 32.0, 0.0, 32.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'CHANGE_GRADE_CONFIRM_GRADE_BTN_ON_TAP');
+                                logFirebaseEvent('Button_update_app_state');
+                                FFAppState().gradeLevel =
+                                    _model.radioButtonValue!;
+                                safeSetState(() {});
+                                logFirebaseEvent('Button_backend_call');
+
+                                await currentUserReference!
+                                    .update(createUsersRecordData(
+                                  selectedGrade: _model.radioButtonValue,
+                                ));
+                                logFirebaseEvent('Button_navigate_to');
+
+                                context.pushNamed('SettingsCopy');
+                              },
+                              text: 'Confirm Grade',
+                              options: FFButtonOptions(
+                                width: 300.0,
+                                height: 50.0,
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 24.0, 0.0),
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).secondary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      letterSpacing: 0.0,
+                                    ),
+                                elevation: 10.0,
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
                                 ),
-                              ],
+                                borderRadius: BorderRadius.circular(17.0),
+                                hoverColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                              showLoadingIndicator: false,
                             ),
                           ),
                         ],
                       ),
                     ],
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 32.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        FFAppState().gradeLevel = _model.radioButtonValue!;
-                        setState(() {});
-
-                        await currentUserReference!
-                            .update(createUsersRecordData(
-                          selectedGrade: _model.radioButtonValue,
-                        ));
-
-                        context.pushNamed('Settings');
-                      },
-                      text: 'Confirm Grade',
-                      options: FFButtonOptions(
-                        width: 300.0,
-                        height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
-                        iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).secondary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Outfit',
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 10.0,
-                        borderSide: const BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(17.0),
-                        hoverColor: FlutterFlowTheme.of(context).secondary,
-                      ),
-                      showLoadingIndicator: false,
-                    ),
-                  ),
+                  ).animateOnPageLoad(
+                      animationsMap['columnOnPageLoadAnimation']!),
                 ],
               ),
             ],
-          ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
+          ),
         ),
       ),
     );
