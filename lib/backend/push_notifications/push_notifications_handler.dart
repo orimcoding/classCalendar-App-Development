@@ -105,7 +105,7 @@ final parametersBuilderMap =
   'Page2': ParameterData.none(),
   'Page1': ParameterData.none(),
   'Create04Task': ParameterData.none(),
-  'Page3': ParameterData.none(),
+  'Page4': ParameterData.none(),
   'Todos': ParameterData.none(),
   'AssignmentNotebook': ParameterData.none(),
   'Login': ParameterData.none(),
@@ -125,15 +125,8 @@ final parametersBuilderMap =
         },
       ),
   'EditClasses': ParameterData.none(),
-  'LocationOfTask': (data) async => ParameterData(
-        allParams: {
-          'location': getParameter<LatLng>(data, 'location'),
-        },
-      ),
   'forgotPassword': ParameterData.none(),
-  'ChangeUsername': ParameterData.none(),
   'ChangeGrade': ParameterData.none(),
-  'customize': ParameterData.none(),
   'OwnedTops': ParameterData.none(),
   'OwnedAccesssories': ParameterData.none(),
   'OwnedHairColors': ParameterData.none(),
@@ -170,6 +163,29 @@ final parametersBuilderMap =
   'processG': ParameterData.none(),
   'SettingsCopy': ParameterData.none(),
   'Success03': ParameterData.none(),
+  'processingExcercise': ParameterData.none(),
+  'processingVisit': ParameterData.none(),
+  'processingGeneral': ParameterData.none(),
+  'chat_2_Details': (data) async => ParameterData(
+        allParams: {
+          'chatRef': await getDocumentParameter<ChatsRecord>(
+              data, 'chatRef', ChatsRecord.fromSnapshot),
+        },
+      ),
+  'chat_2_main': ParameterData.none(),
+  'chat_2_InviteUsers': (data) async => ParameterData(
+        allParams: {
+          'chatRef': await getDocumentParameter<ChatsRecord>(
+              data, 'chatRef', ChatsRecord.fromSnapshot),
+        },
+      ),
+  'image_Details': (data) async => ParameterData(
+        allParams: {
+          'chatMessage': await getDocumentParameter<ChatMessagesRecord>(
+              data, 'chatMessage', ChatMessagesRecord.fromSnapshot),
+        },
+      ),
+  'Page3': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

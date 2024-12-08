@@ -507,7 +507,7 @@ class _CreateNewAssignmentWidgetState extends State<CreateNewAssignmentWidget> {
                                         child: SizedBox(
                                           width: 50.0,
                                           height: 50.0,
-                                          child: SpinKitFoldingCube(
+                                          child: SpinKitDoubleBounce(
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
                                             size: 50.0,

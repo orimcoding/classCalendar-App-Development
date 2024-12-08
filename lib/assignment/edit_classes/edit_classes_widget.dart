@@ -113,7 +113,7 @@ class _EditClassesWidgetState extends State<EditClassesWidget> {
                             child: SizedBox(
                               width: 50.0,
                               height: 50.0,
-                              child: SpinKitFoldingCube(
+                              child: SpinKitDoubleBounce(
                                 color: FlutterFlowTheme.of(context).primary,
                                 size: 50.0,
                               ),
@@ -203,7 +203,7 @@ class _EditClassesWidgetState extends State<EditClassesWidget> {
                                           child: SizedBox(
                                             width: 50.0,
                                             height: 50.0,
-                                            child: SpinKitFoldingCube(
+                                            child: SpinKitDoubleBounce(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,

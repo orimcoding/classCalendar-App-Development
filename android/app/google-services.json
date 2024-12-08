@@ -39,7 +39,7 @@
               "client_type": 3
             },
             {
-              "client_id": "58073383530-pcqhknrb87kpg6deohs6habdljkjq525.apps.googleusercontent.com",
+              "client_id": "58073383530-7896iu9pj6ad4gcnjoak87e94opi0jsa.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.mycompany.classcalendarapplication"
@@ -47,7 +47,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-2834455066230351~1097227420"
     }
   ],
   "configuration_version": "1"

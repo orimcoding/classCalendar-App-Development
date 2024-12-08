@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -299,17 +299,17 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _eyes = [
-    'Close',
-    'Cry',
-    'Dizzy',
-    'EyeRoll',
-    'Happy',
-    'Hearts',
-    'Side',
-    'Squint',
-    'Surprised',
-    'Wink',
-    'WinkWacky'
+    'closed',
+    'cry',
+    'xDizzy',
+    'eyeRoll',
+    'happy',
+    'hearts',
+    'side',
+    'squint',
+    'surprised',
+    'wink',
+    'winkWacky'
   ];
   List<String> get eyes => _eyes;
   set eyes(List<String> value) {
@@ -339,7 +339,7 @@ class FFAppState extends ChangeNotifier {
     eyes.insert(index, value);
   }
 
-  List<String> _ownedEyes = ['Default'];
+  List<String> _ownedEyes = ['default'];
   List<String> get ownedEyes => _ownedEyes;
   set ownedEyes(List<String> value) {
     _ownedEyes = value;
@@ -369,11 +369,12 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _accessories = [
-    'Kurt',
-    'Prescription01',
-    'Prescription02',
-    'Sunglasses',
-    'Wayfarers'
+    'kurt',
+    'prescription01',
+    'prescription02',
+    'sunglasses',
+    'wayfarers',
+    'round'
   ];
   List<String> get accessories => _accessories;
   set accessories(List<String> value) {
@@ -403,7 +404,7 @@ class FFAppState extends ChangeNotifier {
     accessories.insert(index, value);
   }
 
-  List<String> _ownedAccessories = ['Blank'];
+  List<String> _ownedAccessories = [''];
   List<String> get ownedAccessories => _ownedAccessories;
   set ownedAccessories(List<String> value) {
     _ownedAccessories = value;
@@ -433,11 +434,11 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _clothes = [
-    'BlazerSweater',
-    'CollarSweater',
-    'ShirtCrewNeck',
-    'ShirtScoopNeck',
-    'ShirtVNeck'
+    'blazerAndSweater',
+    'collarAndSweater',
+    'shirtCrewNeck',
+    'shirtScoopNeck',
+    'shirtVNeck'
   ];
   List<String> get clothes => _clothes;
   set clothes(List<String> value) {
@@ -467,7 +468,7 @@ class FFAppState extends ChangeNotifier {
     clothes.insert(index, value);
   }
 
-  List<String> _ownedClothes = ['BlazerShirt', 'Hoodie', 'Overall'];
+  List<String> _ownedClothes = ['blazerAndShirt', 'hoodie', 'overall'];
   List<String> get ownedClothes => _ownedClothes;
   set ownedClothes(List<String> value) {
     _ownedClothes = value;
@@ -497,19 +498,19 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _ClothingColor = [
-    'Blue01',
-    'Blue02',
-    'Blue03',
-    'Gray01',
-    'Gray02',
-    'Heather',
-    'PastelBlue',
-    'PastelGreen',
-    'PastelOrange',
-    'PastelYellow',
-    'PastelRed',
-    'Pink',
-    'Red'
+    '3c4f5c',
+    '262e33',
+    '262e33',
+    '5199e4',
+    '25557c',
+    '929598',
+    'a7ffc4',
+    'b1e2ff',
+    'e6e6e6',
+    'ff5c5c',
+    'ff488e',
+    'ffafb9',
+    'ffffb1'
   ];
   List<String> get ClothingColor => _ClothingColor;
   set ClothingColor(List<String> value) {
@@ -539,7 +540,7 @@ class FFAppState extends ChangeNotifier {
     ClothingColor.insert(index, value);
   }
 
-  List<String> _ownedClothingColor = ['Black', 'White'];
+  List<String> _ownedClothingColor = ['ffffff'];
   List<String> get ownedClothingColor => _ownedClothingColor;
   set ownedClothingColor(List<String> value) {
     _ownedClothingColor = value;
@@ -569,16 +570,16 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _eyebrow = [
-    'Angry',
-    'AngryNatural',
-    'FlatNatural',
-    'RaisedExcited',
-    'RaisedExcitedNatural',
-    'SadConcerned',
-    'SadConcernedNatural',
-    'UnibrowNatural',
-    'UpDownNatural',
-    'UpDown'
+    'angry',
+    'angryNatural',
+    'flatNatural',
+    'raisedExcited',
+    'raisedExcitedNatural',
+    'sadConcerned',
+    'sadConcernedNatural',
+    'unibrowNatural',
+    'upDownNatural',
+    'upDown'
   ];
   List<String> get eyebrow => _eyebrow;
   set eyebrow(List<String> value) {
@@ -608,7 +609,7 @@ class FFAppState extends ChangeNotifier {
     eyebrow.insert(index, value);
   }
 
-  List<String> _ownedEyebrow = ['Default', 'DefaultNatural'];
+  List<String> _ownedEyebrow = ['default', 'defaultNatural'];
   List<String> get ownedEyebrow => _ownedEyebrow;
   set ownedEyebrow(List<String> value) {
     _ownedEyebrow = value;
@@ -638,10 +639,10 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _facialHair = [
-    'BeardMedium',
-    'BeardMajestic',
-    'MoustacheFancy',
-    'MoustacheMagnum'
+    'beardMedium',
+    'beardMajestic',
+    'moustacheFancy',
+    'moustacheMagnum'
   ];
   List<String> get facialHair => _facialHair;
   set facialHair(List<String> value) {
@@ -671,7 +672,7 @@ class FFAppState extends ChangeNotifier {
     facialHair.insert(index, value);
   }
 
-  List<String> _ownedFacialHair = ['Blank', 'BeardLight'];
+  List<String> _ownedFacialHair = ['', 'beardLight'];
   List<String> get ownedFacialHair => _ownedFacialHair;
   set ownedFacialHair(List<String> value) {
     _ownedFacialHair = value;
@@ -701,10 +702,12 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _facialHairColor = [
-    'Platinum',
-    'Red',
-    'BlondeGolden',
-    'BrownDark'
+    '724133',
+    'b58143',
+    'c93305',
+    'e8e1e1',
+    'ecdcbf',
+    'f59797'
   ];
   List<String> get facialHairColor => _facialHairColor;
   set facialHairColor(List<String> value) {
@@ -734,7 +737,7 @@ class FFAppState extends ChangeNotifier {
     facialHairColor.insert(index, value);
   }
 
-  List<String> _ownedFacialHairColor = ['Black', 'Brown', 'Blonde', 'Auburn'];
+  List<String> _ownedFacialHairColor = ['2c1b18', '4a312c', 'd6b370', 'a55728'];
   List<String> get ownedFacialHairColor => _ownedFacialHairColor;
   set ownedFacialHairColor(List<String> value) {
     _ownedFacialHairColor = value;
@@ -763,13 +766,7 @@ class FFAppState extends ChangeNotifier {
     ownedFacialHairColor.insert(index, value);
   }
 
-  List<String> _hairColor = [
-    'Platinum',
-    'PastelPink',
-    'Blue',
-    'BlondeGolden',
-    'Red'
-  ];
+  List<String> _hairColor = ['ecdcbf', 'f59797', 'd6b370', 'c93305', 'e8e1e1'];
   List<String> get hairColor => _hairColor;
   set hairColor(List<String> value) {
     _hairColor = value;
@@ -799,11 +796,11 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _ownedHairColor = [
-    'Auburn',
-    'Black',
-    'Blonde',
-    'BrownDark',
-    'Brown'
+    'a55728',
+    '2c1b18',
+    'b58143',
+    '4a312c',
+    '724133'
   ];
   List<String> get ownedHairColor => _ownedHairColor;
   set ownedHairColor(List<String> value) {
@@ -834,16 +831,16 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _mouth = [
-    'Concerned',
-    'Disbeleif',
-    'Eating',
-    'Grimace',
-    'Sad',
-    'ScreamOpen',
-    'Serious',
-    'Tongue',
-    'Twinkle',
-    'Vomit'
+    'concerned',
+    'disbeleif',
+    'eating',
+    'grimace',
+    'sad',
+    'screamOpen',
+    'serious',
+    'tongue',
+    'twinkle',
+    'vomit'
   ];
   List<String> get mouth => _mouth;
   set mouth(List<String> value) {
@@ -873,7 +870,7 @@ class FFAppState extends ChangeNotifier {
     mouth.insert(index, value);
   }
 
-  List<String> _ownedMouth = ['Default', 'Smile'];
+  List<String> _ownedMouth = ['default', 'smile'];
   List<String> get ownedMouth => _ownedMouth;
   set ownedMouth(List<String> value) {
     _ownedMouth = value;
@@ -903,28 +900,28 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _top = [
-    'Eyepatch',
-    'WinterHat2',
-    'WinterHat3',
-    'WinterHat4',
-    'LongHairDreads',
-    'LongHairFrida',
-    'LongHairFro',
-    'LongHairFroBand',
-    'LongHairNotTooLong',
-    'LongHairShavedSides',
-    'LongHairMiaWallace',
-    'LongHairStraight',
-    'LongHairStraight2',
-    'LongHairStraightStrand',
-    'ShortHairShaggyMullet',
-    'ShortHairShortCurly',
-    'ShortHairShortFlat',
-    'ShortHairShortRound',
+    'winterHat02',
+    'winterHat03',
+    'winterHat04',
+    'dreads',
+    'frida',
+    'fro',
+    'froBand',
+    'longButNotTooLong',
+    'shavedSides',
+    'miaWallace',
+    'straight01',
+    'straight02',
+    'straightAndStrand',
+    'shaggy',
+    'shortCurly',
+    'shortFlat',
+    'shortRound',
     'ShortHairShortWaved',
-    'ShortHairSides',
-    'ShortHairTheCaesar',
-    'ShortHairTheCaesarSidePart'
+    'shortWaved',
+    'theCaesar',
+    'theCaesarAndSidePart',
+    'sides'
   ];
   List<String> get top => _top;
   set top(List<String> value) {
@@ -955,19 +952,19 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _ownedTop = [
-    'NoHair',
-    'Hat',
-    'Hijab',
-    'Turban',
-    'WinterHat1',
-    'LongHairBigHair',
-    'LongHairBob',
-    'LongHairBun',
-    'LongHairCurly',
-    'LongHairCurvy',
-    'ShortHairDreads01',
-    'ShortHairDreads02',
-    'ShortHairFrizzle'
+    '',
+    'hat',
+    'hijab',
+    'turban',
+    'winterHat1',
+    'bigHair',
+    'bob',
+    'bun',
+    'curly',
+    'curvy',
+    'dreads01',
+    'dreads02',
+    'frizzle'
   ];
   List<String> get ownedTop => _ownedTop;
   set ownedTop(List<String> value) {
@@ -998,18 +995,19 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _hatColor = [
-    'Blue02',
-    'Blue03',
-    'Gray01',
-    'Gray02',
-    'Heather',
-    'PastelBlue',
+    '65c9ff',
+    '5199e4',
+    '25557c',
+    '929598',
+    'b1e2ff',
+    'a7ffc4',
     'PastelGreen',
-    'PastelOrange',
-    'PastelRed',
-    'PastelYellow',
-    'Pink',
-    'Red'
+    'e6e6e6',
+    'ff5c5c',
+    'ff488e',
+    'ffafb9',
+    'ffdeb5',
+    'ffffb1'
   ];
   List<String> get hatColor => _hatColor;
   set hatColor(List<String> value) {
@@ -1039,7 +1037,7 @@ class FFAppState extends ChangeNotifier {
     hatColor.insert(index, value);
   }
 
-  List<String> _ownedHatColor = ['Blue01', 'Black', 'White'];
+  List<String> _ownedHatColor = ['3c4f5c', 'ffffff', '262e33'];
   List<String> get ownedHatColor => _ownedHatColor;
   set ownedHatColor(List<String> value) {
     _ownedHatColor = value;
@@ -1135,13 +1133,13 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _skin = [
-    'Tanned',
-    'Yellow',
-    'Pale',
-    'Light',
-    'Brown',
-    'DarkBrown',
-    'Black'
+    '614335',
+    'ae5d29',
+    'd08b5b',
+    'edb98a',
+    'f8d25c',
+    'fd9841',
+    'ffdbb4'
   ];
   List<String> get skin => _skin;
   set skin(List<String> value) {
@@ -1170,6 +1168,33 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInSkin(int index, String value) {
     skin.insert(index, value);
   }
+
+  String _friendUid = '';
+  String get friendUid => _friendUid;
+  set friendUid(String value) {
+    _friendUid = value;
+  }
+
+  String _googleAccessToken = '';
+  String get googleAccessToken => _googleAccessToken;
+  set googleAccessToken(String value) {
+    _googleAccessToken = value;
+  }
+
+  final _userDocQueryManager = FutureRequestManager<UsersRecord>();
+  Future<UsersRecord> userDocQuery({
+    String? uniqueQueryKey,
+    bool? overrideCache,
+    required Future<UsersRecord> Function() requestFn,
+  }) =>
+      _userDocQueryManager.performRequest(
+        uniqueQueryKey: uniqueQueryKey,
+        overrideCache: overrideCache,
+        requestFn: requestFn,
+      );
+  void clearUserDocQueryCache() => _userDocQueryManager.clear();
+  void clearUserDocQueryCacheKey(String? uniqueKey) =>
+      _userDocQueryManager.clearRequest(uniqueKey);
 }
 
 void _safeInit(Function() initializeField) {

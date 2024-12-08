@@ -40,11 +40,6 @@ class TasksRecord extends FirestoreRecord {
   DocumentReference? get user => _user;
   bool hasUser() => _user != null;
 
-  // "googleMaps" field.
-  LatLng? _googleMaps;
-  LatLng? get googleMaps => _googleMaps;
-  bool hasGoogleMaps() => _googleMaps != null;
-
   // "ownerId" field.
   String? _ownerId;
   String get ownerId => _ownerId ?? '';
@@ -55,15 +50,56 @@ class TasksRecord extends FirestoreRecord {
   String get subject => _subject ?? '';
   bool hasSubject() => _subject != null;
 
+  // "screenshotUrl" field.
+  String? _screenshotUrl;
+  String get screenshotUrl => _screenshotUrl ?? '';
+  bool hasScreenshotUrl() => _screenshotUrl != null;
+
+  // "taskType" field.
+  String? _taskType;
+  String get taskType => _taskType ?? '';
+  bool hasTaskType() => _taskType != null;
+
+  // "emojiRepresentation" field.
+  String? _emojiRepresentation;
+  String get emojiRepresentation => _emojiRepresentation ?? '';
+  bool hasEmojiRepresentation() => _emojiRepresentation != null;
+
+  // "taskLocation" field.
+  String? _taskLocation;
+  String get taskLocation => _taskLocation ?? '';
+  bool hasTaskLocation() => _taskLocation != null;
+
+  // "notificationTime" field.
+  int? _notificationTime;
+  int get notificationTime => _notificationTime ?? 0;
+  bool hasNotificationTime() => _notificationTime != null;
+
+  // "courseName" field.
+  String? _courseName;
+  String get courseName => _courseName ?? '';
+  bool hasCourseName() => _courseName != null;
+
+  // "source" field.
+  String? _source;
+  String get source => _source ?? '';
+  bool hasSource() => _source != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _description = snapshotData['description'] as String?;
     _start = snapshotData['start'] as DateTime?;
     _completed = snapshotData['completed'] as bool?;
     _user = snapshotData['user'] as DocumentReference?;
-    _googleMaps = snapshotData['googleMaps'] as LatLng?;
     _ownerId = snapshotData['ownerId'] as String?;
     _subject = snapshotData['subject'] as String?;
+    _screenshotUrl = snapshotData['screenshotUrl'] as String?;
+    _taskType = snapshotData['taskType'] as String?;
+    _emojiRepresentation = snapshotData['emojiRepresentation'] as String?;
+    _taskLocation = snapshotData['taskLocation'] as String?;
+    _notificationTime = castToType<int>(snapshotData['notificationTime']);
+    _courseName = snapshotData['courseName'] as String?;
+    _source = snapshotData['source'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -105,9 +141,15 @@ Map<String, dynamic> createTasksRecordData({
   DateTime? start,
   bool? completed,
   DocumentReference? user,
-  LatLng? googleMaps,
   String? ownerId,
   String? subject,
+  String? screenshotUrl,
+  String? taskType,
+  String? emojiRepresentation,
+  String? taskLocation,
+  int? notificationTime,
+  String? courseName,
+  String? source,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -116,9 +158,15 @@ Map<String, dynamic> createTasksRecordData({
       'start': start,
       'completed': completed,
       'user': user,
-      'googleMaps': googleMaps,
       'ownerId': ownerId,
       'subject': subject,
+      'screenshotUrl': screenshotUrl,
+      'taskType': taskType,
+      'emojiRepresentation': emojiRepresentation,
+      'taskLocation': taskLocation,
+      'notificationTime': notificationTime,
+      'courseName': courseName,
+      'source': source,
     }.withoutNulls,
   );
 
@@ -135,9 +183,15 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e1?.start == e2?.start &&
         e1?.completed == e2?.completed &&
         e1?.user == e2?.user &&
-        e1?.googleMaps == e2?.googleMaps &&
         e1?.ownerId == e2?.ownerId &&
-        e1?.subject == e2?.subject;
+        e1?.subject == e2?.subject &&
+        e1?.screenshotUrl == e2?.screenshotUrl &&
+        e1?.taskType == e2?.taskType &&
+        e1?.emojiRepresentation == e2?.emojiRepresentation &&
+        e1?.taskLocation == e2?.taskLocation &&
+        e1?.notificationTime == e2?.notificationTime &&
+        e1?.courseName == e2?.courseName &&
+        e1?.source == e2?.source;
   }
 
   @override
@@ -147,9 +201,15 @@ class TasksRecordDocumentEquality implements Equality<TasksRecord> {
         e?.start,
         e?.completed,
         e?.user,
-        e?.googleMaps,
         e?.ownerId,
-        e?.subject
+        e?.subject,
+        e?.screenshotUrl,
+        e?.taskType,
+        e?.emojiRepresentation,
+        e?.taskLocation,
+        e?.notificationTime,
+        e?.courseName,
+        e?.source
       ]);
 
   @override

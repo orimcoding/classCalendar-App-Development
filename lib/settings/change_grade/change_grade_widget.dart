@@ -35,6 +35,18 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'ChangeGrade'});
     animationsMap.addAll({
+      'textOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShimmerEffect(
+            curve: Curves.linear,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            color: const Color(0x80FFFFFF),
+            angle: 0.524,
+          ),
+        ],
+      ),
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -47,7 +59,19 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation1': AnimationInfo(
+      'progressBarOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          ShimmerEffect(
+            curve: Curves.easeInOut,
+            delay: 300.0.ms,
+            duration: 600.0.ms,
+            color: const Color(0x80FFFFFF),
+            angle: 0.524,
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -66,7 +90,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation2': AnimationInfo(
+      'textOnPageLoadAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -143,7 +167,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                 ],
                 gradientDirection: GradientDirection.ltr,
                 gradientType: GradientType.linear,
-              ),
+              ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
             ),
           ),
           actions: const [],
@@ -180,7 +204,8 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                   backgroundColor: const Color(0xFFE0E3E7),
                                   barRadius: const Radius.circular(24.0),
                                   padding: EdgeInsets.zero,
-                                ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'progressBarOnPageLoadAnimation']!),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
@@ -197,7 +222,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!),
+                                    animationsMap['textOnPageLoadAnimation2']!),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
@@ -214,7 +239,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation2']!),
+                                    animationsMap['textOnPageLoadAnimation3']!),
                               ),
                               Wrap(
                                 spacing: 0.0,

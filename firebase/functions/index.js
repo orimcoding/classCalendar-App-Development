@@ -4,6 +4,7 @@ admin.initializeApp();
 
 const kFcmTokensCollection = "fcm_tokens";
 const kPushNotificationsCollection = "ff_push_notifications";
+const kSchedulerIntervalMinutes = 1;
 const firestore = admin.firestore();
 
 const kPushNotificationRuntimeOpts = {
@@ -71,6 +72,38 @@ exports.sendPushNotificationsTrigger = functions
     } catch (e) {
       console.log(`Error: ${e}`);
       await snapshot.ref.update({ status: "failed", error: `${e}` });
+    }
+  });
+
+exports.sendScheduledPushNotifications = functions.pubsub
+  .schedule(`every ${kSchedulerIntervalMinutes} minutes synchronized`)
+  .onRun(async (_) => {
+    const minutesToMilliseconds = (minutes) => minutes * 60 * 1000;
+    function currentTimeDownToNearestMinute() {
+      // Add a second to the current time to avoid minute boundary issues.
+      const currentTime = new Date(new Date().getTime() + 1000);
+      // Remove seconds and milliseconds to get the time down to the minute.
+      currentTime.setSeconds(0, 0);
+      return currentTime;
+    }
+
+    // Determine the cutoff times for this round of push notifications.
+    const intervalMs = minutesToMilliseconds(kSchedulerIntervalMinutes);
+    const upperCutoffTime = currentTimeDownToNearestMinute();
+    const lowerCutoffTime = new Date(upperCutoffTime.getTime() - intervalMs);
+    // Send push notifications that we've scheduled.
+    const scheduledNotifications = await firestore
+      .collection(kPushNotificationsCollection)
+      .where("scheduled_time", ">", lowerCutoffTime)
+      .where("scheduled_time", "<=", upperCutoffTime)
+      .get();
+    for (var snapshot of scheduledNotifications.docs) {
+      try {
+        await sendPushNotifications(snapshot);
+      } catch (e) {
+        console.log(`Error: ${e}`);
+        await snapshot.ref.update({ status: "failed", error: `${e}` });
+      }
     }
   });
 
@@ -206,6 +239,71 @@ function getCharForIndex(charIdx) {
     return String.fromCharCode("a".charCodeAt(0) + charIdx - 36);
   }
 }
+const apiManager = require("./api_manager");
+const { onRequest } = require("firebase-functions/v2/https");
+const { setGlobalOptions } = require("firebase-functions/v2");
+const { pipeline } = require("node:stream/promises");
+
+setGlobalOptions({ region: "us-central1" });
+
+exports.classCalendarPrivateApiCall = functions
+  .runWith({ minInstances: 1, timeoutSeconds: 120 })
+  .https.onCall(async (data, context) => {
+    try {
+      console.log(`Making API call for ${data["callName"]}`);
+      var response = await apiManager.makeApiCall(context, data);
+      console.log(`Done making API Call! Status: ${response.statusCode}`);
+      return response;
+    } catch (err) {
+      console.error(`Error performing API call: ${err}`);
+      return {
+        statusCode: 400,
+        error: `${err}`,
+      };
+    }
+  });
+
+async function verifyAuthHeader(request) {
+  const authorization = request.header("authorization");
+  if (!authorization) {
+    return null;
+  }
+  const idToken = authorization.includes("Bearer ")
+    ? authorization.split("Bearer ")[1]
+    : null;
+  if (!idToken) {
+    return null;
+  }
+  try {
+    const authResult = await admin.auth().verifyIdToken(idToken);
+    return authResult;
+  } catch (err) {
+    return null;
+  }
+}
+
+exports.classCalendarPrivateApiCallV2 = onRequest(
+  { cors: true, minInstances: 1, timeoutSeconds: 120 },
+  async (req, res) => {
+    try {
+      const context = {
+        auth: await verifyAuthHeader(req),
+      };
+      const data = req.body.data;
+      console.log(`Making API call for ${data["callName"]}`);
+      var endpointResponse = await apiManager.makeApiCall(context, data);
+      console.log(
+        `Done making API Call! Status: ${endpointResponse.statusCode}`,
+      );
+      res.set(endpointResponse.headers);
+      res.status(endpointResponse.statusCode);
+      await pipeline(endpointResponse.body, res);
+    } catch (err) {
+      console.error(`Error performing API call: ${err}`);
+      res.status(400).send(`${err}`);
+    }
+  },
+);
 exports.onUserDeleted = functions.auth.user().onDelete(async (user) => {
   let firestore = admin.firestore();
   let userRef = firestore.doc("users/" + user.uid);

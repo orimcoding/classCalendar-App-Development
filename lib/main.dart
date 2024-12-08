@@ -118,6 +118,15 @@ class _MyAppState extends State<MyApp> {
           thumbVisibility: WidgetStateProperty.all(true),
           trackVisibility: WidgetStateProperty.all(true),
           interactive: true,
+          thumbColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.dragged)) {
+              return const Color(0xffbf65ab);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return const Color(0xffbf65ab);
+            }
+            return const Color(0xffbf65ab);
+          }),
         ),
         useMaterial3: false,
       ),
@@ -154,6 +163,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'TestHome': const TestHomeWidget(),
       'Todos': const TodosWidget(),
+      'chat_2_main': const Chat2MainWidget(),
       'TestProfile': const TestProfileWidget(),
       'SettingsCopy': const SettingsCopyWidget(),
     };
@@ -185,9 +195,17 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.tasks,
+              size: 21.0,
+            ),
+            label: '',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.forum_outlined,
               size: 24.0,
             ),
-            label: ' ',
+            label: '__',
             tooltip: '',
           ),
           BottomNavigationBarItem(

@@ -50,7 +50,7 @@ class _CurrentClassesWidgetState extends State<CurrentClassesWidget> {
               child: SizedBox(
                 width: 50.0,
                 height: 50.0,
-                child: SpinKitFoldingCube(
+                child: SpinKitDoubleBounce(
                   color: FlutterFlowTheme.of(context).primary,
                   size: 50.0,
                 ),
@@ -159,7 +159,7 @@ class _CurrentClassesWidgetState extends State<CurrentClassesWidget> {
                             child: SizedBox(
                               width: 50.0,
                               height: 50.0,
-                              child: SpinKitFoldingCube(
+                              child: SpinKitDoubleBounce(
                                 color: FlutterFlowTheme.of(context).primary,
                                 size: 50.0,
                               ),

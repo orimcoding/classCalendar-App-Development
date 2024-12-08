@@ -28,7 +28,7 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>com.googleusercontent.apps.58073383530-pcqhknrb87kpg6deohs6habdljkjq525</string>
+                <string>com.googleusercontent.apps.58073383530-7896iu9pj6ad4gcnjoak87e94opi0jsa</string>
                 
             </array>
         </dict>
@@ -53,11 +53,16 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
-
-	<key>PermissionGroupNotification</key>
-    <string>Allow classCalendar to send you notifications for important reminders and updates?</string>
+	<key>NSCameraUsageDescription</key>
+    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>In order to record audio for video, this app requires permission to access the microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires access to certain features to enhance your experience while respecting your privacy.</string>
+    <string>In order to upload data, this app requires permission to access the photo library.</string>
+	<key>PermissionGroupNotification</key>
+    <string>Allow classCalendar to send you notifications so you can stay updated on task reminders, event changes, and upcoming deadlines.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Allow classCalendar to access your location to make it easier to set specific locations for your tasks and events.</string>
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>

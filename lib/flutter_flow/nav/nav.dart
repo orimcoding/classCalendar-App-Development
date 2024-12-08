@@ -99,9 +99,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Create04TaskWidget(),
         ),
         FFRoute(
-          name: 'Page3',
-          path: '/Page3',
-          builder: (context, params) => const Page3Widget(),
+          name: 'Page4',
+          path: '/Page4',
+          builder: (context, params) => const Page4Widget(),
         ),
         FFRoute(
           name: 'Todos',
@@ -170,34 +170,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EditClassesWidget(),
         ),
         FFRoute(
-          name: 'LocationOfTask',
-          path: '/locationOfTask',
-          builder: (context, params) => LocationOfTaskWidget(
-            location: params.getParam(
-              'location',
-              ParamType.LatLng,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'forgotPassword',
           path: '/forgotPassword',
           builder: (context, params) => const ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'ChangeUsername',
-          path: '/ChangeUserName',
-          builder: (context, params) => const ChangeUsernameWidget(),
-        ),
-        FFRoute(
           name: 'ChangeGrade',
           path: '/ChangGrade',
           builder: (context, params) => const ChangeGradeWidget(),
-        ),
-        FFRoute(
-          name: 'customize',
-          path: '/customize',
-          builder: (context, params) => const CustomizeWidget(),
         ),
         FFRoute(
           name: 'OwnedTops',
@@ -371,8 +351,76 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Success03',
           path: '/success03',
           builder: (context, params) => const Success03Widget(),
+        ),
+        FFRoute(
+          name: 'processingExcercise',
+          path: '/processingExcercise',
+          builder: (context, params) => const ProcessingExcerciseWidget(),
+        ),
+        FFRoute(
+          name: 'processingVisit',
+          path: '/processingVisit',
+          builder: (context, params) => const ProcessingVisitWidget(),
+        ),
+        FFRoute(
+          name: 'processingGeneral',
+          path: '/processingGeneral',
+          builder: (context, params) => const ProcessingGeneralWidget(),
+        ),
+        FFRoute(
+          name: 'chat_2_Details',
+          path: '/chat2Details',
+          asyncParams: {
+            'chatRef': getDoc(['chats'], ChatsRecord.fromSnapshot),
+          },
+          builder: (context, params) => Chat2DetailsWidget(
+            chatRef: params.getParam(
+              'chatRef',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'chat_2_main',
+          path: '/chat2Main',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'chat_2_main')
+              : const Chat2MainWidget(),
+        ),
+        FFRoute(
+          name: 'chat_2_InviteUsers',
+          path: '/chat2InviteUsers',
+          asyncParams: {
+            'chatRef': getDoc(['chats'], ChatsRecord.fromSnapshot),
+          },
+          builder: (context, params) => Chat2InviteUsersWidget(
+            chatRef: params.getParam(
+              'chatRef',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'image_Details',
+          path: '/imageDetails',
+          asyncParams: {
+            'chatMessage':
+                getDoc(['chat_messages'], ChatMessagesRecord.fromSnapshot),
+          },
+          builder: (context, params) => ImageDetailsWidget(
+            chatMessage: params.getParam(
+              'chatMessage',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'Page3',
+          path: '/Page3',
+          builder: (context, params) => const Page3Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {

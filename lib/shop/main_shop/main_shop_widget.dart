@@ -2,13 +2,11 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'main_shop_model.dart';
 export 'main_shop_model.dart';
 
@@ -42,15 +40,39 @@ class _MainShopWidgetState extends State<MainShopWidget>
     });
 
     animationsMap.addAll({
-      'columnOnPageLoadAnimation': AnimationInfo(
+      'textOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
-          FadeEffect(
+          ShimmerEffect(
             curve: Curves.linear,
             delay: 0.0.ms,
-            duration: 950.0.ms,
+            duration: 600.0.ms,
+            color: const Color(0x80FFFFFF),
+            angle: 0.524,
+          ),
+        ],
+      ),
+      'imageOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.easeOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
             begin: 0.0,
             end: 1.0,
+          ),
+        ],
+      ),
+      'stackOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeOut,
+            delay: 0.0.ms,
+            duration: 450.0.ms,
+            begin: const Offset(100.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -75,632 +97,1109 @@ class _MainShopWidgetState extends State<MainShopWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: GradientText(
-                  'Shop',
-                  style: FlutterFlowTheme.of(context).titleLarge.override(
-                        fontFamily: 'Outfit',
-                        fontSize: 50.0,
-                        letterSpacing: 0.0,
-                      ),
-                  colors: [
-                    FlutterFlowTheme.of(context).primary,
-                    FlutterFlowTheme.of(context).secondary
-                  ],
-                  gradientDirection: GradientDirection.ltr,
-                  gradientType: GradientType.linear,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFF1F5F8),
+          automaticallyImplyLeading: false,
+          leading: InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              logFirebaseEvent('MAIN_SHOP_PAGE_Icon_0u72j5tt_ON_TAP');
+              logFirebaseEvent('Icon_navigate_back');
+              context.safePop();
+            },
+            child: Icon(
+              Icons.chevron_left_sharp,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 24.0,
+            ),
+          ),
+          title: Text(
+            'Storefront',
+            style: FlutterFlowTheme.of(context).displaySmall.override(
+                  fontFamily: 'Outfit',
+                  color: const Color(0xFF0F1113),
+                  fontSize: 30.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
+                ),
+          ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+          actions: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.asset(
+                'assets/images/Untitled_design_(7)-Photoroom.png',
+                width: 60.0,
+                height: 60.0,
+                fit: BoxFit.cover,
+              ),
+            ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation']!),
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 20.0, 0.0),
+                child: AuthUserStreamWidget(
+                  builder: (context) => Text(
+                    valueOrDefault(currentUserDocument?.coins, 0).toString(),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Outfit',
+                          color: const Color(0xFF060606),
+                          fontSize: 25.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                 ),
               ),
-              Flexible(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
+            ),
+          ],
+          centerTitle: false,
+          elevation: 5.0,
+        ),
+        body: Stack(
+          children: [
+            Stack(
+              children: [
+                Stack(
                   children: [
-                    if ((valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'Turban') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'Hijab') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'WinterHat1') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'WinterHat2') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'WinterHat3') ||
-                        (valueOrDefault(
-                                currentUserDocument?.selectedTop, '') !=
-                            'WinterHat4') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'NoHair') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'Eyepatch') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                            'Hat'))
-                      Flexible(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 5.0),
-                            child: AuthUserStreamWidget(
-                              builder: (context) => FFButtonWidget(
-                                onPressed: () async {
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Stack(
+                          children: [
+                            Stack(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 10.0, 0.0, 0.0),
+                                          child: SizedBox(
+                                            height: 525.0,
+                                            child: Stack(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 10.0,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context.pushNamed(
+                                                          'TopsShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Stack(
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets.all(
+                                                                    8.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              10.0),
+                                                                          child:
+                                                                              Text(
+                                                                            'Purchasable Headwear',
+                                                                            style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                  fontFamily: 'Outfit',
+                                                                                  color: const Color(0xFF0F1113),
+                                                                                  fontSize: 20.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .hatWizard,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 145.0,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context.pushNamed(
+                                                          'AccessoryShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Purchasable Gear',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: const Color(0xFF0F1113),
+                                                                              fontSize: 20.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .glasses,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 77.5,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context.pushNamed(
+                                                          'FacialHairShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Purchasable Staches',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: const Color(0xFF0F1113),
+                                                                              fontSize: 20.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      1.0, 0.0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .handScissors,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                size: 30.0,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 212.5,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context.pushNamed(
+                                                          'ClothesShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Purchasable Clothes',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: const Color(0xFF0F1113),
+                                                                              fontSize: 20.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .userTie,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              size: 30.0,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 280.0,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context
+                                                          .pushNamed('EyeShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Purchasable Eyes',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: const Color(0xFF0F1113),
+                                                                              fontSize: 20.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .eye,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              size: 28.0,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 347.5,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context.pushNamed(
+                                                          'MouthShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Purchasable Mouths',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: const Color(0xFF0F1113),
+                                                                              fontSize: 20.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .monument,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              size: 30.0,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 415.0,
+                                                          16.0, 0.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'menuItem_navigate_to');
+
+                                                      context.pushNamed(
+                                                          'EyebrowShop');
+                                                    },
+                                                    child: Container(
+                                                      width: 275.0,
+                                                      height: 57.5,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            blurRadius: 3.0,
+                                                            color: Color(
+                                                                0x411D2429),
+                                                            offset: Offset(
+                                                              0.0,
+                                                              2.0,
+                                                            ),
+                                                            spreadRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(8.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            8.0,
+                                                                            8.0,
+                                                                            4.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Purchasable Eyebrows',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: const Color(0xFF0F1113),
+                                                                              fontSize: 20.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .eyeDropper,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(1.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 19.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 15.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
                                   logFirebaseEvent(
-                                      'MAIN_SHOP_PAGE_HAIR_COLOR_BTN_ON_TAP');
-                                  logFirebaseEvent('Button_navigate_to');
+                                      'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                  logFirebaseEvent('menuItem_navigate_to');
 
                                   context.pushNamed('HairColorsShop');
                                 },
-                                text: 'Hair Color',
-                                icon: const Icon(
-                                  Icons.face,
-                                  size: 24.0,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 300.0,
-                                  height: 50.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
+                                child: Container(
+                                  width: 75.0,
+                                  height: 57.5,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 3.0,
+                                        color: Color(0x411D2429),
+                                        offset: Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                        spreadRadius: 2.0,
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if ((valueOrDefault(currentUserDocument?.selectedTop, '') ==
-                            'Turban') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') ==
-                            'Hijab') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') ==
-                            'WinterHat1') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') ==
-                            'WinterHat2') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') ==
-                            'WinterHat3') ||
-                        (valueOrDefault(currentUserDocument?.selectedTop, '') ==
-                            'WinterHat4'))
-                      Flexible(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => FFButtonWidget(
-                              onPressed: () async {
-                                logFirebaseEvent(
-                                    'MAIN_SHOP_PAGE_HAT_COLOR_BTN_ON_TAP');
-                                logFirebaseEvent('Button_navigate_to');
-
-                                context.pushNamed('HatColorsShop');
-                              },
-                              text: 'Hat Color',
-                              icon: const FaIcon(
-                                FontAwesomeIcons.hatCowboy,
-                                size: 15.0,
-                              ),
-                              options: FFButtonOptions(
-                                width: 300.0,
-                                height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 0.0, 0.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.palette,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: AuthUserStreamWidget(
-                        builder: (context) => FFButtonWidget(
-                          onPressed: (valueOrDefault(
-                                      currentUserDocument?.selectedTop, '') ==
-                                  'Hijab')
-                              ? null
-                              : () async {
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 15.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
                                   logFirebaseEvent(
-                                      'MAIN_SHOP_PAGE_FACIAL_HAIR_BTN_ON_TAP');
-                                  logFirebaseEvent('Button_navigate_to');
+                                      'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                  logFirebaseEvent('menuItem_navigate_to');
 
-                                  context.pushNamed('FacialHairShop');
+                                  context.pushNamed('FacialHairColorShop');
                                 },
-                          text: 'Facial Hair',
-                          icon: const FaIcon(
-                            FontAwesomeIcons.solidHandScissors,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 300.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'MAIN_SHOP_PAGE_CLOTHES_BTN_ON_TAP');
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamed('ClothesShop');
-                          },
-                          text: 'Clothes',
-                          icon: const FaIcon(
-                            FontAwesomeIcons.tshirt,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 300.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent('MAIN_SHOP_PAGE_EYES_BTN_ON_TAP');
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamed('EyeShop');
-                          },
-                          text: 'Eyes',
-                          icon: const FaIcon(
-                            FontAwesomeIcons.eye,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 300.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Flexible(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent('MAIN_SHOP_PAGE_MOUTH_BTN_ON_TAP');
-                          logFirebaseEvent('Button_navigate_to');
-
-                          context.pushNamed('MouthShop');
-                        },
-                        text: 'Mouth',
-                        icon: const FaIcon(
-                          FontAwesomeIcons.monument,
-                          size: 15.0,
-                        ),
-                        options: FFButtonOptions(
-                          width: 300.0,
-                          height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Open Sans',
+                                child: Container(
+                                  width: 75.0,
+                                  height: 57.5,
+                                  decoration: BoxDecoration(
                                     color: Colors.white,
-                                    letterSpacing: 0.0,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 3.0,
+                                        color: Color(0x411D2429),
+                                        offset: Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                        spreadRadius: 2.0,
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 5.0, 0.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              logFirebaseEvent(
-                                  'MAIN_SHOP_PAGE_TOPS_BTN_ON_TAP');
-                              logFirebaseEvent('Button_navigate_to');
-
-                              context.pushNamed('TopsShop');
-                            },
-                            text: 'Tops',
-                            icon: const FaIcon(
-                              FontAwesomeIcons.blackTie,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 300.0,
-                              height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => FFButtonWidget(
-                            onPressed: ((valueOrDefault(
-                                            currentUserDocument
-                                                ?.selectedFacialHairs,
-                                            '') ==
-                                        'Blank') &&
-                                    (valueOrDefault(
-                                            currentUserDocument?.selectedTop,
-                                            '') ==
-                                        'Hijab'))
-                                ? null
-                                : () async {
-                                    logFirebaseEvent(
-                                        'MAIN_SHOP_FACIAL_HAIR_COLOR_BTN_ON_TAP');
-                                    logFirebaseEvent('Button_navigate_to');
-
-                                    context.pushNamed('FacialHairColorShop');
-                                  },
-                            text: 'Facial Hair Color',
-                            icon: const FaIcon(
-                              FontAwesomeIcons.eyeDropper,
-                              size: 15.0,
-                            ),
-                            options: FFButtonOptions(
-                              width: 300.0,
-                              height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                              disabledColor: const Color(0xFF666262),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'MAIN_SHOP_PAGE_EYEBROW_BTN_ON_TAP');
-                            logFirebaseEvent('Button_navigate_to');
-
-                            context.pushNamed('EyebrowShop');
-                          },
-                          text: 'Eyebrow',
-                          icon: const FaIcon(
-                            FontAwesomeIcons.paintBrush,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 300.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    if (valueOrDefault(currentUserDocument?.selectedTop, '') !=
-                        'Eyepatch')
-                      Flexible(
-                        child: Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => FFButtonWidget(
-                              onPressed: (valueOrDefault(
-                                          currentUserDocument?.selectedTop,
-                                          '') ==
-                                      'Eyepatch')
-                                  ? null
-                                  : () async {
-                                      logFirebaseEvent(
-                                          'MAIN_SHOP_PAGE_ACCESSORIES_BTN_ON_TAP');
-                                      logFirebaseEvent('Button_navigate_to');
-
-                                      context.pushNamed('AccessoryShop');
-                                    },
-                              text: 'Accessories',
-                              icon: const FaIcon(
-                                FontAwesomeIcons.glasses,
-                                size: 15.0,
-                              ),
-                              options: FFButtonOptions(
-                                width: 300.0,
-                                height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Open Sans',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 0.0, 0.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.palette,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
-                        child: FFButtonWidget(
-                          onPressed: () async {
-                            logFirebaseEvent(
-                                'MAIN_SHOP_PAGE_CLOTHING_COLOR_BTN_ON_TAP');
-                            logFirebaseEvent('Button_navigate_to');
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 15.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                  logFirebaseEvent('menuItem_navigate_to');
 
-                            context.goNamed('ClothesColorShop');
-                          },
-                          text: 'Clothing Color',
-                          icon: const FaIcon(
-                            FontAwesomeIcons.fillDrip,
-                            size: 15.0,
-                          ),
-                          options: FFButtonOptions(
-                            width: 300.0,
-                            height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
+                                  context.pushNamed('HatColorsShop');
+                                },
+                                child: Container(
+                                  width: 75.0,
+                                  height: 57.5,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 3.0,
+                                        color: Color(0x411D2429),
+                                        offset: Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                        spreadRadius: 2.0,
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 0.0, 0.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.palette,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
+                              ),
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 15.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'MAIN_SHOP_PAGE_menuItem_ON_TAP');
+                                  logFirebaseEvent('menuItem_navigate_to');
+
+                                  context.pushNamed('ClothesColorShop');
+                                },
+                                child: Container(
+                                  width: 75.0,
+                                  height: 57.5,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 3.0,
+                                        color: Color(0x411D2429),
+                                        offset: Offset(
+                                          0.0,
+                                          2.0,
+                                        ),
+                                        spreadRadius: 2.0,
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 0.0, 0.0, 0.0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.palette,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ].divide(const SizedBox(height: 10.0)),
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
+              ],
+            ),
+          ],
+        ).animateOnPageLoad(animationsMap['stackOnPageLoadAnimation']!),
       ),
     );
   }

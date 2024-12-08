@@ -1,12 +1,12 @@
 // Export pages
-export '/start_questions/page2/page2_widget.dart' show Page2Widget;
-export '/start_questions/page1/page1_widget.dart' show Page1Widget;
+export '/onboarding/page2/page2_widget.dart' show Page2Widget;
+export '/onboarding/page1/page1_widget.dart' show Page1Widget;
 export '/tasks/create04_task/create04_task_widget.dart' show Create04TaskWidget;
-export '/start_questions/page3/page3_widget.dart' show Page3Widget;
+export '/onboarding/page4/page4_widget.dart' show Page4Widget;
 export '/tasks/todos/todos_widget.dart' show TodosWidget;
 export '/assignment/assignment_notebook/assignment_notebook_widget.dart'
     show AssignmentNotebookWidget;
-export '/general/login/login_widget.dart' show LoginWidget;
+export '/onboarding/login/login_widget.dart' show LoginWidget;
 export '/assignment/create_new_assignment/create_new_assignment_widget.dart'
     show CreateNewAssignmentWidget;
 export '/assignment/assingment_descript/assingment_descript_widget.dart'
@@ -20,14 +20,9 @@ export '/assignment/classestasks/classestasks_widget.dart'
     show ClassestasksWidget;
 export '/assignment/edit_classes/edit_classes_widget.dart'
     show EditClassesWidget;
-export '/tasks/location_of_task/location_of_task_widget.dart'
-    show LocationOfTaskWidget;
-export '/general/forgot_password/forgot_password_widget.dart'
+export '/settings/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
-export '/settings/change_username/change_username_widget.dart'
-    show ChangeUsernameWidget;
 export '/settings/change_grade/change_grade_widget.dart' show ChangeGradeWidget;
-export '/general/customize/customize_widget.dart' show CustomizeWidget;
 export '/owned/owned_tops/owned_tops_widget.dart' show OwnedTopsWidget;
 export '/owned/owned_accesssories/owned_accesssories_widget.dart'
     show OwnedAccesssoriesWidget;
@@ -67,9 +62,23 @@ export '/shop/facial_hair_color_shop/facial_hair_color_shop_widget.dart'
 export '/shop/main_shop/main_shop_widget.dart' show MainShopWidget;
 export '/general/test_home/test_home_widget.dart' show TestHomeWidget;
 export '/general/test_profile/test_profile_widget.dart' show TestProfileWidget;
-export '/process_v/process_v_widget.dart' show ProcessVWidget;
-export '/process_e/process_e_widget.dart' show ProcessEWidget;
-export '/process_g/process_g_widget.dart' show ProcessGWidget;
+export '/streak_logic/process_v/process_v_widget.dart' show ProcessVWidget;
+export '/streak_logic/process_e/process_e_widget.dart' show ProcessEWidget;
+export '/streak_logic/process_g/process_g_widget.dart' show ProcessGWidget;
 export '/settings/settings_copy/settings_copy_widget.dart'
     show SettingsCopyWidget;
-export '/start_questions/success03/success03_widget.dart' show Success03Widget;
+export '/onboarding/success03/success03_widget.dart' show Success03Widget;
+export '/streak_logic/processing_excercise/processing_excercise_widget.dart'
+    show ProcessingExcerciseWidget;
+export '/streak_logic/processing_visit/processing_visit_widget.dart'
+    show ProcessingVisitWidget;
+export '/streak_logic/processing_general/processing_general_widget.dart'
+    show ProcessingGeneralWidget;
+export '/chat_flow/chat_2_details/chat2_details_widget.dart'
+    show Chat2DetailsWidget;
+export '/chat_flow/chat_2_main/chat2_main_widget.dart' show Chat2MainWidget;
+export '/chat_flow/chat_2_invite_users/chat2_invite_users_widget.dart'
+    show Chat2InviteUsersWidget;
+export '/chat_flow/image_details/image_details_widget.dart'
+    show ImageDetailsWidget;
+export '/onboarding/page3/page3_widget.dart' show Page3Widget;

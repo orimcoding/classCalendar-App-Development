@@ -336,6 +336,46 @@ class UsersRecord extends FirestoreRecord {
   DateTime? get lastAssignmentDate => _lastAssignmentDate;
   bool hasLastAssignmentDate() => _lastAssignmentDate != null;
 
+  // "screenshotUrl" field.
+  String? _screenshotUrl;
+  String get screenshotUrl => _screenshotUrl ?? '';
+  bool hasScreenshotUrl() => _screenshotUrl != null;
+
+  // "streakCount" field.
+  int? _streakCount;
+  int get streakCount => _streakCount ?? 0;
+  bool hasStreakCount() => _streakCount != null;
+
+  // "lastLoginDate" field.
+  DateTime? _lastLoginDate;
+  DateTime? get lastLoginDate => _lastLoginDate;
+  bool hasLastLoginDate() => _lastLoginDate != null;
+
+  // "shortDescription" field.
+  String? _shortDescription;
+  String get shortDescription => _shortDescription ?? '';
+  bool hasShortDescription() => _shortDescription != null;
+
+  // "last_active_time" field.
+  DateTime? _lastActiveTime;
+  DateTime? get lastActiveTime => _lastActiveTime;
+  bool hasLastActiveTime() => _lastActiveTime != null;
+
+  // "role" field.
+  String? _role;
+  String get role => _role ?? '';
+  bool hasRole() => _role != null;
+
+  // "title" field.
+  String? _title;
+  String get title => _title ?? '';
+  bool hasTitle() => _title != null;
+
+  // "access_token" field.
+  String? _accessToken;
+  String get accessToken => _accessToken ?? '';
+  bool hasAccessToken() => _accessToken != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -402,6 +442,14 @@ class UsersRecord extends FirestoreRecord {
     _taskWalk = snapshotData['taskWalk'] as bool?;
     _assWalk = snapshotData['AssWalk'] as bool?;
     _lastAssignmentDate = snapshotData['lastAssignmentDate'] as DateTime?;
+    _screenshotUrl = snapshotData['screenshotUrl'] as String?;
+    _streakCount = castToType<int>(snapshotData['streakCount']);
+    _lastLoginDate = snapshotData['lastLoginDate'] as DateTime?;
+    _shortDescription = snapshotData['shortDescription'] as String?;
+    _lastActiveTime = snapshotData['last_active_time'] as DateTime?;
+    _role = snapshotData['role'] as String?;
+    _title = snapshotData['title'] as String?;
+    _accessToken = snapshotData['access_token'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -479,6 +527,14 @@ Map<String, dynamic> createUsersRecordData({
   bool? taskWalk,
   bool? assWalk,
   DateTime? lastAssignmentDate,
+  String? screenshotUrl,
+  int? streakCount,
+  DateTime? lastLoginDate,
+  String? shortDescription,
+  DateTime? lastActiveTime,
+  String? role,
+  String? title,
+  String? accessToken,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -523,6 +579,14 @@ Map<String, dynamic> createUsersRecordData({
       'taskWalk': taskWalk,
       'AssWalk': assWalk,
       'lastAssignmentDate': lastAssignmentDate,
+      'screenshotUrl': screenshotUrl,
+      'streakCount': streakCount,
+      'lastLoginDate': lastLoginDate,
+      'shortDescription': shortDescription,
+      'last_active_time': lastActiveTime,
+      'role': role,
+      'title': title,
+      'access_token': accessToken,
     }.withoutNulls,
   );
 
@@ -600,7 +664,15 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.profileWalk == e2?.profileWalk &&
         e1?.taskWalk == e2?.taskWalk &&
         e1?.assWalk == e2?.assWalk &&
-        e1?.lastAssignmentDate == e2?.lastAssignmentDate;
+        e1?.lastAssignmentDate == e2?.lastAssignmentDate &&
+        e1?.screenshotUrl == e2?.screenshotUrl &&
+        e1?.streakCount == e2?.streakCount &&
+        e1?.lastLoginDate == e2?.lastLoginDate &&
+        e1?.shortDescription == e2?.shortDescription &&
+        e1?.lastActiveTime == e2?.lastActiveTime &&
+        e1?.role == e2?.role &&
+        e1?.title == e2?.title &&
+        e1?.accessToken == e2?.accessToken;
   }
 
   @override
@@ -668,7 +740,15 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.profileWalk,
         e?.taskWalk,
         e?.assWalk,
-        e?.lastAssignmentDate
+        e?.lastAssignmentDate,
+        e?.screenshotUrl,
+        e?.streakCount,
+        e?.lastLoginDate,
+        e?.shortDescription,
+        e?.lastActiveTime,
+        e?.role,
+        e?.title,
+        e?.accessToken
       ]);
 
   @override
