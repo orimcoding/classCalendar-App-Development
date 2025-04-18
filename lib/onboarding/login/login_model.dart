@@ -1,5 +1,5 @@
-import '/backend/custom_cloud_functions/custom_cloud_function_response_manager.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'login_widget.dart' show LoginWidget;
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,8 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex =>
+      tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for emailAddress_Create widget.
   FocusNode? emailAddressCreateFocusNode;
@@ -22,8 +24,6 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)?
       passwordCreateTextControllerValidator;
-  // Stores action output result for [Cloud Function - retrieveGoogleAccessToken] action in Button widget.
-  RetrieveGoogleAccessTokenCloudFunctionCallResponse? userAccessToken;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;

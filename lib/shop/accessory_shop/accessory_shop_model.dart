@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'accessory_shop_widget.dart' show AccessoryShopWidget;
 import 'package:flutter/material.dart';
 

@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -12,6 +13,9 @@ export 'main_shop_model.dart';
 
 class MainShopWidget extends StatefulWidget {
   const MainShopWidget({super.key});
+
+  static String routeName = 'MainShop';
+  static String routePath = '/mainShop';
 
   @override
   State<MainShopWidget> createState() => _MainShopWidgetState();
@@ -47,7 +51,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -71,8 +75,8 @@ class _MainShopWidgetState extends State<MainShopWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -93,12 +97,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           leading: InkWell(
             splashColor: Colors.transparent,
@@ -120,7 +127,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
             'Storefront',
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Outfit',
-                  color: const Color(0xFF0F1113),
+                  color: Color(0xFF0F1113),
                   fontSize: 30.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
@@ -137,15 +144,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
               ),
             ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation']!),
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 20.0, 0.0),
                 child: AuthUserStreamWidget(
                   builder: (context) => Text(
                     valueOrDefault(currentUserDocument?.coins, 0).toString(),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Outfit',
-                          color: const Color(0xFF060606),
+                          color: Color(0xFF060606),
                           fontSize: 25.0,
                           letterSpacing: 0.0,
                         ),
@@ -176,14 +183,14 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
-                                          child: SizedBox(
+                                          child: Container(
                                             height: 525.0,
                                             child: Stack(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 10.0,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -202,14 +209,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                           'menuItem_navigate_to');
 
                                                       context.pushNamed(
-                                                          'TopsShop');
+                                                          TopsShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -229,7 +237,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsets.all(
+                                                                EdgeInsets.all(
                                                                     8.0),
                                                             child: Row(
                                                               mainAxisSize:
@@ -239,7 +247,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                 Expanded(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -258,7 +266,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                               .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -268,7 +276,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             'Purchasable Headwear',
                                                                             style: FlutterFlowTheme.of(context).headlineSmall.override(
                                                                                   fontFamily: 'Outfit',
-                                                                                  color: const Color(0xFF0F1113),
+                                                                                  color: Color(0xFF0F1113),
                                                                                   fontSize: 20.0,
                                                                                   letterSpacing: 0.0,
                                                                                   fontWeight: FontWeight.normal,
@@ -296,7 +304,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 145.0,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -315,14 +323,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                           'menuItem_navigate_to');
 
                                                       context.pushNamed(
-                                                          'AccessoryShop');
+                                                          AccessoryShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -340,7 +349,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -348,7 +357,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -366,7 +375,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -378,7 +387,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF0F1113),
+                                                                              color: Color(0xFF0F1113),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -404,7 +413,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 77.5,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -423,14 +432,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                           'menuItem_navigate_to');
 
                                                       context.pushNamed(
-                                                          'FacialHairShop');
+                                                          FacialHairShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -448,7 +458,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -456,7 +466,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -474,7 +484,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -486,7 +496,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF0F1113),
+                                                                              color: Color(0xFF0F1113),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -499,7 +509,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       1.0, 0.0),
                                                               child: FaIcon(
                                                                 FontAwesomeIcons
@@ -517,7 +527,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 212.5,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -536,14 +546,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                           'menuItem_navigate_to');
 
                                                       context.pushNamed(
-                                                          'ClothesShop');
+                                                          ClothesShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -561,7 +572,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -569,7 +580,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -587,7 +598,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -599,7 +610,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF0F1113),
+                                                                              color: Color(0xFF0F1113),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -625,7 +636,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 280.0,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -643,15 +654,16 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       logFirebaseEvent(
                                                           'menuItem_navigate_to');
 
-                                                      context
-                                                          .pushNamed('EyeShop');
+                                                      context.pushNamed(
+                                                          EyeShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -669,7 +681,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -677,7 +689,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -695,7 +707,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -707,7 +719,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF0F1113),
+                                                                              color: Color(0xFF0F1113),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -733,7 +745,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 347.5,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -752,14 +764,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                           'menuItem_navigate_to');
 
                                                       context.pushNamed(
-                                                          'MouthShop');
+                                                          MouthShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -777,7 +790,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -785,7 +798,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -803,7 +816,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -815,7 +828,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF0F1113),
+                                                                              color: Color(0xFF0F1113),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -841,7 +854,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(16.0, 415.0,
                                                           16.0, 0.0),
                                                   child: InkWell(
@@ -860,14 +873,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                           'menuItem_navigate_to');
 
                                                       context.pushNamed(
-                                                          'EyebrowShop');
+                                                          EyebrowShopWidget
+                                                              .routeName);
                                                     },
                                                     child: Container(
                                                       width: 275.0,
                                                       height: 57.5,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        boxShadow: const [
+                                                        boxShadow: [
                                                           BoxShadow(
                                                             blurRadius: 3.0,
                                                             color: Color(
@@ -885,7 +899,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            EdgeInsets.all(8.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -893,7 +907,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             8.0,
@@ -911,7 +925,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -923,7 +937,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                                                             .headlineSmall
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF0F1113),
+                                                                              color: Color(0xFF0F1113),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -963,15 +977,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                       ],
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, 0.0),
+                      alignment: AlignmentDirectional(1.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 19.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 19.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 15.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -983,14 +997,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                       'MAIN_SHOP_PAGE_menuItem_ON_TAP');
                                   logFirebaseEvent('menuItem_navigate_to');
 
-                                  context.pushNamed('HairColorsShop');
+                                  context.pushNamed(
+                                      HairColorsShopWidget.routeName);
                                 },
                                 child: Container(
                                   width: 75.0,
                                   height: 57.5,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    boxShadow: const [
+                                    boxShadow: [
                                       BoxShadow(
                                         blurRadius: 3.0,
                                         color: Color(0x411D2429),
@@ -1004,13 +1019,13 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 0.0, 0.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.palette,
@@ -1026,7 +1041,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 15.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -1038,14 +1053,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                       'MAIN_SHOP_PAGE_menuItem_ON_TAP');
                                   logFirebaseEvent('menuItem_navigate_to');
 
-                                  context.pushNamed('FacialHairColorShop');
+                                  context.pushNamed(
+                                      FacialHairColorShopWidget.routeName);
                                 },
                                 child: Container(
                                   width: 75.0,
                                   height: 57.5,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    boxShadow: const [
+                                    boxShadow: [
                                       BoxShadow(
                                         blurRadius: 3.0,
                                         color: Color(0x411D2429),
@@ -1059,13 +1075,13 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 0.0, 0.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.palette,
@@ -1081,7 +1097,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 15.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -1093,14 +1109,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                       'MAIN_SHOP_PAGE_menuItem_ON_TAP');
                                   logFirebaseEvent('menuItem_navigate_to');
 
-                                  context.pushNamed('HatColorsShop');
+                                  context
+                                      .pushNamed(HatColorsShopWidget.routeName);
                                 },
                                 child: Container(
                                   width: 75.0,
                                   height: 57.5,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    boxShadow: const [
+                                    boxShadow: [
                                       BoxShadow(
                                         blurRadius: 3.0,
                                         color: Color(0x411D2429),
@@ -1114,13 +1131,13 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 0.0, 0.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.palette,
@@ -1136,7 +1153,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 15.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
@@ -1148,14 +1165,15 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                       'MAIN_SHOP_PAGE_menuItem_ON_TAP');
                                   logFirebaseEvent('menuItem_navigate_to');
 
-                                  context.pushNamed('ClothesColorShop');
+                                  context.pushNamed(
+                                      ClothesColorShopWidget.routeName);
                                 },
                                 child: Container(
                                   width: 75.0,
                                   height: 57.5,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    boxShadow: const [
+                                    boxShadow: [
                                       BoxShadow(
                                         blurRadius: 3.0,
                                         color: Color(0x411D2429),
@@ -1169,13 +1187,13 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   15.0, 0.0, 0.0, 0.0),
                                           child: FaIcon(
                                             FontAwesomeIcons.palette,
@@ -1190,7 +1208,7 @@ class _MainShopWidgetState extends State<MainShopWidget>
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 10.0)),
+                          ].divide(SizedBox(height: 10.0)),
                         ),
                       ),
                     ),

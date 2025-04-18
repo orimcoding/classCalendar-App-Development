@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -21,6 +22,9 @@ export 'test_home_model.dart';
 
 class TestHomeWidget extends StatefulWidget {
   const TestHomeWidget({super.key});
+
+  static String routeName = 'TestHome';
+  static String routePath = '/testHome';
 
   @override
   State<TestHomeWidget> createState() => _TestHomeWidgetState();
@@ -73,9 +77,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
           logFirebaseEvent('TestHome_navigate_to');
 
           context.pushNamed(
-            'processingVisit',
+            ProcessingVisitWidget.routeName,
             extra: <String, dynamic>{
-              kTransitionInfoKey: const TransitionInfo(
+              kTransitionInfoKey: TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
@@ -89,9 +93,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
         logFirebaseEvent('TestHome_navigate_to');
 
         context.goNamed(
-          'processingVisit',
+          ProcessingVisitWidget.routeName,
           extra: <String, dynamic>{
-            kTransitionInfoKey: const TransitionInfo(
+            kTransitionInfoKey: TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -115,6 +119,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
+
     animationsMap.addAll({
       'textOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -123,7 +128,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -135,7 +140,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -147,7 +152,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -159,8 +164,8 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(0, 1.047),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.047),
+            end: Offset(0, 0),
           ),
         ],
       ),
@@ -171,7 +176,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -183,8 +188,8 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -195,7 +200,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 450.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -207,8 +212,8 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(0, 1.047),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.047),
+            end: Offset(0, 0),
           ),
         ],
       ),
@@ -219,7 +224,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -231,8 +236,8 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -243,7 +248,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
             curve: Curves.linear,
             delay: 450.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -286,7 +291,10 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
         List<TasksRecord> testHomeTasksRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -294,7 +302,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               title: Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: GradientText(
                   'classCalendar',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -312,13 +320,13 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
               ),
               actions: [
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 3.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 3.0),
                     child: FlutterFlowIconButton(
                       borderRadius: 8.0,
                       buttonSize: 40.0,
-                      icon: const FaIcon(
+                      icon: FaIcon(
                         FontAwesomeIcons.fireAlt,
                         color: Color(0xFFE15A2E),
                         size: 24.0,
@@ -331,10 +339,10 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 3.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 3.0),
                     child: AuthUserStreamWidget(
                       builder: (context) => GradientText(
                         valueOrDefault(currentUserDocument?.streak, 0)
@@ -344,13 +352,13 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                             .headlineMedium
                             .override(
                               fontFamily: 'Raleway',
-                              color: const Color(0xFFDD751C),
+                              color: Color(0xFFDD751C),
                               fontSize: 35.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.underline,
                             ),
-                        colors: const [Color(0xFFAD1804), Color(0xFFE77E1A)],
+                        colors: [Color(0xFFAD1804), Color(0xFFE77E1A)],
                         gradientDirection: GradientDirection.ltr,
                         gradientType: GradientType.linear,
                       ).animateOnPageLoad(
@@ -371,7 +379,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                       Column(
                         children: [
                           Align(
-                            alignment: const Alignment(0.0, 0),
+                            alignment: Alignment(0.0, 0),
                             child: FlutterFlowButtonTabBar(
                               useToggleButtonStyle: true,
                               isScrollable: true,
@@ -381,7 +389,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                     fontFamily: 'Montserrat',
                                     letterSpacing: 0.0,
                                   ),
-                              unselectedLabelStyle: const TextStyle(),
+                              unselectedLabelStyle: TextStyle(),
                               labelColor:
                                   FlutterFlowTheme.of(context).primaryText,
                               unselectedLabelColor:
@@ -395,16 +403,16 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                               borderWidth: 2.0,
                               borderRadius: 12.0,
                               elevation: 0.0,
-                              labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                              labelPadding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 12.0),
                               tabs: [
-                                const Tab(
+                                Tab(
                                   text: 'Month',
                                 ).animateOnPageLoad(
                                     animationsMap['tabOnPageLoadAnimation1']!),
-                                const Tab(
+                                Tab(
                                   text: 'Week',
                                 ).animateOnPageLoad(
                                     animationsMap['tabOnPageLoadAnimation2']!),
@@ -437,7 +445,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            boxShadow: const [
+                                            boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 3.0,
                                                 color: Color(0x33000000),
@@ -505,7 +513,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 250.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -513,7 +521,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 12.0, 0.0, 0.0),
                                                 child: Text(
@@ -527,13 +535,13 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                       ),
                                                 ),
                                               ),
-                                              SizedBox(
+                                              Container(
                                                 height: 525.0,
                                                 child: Stack(
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   0.0,
@@ -595,7 +603,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                               snapshot.data!;
                                                           if (listViewTasksRecordList
                                                               .isEmpty) {
-                                                            return const Center(
+                                                            return Center(
                                                               child:
                                                                   EmptyUIWidget(),
                                                             );
@@ -619,7 +627,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                       listViewIndex];
                                                               return Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             20.0,
@@ -645,7 +653,8 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
 
                                                                     context
                                                                         .pushNamed(
-                                                                      'TaskDescript',
+                                                                      TaskDescriptWidget
+                                                                          .routeName,
                                                                       queryParameters:
                                                                           {
                                                                         'data':
@@ -672,7 +681,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                     ),
                                                                     child:
                                                                         AnimatedContainer(
-                                                                      duration: const Duration(
+                                                                      duration: Duration(
                                                                           milliseconds:
                                                                               830),
                                                                       curve: Curves
@@ -683,7 +692,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                           100.0,
                                                                       decoration:
                                                                           BoxDecoration(
-                                                                        boxShadow: const [
+                                                                        boxShadow: [
                                                                           BoxShadow(
                                                                             blurRadius:
                                                                                 4.0,
@@ -704,14 +713,14 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                             FlutterFlowTheme.of(context).primary,
                                                                             FlutterFlowTheme.of(context).secondary
                                                                           ],
-                                                                          stops: const [
+                                                                          stops: [
                                                                             0.0,
                                                                             1.0
                                                                           ],
-                                                                          begin: const AlignmentDirectional(
+                                                                          begin: AlignmentDirectional(
                                                                               0.0,
                                                                               -1.0),
-                                                                          end: const AlignmentDirectional(
+                                                                          end: AlignmentDirectional(
                                                                               0,
                                                                               1.0),
                                                                         ),
@@ -726,9 +735,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                           Stack(
                                                                             children: [
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     listViewTasksRecord.name.maybeHandleOverflow(
                                                                                       maxChars: 10,
@@ -744,9 +753,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                                 ),
                                                                               ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(0.91, -0.01),
+                                                                                alignment: AlignmentDirectional(0.91, -0.01),
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(200.0, 0.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(200.0, 0.0, 0.0, 0.0),
                                                                                   child: Icon(
                                                                                     Icons.arrow_right,
                                                                                     color: FlutterFlowTheme.of(context).primaryBackground,
@@ -756,9 +765,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                               ),
                                                                               if (listViewTasksRecord.taskType == 'task' ? true : false)
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.76, 0.51),
+                                                                                  alignment: AlignmentDirectional(0.76, 0.51),
                                                                                   child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 23.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 23.0),
                                                                                     child: FaIcon(
                                                                                       FontAwesomeIcons.tasks,
                                                                                       color: FlutterFlowTheme.of(context).primaryBackground,
@@ -768,9 +777,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                                 ),
                                                                               if (listViewTasksRecord.taskType == 'assignment' ? true : false)
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.68, -0.09),
+                                                                                  alignment: AlignmentDirectional(0.68, -0.09),
                                                                                   child: Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 5.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 5.0, 0.0),
                                                                                     child: Icon(
                                                                                       Icons.school_sharp,
                                                                                       color: FlutterFlowTheme.of(context).primaryBackground,
@@ -779,9 +788,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                                   ),
                                                                                 ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(0.34, -0.8),
+                                                                                alignment: AlignmentDirectional(0.34, -0.8),
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 23.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 23.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     valueOrDefault<String>(
                                                                                       listViewTasksRecord.emojiRepresentation,
@@ -796,21 +805,21 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                                 ),
                                                                               ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 0.72),
+                                                                                alignment: AlignmentDirectional(0.0, 0.72),
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 4.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 4.0, 0.0, 0.0),
                                                                                   child: Row(
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
                                                                                       Card(
                                                                                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                        color: const Color(0x9BFFFFFF),
+                                                                                        color: Color(0x9BFFFFFF),
                                                                                         elevation: 0.0,
                                                                                         shape: RoundedRectangleBorder(
                                                                                           borderRadius: BorderRadius.circular(8.0),
                                                                                         ),
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(6.0, 4.0, 8.0, 4.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(6.0, 4.0, 8.0, 4.0),
                                                                                           child: Text(
                                                                                             valueOrDefault<String>(
                                                                                               dateTimeFormat(
@@ -877,7 +886,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            boxShadow: const [
+                                            boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 3.0,
                                                 color: Color(0x33000000),
@@ -950,7 +959,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 12.0, 0.0, 0.0),
                                               child: Text(
@@ -968,14 +977,14 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 250.0),
-                                          child: SizedBox(
+                                          child: Container(
                                             height: 525.0,
                                             child: Stack(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           20.0, 0.0, 20.0, 0.0),
                                                   child: StreamBuilder<
@@ -1033,7 +1042,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                           snapshot.data!;
                                                       if (listViewTasksRecordList
                                                           .isEmpty) {
-                                                        return const Center(
+                                                        return Center(
                                                           child:
                                                               EmptyUIWidget(),
                                                         );
@@ -1056,7 +1065,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                   listViewIndex];
                                                           return Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         20.0,
@@ -1080,7 +1089,8 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
 
                                                                 context
                                                                     .pushNamed(
-                                                                  'TaskDescript',
+                                                                  TaskDescriptWidget
+                                                                      .routeName,
                                                                   queryParameters:
                                                                       {
                                                                     'data':
@@ -1106,7 +1116,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                 ),
                                                                 child:
                                                                     AnimatedContainer(
-                                                                  duration: const Duration(
+                                                                  duration: Duration(
                                                                       milliseconds:
                                                                           830),
                                                                   curve: Curves
@@ -1115,7 +1125,7 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                   height: 100.0,
                                                                   decoration:
                                                                       BoxDecoration(
-                                                                    boxShadow: const [
+                                                                    boxShadow: [
                                                                       BoxShadow(
                                                                         blurRadius:
                                                                             4.0,
@@ -1138,14 +1148,14 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                         FlutterFlowTheme.of(context)
                                                                             .secondary
                                                                       ],
-                                                                      stops: const [
+                                                                      stops: [
                                                                         0.0,
                                                                         1.0
                                                                       ],
-                                                                      begin: const AlignmentDirectional(
+                                                                      begin: AlignmentDirectional(
                                                                           0.0,
                                                                           -1.0),
-                                                                      end: const AlignmentDirectional(
+                                                                      end: AlignmentDirectional(
                                                                           0,
                                                                           1.0),
                                                                     ),
@@ -1161,10 +1171,10 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                         children: [
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(-1.0, -1.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 0.0, 0.0),
                                                                               child: Text(
                                                                                 listViewTasksRecord.name.maybeHandleOverflow(
                                                                                   maxChars: 10,
@@ -1181,10 +1191,10 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.91, -0.01),
+                                                                                AlignmentDirectional(0.91, -0.01),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(200.0, 0.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(200.0, 0.0, 0.0, 0.0),
                                                                               child: Icon(
                                                                                 Icons.arrow_right,
                                                                                 color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1196,9 +1206,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                               ? true
                                                                               : false)
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(0.76, 0.51),
+                                                                              alignment: AlignmentDirectional(0.76, 0.51),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 23.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 23.0),
                                                                                 child: FaIcon(
                                                                                   FontAwesomeIcons.tasks,
                                                                                   color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1210,9 +1220,9 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                               ? true
                                                                               : false)
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(0.68, -0.09),
+                                                                              alignment: AlignmentDirectional(0.68, -0.09),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 5.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(7.0, 5.0, 5.0, 0.0),
                                                                                 child: Icon(
                                                                                   Icons.school_sharp,
                                                                                   color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1222,10 +1232,10 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                             ),
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.34, -0.8),
+                                                                                AlignmentDirectional(0.34, -0.8),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 23.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 23.0, 0.0, 0.0),
                                                                               child: Text(
                                                                                 valueOrDefault<String>(
                                                                                   listViewTasksRecord.emojiRepresentation,
@@ -1241,22 +1251,22 @@ class _TestHomeWidgetState extends State<TestHomeWidget>
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.72),
+                                                                                AlignmentDirectional(0.0, 0.72),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 4.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(15.0, 4.0, 0.0, 0.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Card(
                                                                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                    color: const Color(0x9BFFFFFF),
+                                                                                    color: Color(0x9BFFFFFF),
                                                                                     elevation: 0.0,
                                                                                     shape: RoundedRectangleBorder(
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                     ),
                                                                                     child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(6.0, 4.0, 8.0, 4.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(6.0, 4.0, 8.0, 4.0),
                                                                                       child: Text(
                                                                                         valueOrDefault<String>(
                                                                                           dateTimeFormat(

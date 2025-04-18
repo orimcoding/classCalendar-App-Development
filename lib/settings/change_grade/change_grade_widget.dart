@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -15,6 +16,9 @@ export 'change_grade_model.dart';
 
 class ChangeGradeWidget extends StatefulWidget {
   const ChangeGradeWidget({super.key});
+
+  static String routeName = 'ChangeGrade';
+  static String routePath = '/ChangGrade';
 
   @override
   State<ChangeGradeWidget> createState() => _ChangeGradeWidgetState();
@@ -42,7 +46,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -66,7 +70,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
             curve: Curves.easeInOut,
             delay: 300.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -85,8 +89,8 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 50.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 50.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -104,8 +108,8 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 70.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 70.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -124,12 +128,15 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           leading: InkWell(
             splashColor: Colors.transparent,
@@ -148,14 +155,14 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
             ),
           ),
           title: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
               child: GradientText(
                 'Change Grade',
                 style: FlutterFlowTheme.of(context).displaySmall.override(
                       fontFamily: 'Outfit',
-                      color: const Color(0xFF0F1113),
+                      color: Color(0xFF0F1113),
                       fontSize: 32.0,
                       letterSpacing: 0.0,
                       fontWeight: FontWeight.w500,
@@ -170,7 +177,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
               ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
             ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -191,7 +198,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 12.0, 8.0, 0.0),
                                 child: LinearPercentIndicator(
                                   percent: 1.0,
@@ -200,15 +207,15 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                   lineHeight: 12.0,
                                   animation: true,
                                   animateFromLastPercent: true,
-                                  progressColor: const Color(0xFF827AE1),
-                                  backgroundColor: const Color(0xFFE0E3E7),
-                                  barRadius: const Radius.circular(24.0),
+                                  progressColor: Color(0xFF827AE1),
+                                  backgroundColor: Color(0xFFE0E3E7),
+                                  barRadius: Radius.circular(24.0),
                                   padding: EdgeInsets.zero,
                                 ).animateOnPageLoad(animationsMap[
                                     'progressBarOnPageLoadAnimation']!),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 100.0, 0.0, 0.0),
                                 child: Text(
                                   'What grade are you in?',
@@ -216,7 +223,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                       .displaySmall
                                       .override(
                                         fontFamily: 'Outfit',
-                                        color: const Color(0xFF0F1113),
+                                        color: Color(0xFF0F1113),
                                         fontSize: 32.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
@@ -225,7 +232,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                     animationsMap['textOnPageLoadAnimation2']!),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 8.0, 0.0, 0.0),
                                 child: Text(
                                   'Please answer truthfully.',
@@ -233,7 +240,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                       .labelLarge
                                       .override(
                                         fontFamily: 'Plus Jakarta Sans',
-                                        color: const Color(0xFF57636C),
+                                        color: Color(0xFF57636C),
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
@@ -252,7 +259,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                 clipBehavior: Clip.none,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 12.0, 16.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -310,7 +317,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 32.0, 0.0, 32.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -328,15 +335,15 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                 ));
                                 logFirebaseEvent('Button_navigate_to');
 
-                                context.pushNamed('SettingsCopy');
+                                context.pushNamed(SettingsCopyWidget.routeName);
                               },
                               text: 'Confirm Grade',
                               options: FFButtonOptions(
                                 width: 300.0,
                                 height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).secondary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -346,7 +353,7 @@ class _ChangeGradeWidgetState extends State<ChangeGradeWidget>
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 10.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

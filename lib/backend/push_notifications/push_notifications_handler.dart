@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'serialization_util.dart';
-import '../backend.dart';
+import '/backend/backend.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,8 @@ import 'package:flutter/scheduler.dart';
 final _handledMessageIds = <String?>{};
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({super.key, required this.child});
+  const PushNotificationsHandler({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -48,11 +49,19 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
       final parametersBuilder = parametersBuilderMap[initialPageName];
       if (parametersBuilder != null) {
         final parameterData = await parametersBuilder(initialParameterData);
-        context.pushNamed(
-          initialPageName,
-          pathParameters: parameterData.pathParameters,
-          extra: parameterData.extra,
-        );
+        if (mounted) {
+          context.pushNamed(
+            initialPageName,
+            pathParameters: parameterData.pathParameters,
+            extra: parameterData.extra,
+          );
+        } else {
+          appNavigatorKey.currentContext?.pushNamed(
+            initialPageName,
+            pathParameters: parameterData.pathParameters,
+            extra: parameterData.extra,
+          );
+        }
       }
     } catch (e) {
       print('Error: $e');
@@ -97,7 +106,7 @@ class ParameterData {
       );
 
   static Future<ParameterData> Function(Map<String, dynamic>) none() =>
-      (data) async => const ParameterData();
+      (data) async => ParameterData();
 }
 
 final parametersBuilderMap =
@@ -107,24 +116,7 @@ final parametersBuilderMap =
   'Create04Task': ParameterData.none(),
   'Page4': ParameterData.none(),
   'Todos': ParameterData.none(),
-  'AssignmentNotebook': ParameterData.none(),
   'Login': ParameterData.none(),
-  'CreateNewAssignment': ParameterData.none(),
-  'AssingmentDescript': (data) async => ParameterData(
-        allParams: {
-          'data': getParameter<DocumentReference>(data, 'data'),
-        },
-      ),
-  'allAssg': ParameterData.none(),
-  'CreateClass': ParameterData.none(),
-  'CurrentClasses': ParameterData.none(),
-  'Classestasks': (data) async => ParameterData(
-        allParams: {
-          'className': await getDocumentParameter<ClassesRecord>(
-              data, 'className', ClassesRecord.fromSnapshot),
-        },
-      ),
-  'EditClasses': ParameterData.none(),
   'forgotPassword': ParameterData.none(),
   'ChangeGrade': ParameterData.none(),
   'OwnedTops': ParameterData.none(),
@@ -166,6 +158,7 @@ final parametersBuilderMap =
   'processingExcercise': ParameterData.none(),
   'processingVisit': ParameterData.none(),
   'processingGeneral': ParameterData.none(),
+  'Page3': ParameterData.none(),
   'chat_2_Details': (data) async => ParameterData(
         allParams: {
           'chatRef': await getDocumentParameter<ChatsRecord>(
@@ -185,7 +178,6 @@ final parametersBuilderMap =
               data, 'chatMessage', ChatMessagesRecord.fromSnapshot),
         },
       ),
-  'Page3': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

@@ -4,6 +4,7 @@ import '/components/empty_u_i_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,6 +14,9 @@ export 'todos_model.dart';
 
 class TodosWidget extends StatefulWidget {
   const TodosWidget({super.key});
+
+  static String routeName = 'Todos';
+  static String routePath = '/todos';
 
   @override
   State<TodosWidget> createState() => _TodosWidgetState();
@@ -52,7 +56,7 @@ class _TodosWidgetState extends State<TodosWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -64,8 +68,8 @@ class _TodosWidgetState extends State<TodosWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -84,20 +88,23 @@ class _TodosWidgetState extends State<TodosWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: Align(
-          alignment: const AlignmentDirectional(1.0, 1.0),
+          alignment: AlignmentDirectional(1.0, 1.0),
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
             child: FloatingActionButton(
               onPressed: () async {
                 logFirebaseEvent('TODOS_FloatingActionButton_65fr90ea_ON_T');
                 logFirebaseEvent('FloatingActionButton_navigate_to');
 
-                context.pushNamed('Create04Task');
+                context.pushNamed(Create04TaskWidget.routeName);
               },
               backgroundColor: FlutterFlowTheme.of(context).primary,
               elevation: 8.0,
@@ -120,7 +127,7 @@ class _TodosWidgetState extends State<TodosWidget>
               backgroundColor: FlutterFlowTheme.of(context).alternate,
               automaticallyImplyLeading: false,
               title: Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Text(
                   'Current Events',
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
@@ -130,7 +137,7 @@ class _TodosWidgetState extends State<TodosWidget>
                       ),
                 ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
               ),
-              actions: const [],
+              actions: [],
               centerTitle: false,
               elevation: 5.0,
             )
@@ -144,7 +151,7 @@ class _TodosWidgetState extends State<TodosWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: StreamBuilder<List<TasksRecord>>(
                             stream: queryTasksRecord(
@@ -177,13 +184,18 @@ class _TodosWidgetState extends State<TodosWidget>
                               List<TasksRecord> listViewTasksRecordList =
                                   snapshot.data!;
                               if (listViewTasksRecordList.isEmpty) {
-                                return const Center(
+                                return Center(
                                   child: EmptyUIWidget(),
                                 );
                               }
 
                               return ListView.builder(
-                                padding: EdgeInsets.zero,
+                                padding: EdgeInsets.fromLTRB(
+                                  0,
+                                  2.0,
+                                  0,
+                                  0,
+                                ),
                                 primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
@@ -192,7 +204,7 @@ class _TodosWidgetState extends State<TodosWidget>
                                   final listViewTasksRecord =
                                       listViewTasksRecordList[listViewIndex];
                                   return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -206,7 +218,7 @@ class _TodosWidgetState extends State<TodosWidget>
                                             'Container_navigate_to');
 
                                         context.pushNamed(
-                                          'TaskDescript',
+                                          TaskDescriptWidget.routeName,
                                           queryParameters: {
                                             'data': serializeParam(
                                               listViewTasksRecord.reference,
@@ -223,12 +235,12 @@ class _TodosWidgetState extends State<TodosWidget>
                                               BorderRadius.circular(24.0),
                                         ),
                                         child: AnimatedContainer(
-                                          duration: const Duration(milliseconds: 830),
+                                          duration: Duration(milliseconds: 830),
                                           curve: Curves.bounceOut,
                                           width: 350.0,
                                           height: 100.0,
                                           decoration: BoxDecoration(
-                                            boxShadow: const [
+                                            boxShadow: [
                                               BoxShadow(
                                                 blurRadius: 4.0,
                                                 color: Color(0x33000000),
@@ -246,10 +258,10 @@ class _TodosWidgetState extends State<TodosWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .secondary
                                               ],
-                                              stops: const [0.0, 1.0],
-                                              begin: const AlignmentDirectional(
+                                              stops: [0.0, 1.0],
+                                              begin: AlignmentDirectional(
                                                   0.0, -1.0),
-                                              end: const AlignmentDirectional(0, 1.0),
+                                              end: AlignmentDirectional(0, 1.0),
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(24.0),
@@ -261,11 +273,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   20.0,
@@ -295,11 +307,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.91, -0.01),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   200.0,
                                                                   0.0,
@@ -321,11 +333,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                                       : false)
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.76, 0.51),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -348,11 +360,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                                       : false)
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.68, -0.09),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     7.0,
                                                                     5.0,
@@ -369,11 +381,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                                     ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.34, -0.8),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   23.0,
@@ -400,11 +412,11 @@ class _TodosWidgetState extends State<TodosWidget>
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   21.0,
                                                                   50.0,

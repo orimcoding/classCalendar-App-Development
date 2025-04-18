@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'owned_eyes_model.dart';
@@ -12,6 +13,9 @@ export 'owned_eyes_model.dart';
 
 class OwnedEyesWidget extends StatefulWidget {
   const OwnedEyesWidget({super.key});
+
+  static String routeName = 'OwnedEyes';
+  static String routePath = '/OwnedEyes';
 
   @override
   State<OwnedEyesWidget> createState() => _OwnedEyesWidgetState();
@@ -39,7 +43,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -51,7 +55,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -63,7 +67,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -75,8 +79,8 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -95,12 +99,15 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           leading: InkWell(
             splashColor: Colors.transparent,
@@ -122,7 +129,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
             'Eye Type',
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Outfit',
-                  color: const Color(0xFF0F1113),
+                  color: Color(0xFF0F1113),
                   fontSize: 32.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
@@ -130,13 +137,13 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
           ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
           actions: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 44.0,
-                icon: const Icon(
+                icon: Icon(
                   Icons.shopping_cart_outlined,
                   color: Color(0xFF57636C),
                   size: 24.0,
@@ -145,7 +152,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                   logFirebaseEvent('OWNED_EYES_shopping_cart_outlined_ICN_ON');
                   logFirebaseEvent('IconButton_navigate_to');
 
-                  context.pushNamed('EyeShop');
+                  context.pushNamed(EyeShopWidget.routeName);
                 },
               ).animateOnPageLoad(
                   animationsMap['iconButtonOnPageLoadAnimation']!),
@@ -154,7 +161,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
           centerTitle: false,
           elevation: 0.0,
         ),
-        body: SizedBox(
+        body: Container(
           height: 1200.0,
           child: Stack(
             children: [
@@ -164,12 +171,12 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 25.0),
                             child: Text(
                               'Choose an eye type below.',
@@ -177,7 +184,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
+                                    color: Color(0xFF57636C),
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -190,7 +197,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                     ),
                     Flexible(
                       child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: AuthUserStreamWidget(
                           builder: (context) => Builder(
                             builder: (context) {
@@ -208,7 +215,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                                 itemBuilder: (context, eyesOwnIndex) {
                                   final eyesOwnItem = eyesOwn[eyesOwnIndex];
                                   return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 8.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -228,13 +235,14 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                                         logFirebaseEvent(
                                             'menuItem_navigate_to');
 
-                                        context.pushNamed('TestProfile');
+                                        context.pushNamed(
+                                            TestProfileWidget.routeName);
                                       },
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          boxShadow: const [
+                                          boxShadow: [
                                             BoxShadow(
                                               blurRadius: 3.0,
                                               color: Color(0x411D2429),
@@ -248,22 +256,22 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                                               BorderRadius.circular(8.0),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               FlutterFlowWebView(
                                                 content:
-                                                    'https://api.dicebear.com/9.x/avataaars/svg?accessories=${valueOrDefault(currentUserDocument?.selectedAccessories, '')}&accessoriesProbability=${valueOrDefault(currentUserDocument?.selectedAccessories, '') == '' ? '0' : '100'}&clothesColor=${valueOrDefault(currentUserDocument?.selectedColorFabric, '')}&clothing=${valueOrDefault(currentUserDocument?.selectedClothes, '')}&eyebrows=${valueOrDefault(currentUserDocument?.selectedEyebrows, '')}&eyes=$eyesOwnItem&facialHair=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '')}&facialHairColor=${valueOrDefault(currentUserDocument?.selectedFacialHairColors, '')}&facialHairProbability=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '') == '' ? '0' : '100'}&hairColor=${valueOrDefault(currentUserDocument?.selectedHairColors, '')}&hatColor=${valueOrDefault(currentUserDocument?.selectedHatColors, '')}&mouth=${valueOrDefault(currentUserDocument?.selectedMouth, '')}&skinColor=${valueOrDefault(currentUserDocument?.selectedSkin, '')}&top=${valueOrDefault(currentUserDocument?.selectedTop, '')}&topProbability=${valueOrDefault(currentUserDocument?.selectedTop, '') == '' ? '0' : '100'}',
+                                                    'https://api.dicebear.com/9.x/avataaars/svg?${valueOrDefault(currentUserDocument?.selectedAccessories, '') == '' ? 'accessoriesProbability=0' : 'accessoriesProbability=100&accessories=${valueOrDefault(currentUserDocument?.selectedAccessories, '')}'}&clothesColor=${valueOrDefault(currentUserDocument?.selectedColorFabric, '')}&clothing=${valueOrDefault(currentUserDocument?.selectedClothes, '')}&eyebrows=${valueOrDefault(currentUserDocument?.selectedEyebrows, '')}&eyes=${eyesOwnItem}&facialHair=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '')}&facialHairColor=${valueOrDefault(currentUserDocument?.selectedFacialHairColors, '')}&facialHairProbability=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '') == '' ? '0' : '100'}&hairColor=${valueOrDefault(currentUserDocument?.selectedHairColors, '')}&hatColor=${valueOrDefault(currentUserDocument?.selectedHatColors, '')}&mouth=${valueOrDefault(currentUserDocument?.selectedMouth, '')}&skinColor=${valueOrDefault(currentUserDocument?.selectedSkin, '')}&top=${valueOrDefault(currentUserDocument?.selectedTop, '')}&topProbability=${valueOrDefault(currentUserDocument?.selectedTop, '') == '' ? '0' : '100'}',
                                                 bypass: false,
-                                                width: 70.0,
-                                                height: 70.0,
+                                                width: 75.0,
+                                                height: 75.0,
                                                 verticalScroll: false,
                                                 horizontalScroll: false,
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 8.0, 4.0, 0.0),
                                                   child: Column(
@@ -284,7 +292,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                                                             .override(
                                                               fontFamily:
                                                                   'Outfit',
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFF0F1113),
                                                               fontSize: 20.0,
                                                               letterSpacing:
@@ -298,7 +306,7 @@ class _OwnedEyesWidgetState extends State<OwnedEyesWidget>
                                                   ),
                                                 ),
                                               ),
-                                              const Column(
+                                              Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment

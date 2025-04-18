@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -12,6 +13,9 @@ export 'processing_general_model.dart';
 
 class ProcessingGeneralWidget extends StatefulWidget {
   const ProcessingGeneralWidget({super.key});
+
+  static String routeName = 'processingGeneral';
+  static String routePath = '/processingGeneral';
 
   @override
   State<ProcessingGeneralWidget> createState() =>
@@ -39,7 +43,7 @@ class _ProcessingGeneralWidgetState extends State<ProcessingGeneralWidget> {
       _model.timerController.onStartTimer();
       logFirebaseEvent('processingGeneral_navigate_to');
 
-      context.pushNamed('TestHome');
+      context.pushNamed(TestHomeWidget.routeName);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -55,7 +59,10 @@ class _ProcessingGeneralWidgetState extends State<ProcessingGeneralWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -74,7 +81,7 @@ class _ProcessingGeneralWidgetState extends State<ProcessingGeneralWidget> {
                     milliSecond: false,
                   ),
                   controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
+                  updateStateInterval: Duration(milliseconds: 1000),
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
@@ -120,7 +127,7 @@ class _ProcessingGeneralWidgetState extends State<ProcessingGeneralWidget> {
 
                     logFirebaseEvent('Timer_navigate_to');
 
-                    context.pushNamed('TestHome');
+                    context.pushNamed(TestHomeWidget.routeName);
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(

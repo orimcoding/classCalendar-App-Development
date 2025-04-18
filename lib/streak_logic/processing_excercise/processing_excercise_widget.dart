@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -12,6 +13,9 @@ export 'processing_excercise_model.dart';
 
 class ProcessingExcerciseWidget extends StatefulWidget {
   const ProcessingExcerciseWidget({super.key});
+
+  static String routeName = 'processingExcercise';
+  static String routePath = '/processingExcercise';
 
   @override
   State<ProcessingExcerciseWidget> createState() =>
@@ -52,7 +56,7 @@ class _ProcessingExcerciseWidgetState extends State<ProcessingExcerciseWidget> {
       _model.timerController.onStartTimer();
       logFirebaseEvent('processingExcercise_navigate_to');
 
-      context.pushNamed('TestHome');
+      context.pushNamed(TestHomeWidget.routeName);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -68,7 +72,10 @@ class _ProcessingExcerciseWidgetState extends State<ProcessingExcerciseWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -87,7 +94,7 @@ class _ProcessingExcerciseWidgetState extends State<ProcessingExcerciseWidget> {
                     milliSecond: false,
                   ),
                   controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
+                  updateStateInterval: Duration(milliseconds: 1000),
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
@@ -121,7 +128,7 @@ class _ProcessingExcerciseWidgetState extends State<ProcessingExcerciseWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
+                          duration: Duration(milliseconds: 4000),
                           backgroundColor:
                               FlutterFlowTheme.of(context).secondary,
                         ),
@@ -137,7 +144,7 @@ class _ProcessingExcerciseWidgetState extends State<ProcessingExcerciseWidget> {
 
                     logFirebaseEvent('Timer_navigate_to');
 
-                    context.pushNamed('processingGeneral');
+                    context.pushNamed(ProcessingGeneralWidget.routeName);
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(

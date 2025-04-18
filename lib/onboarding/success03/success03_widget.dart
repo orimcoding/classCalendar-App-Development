@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'success03_model.dart';
@@ -10,6 +11,9 @@ export 'success03_model.dart';
 
 class Success03Widget extends StatefulWidget {
   const Success03Widget({super.key});
+
+  static String routeName = 'Success03';
+  static String routePath = '/success03';
 
   @override
   State<Success03Widget> createState() => _Success03WidgetState();
@@ -50,7 +54,7 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 500.0.ms,
             duration: 1000.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -70,22 +74,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -104,22 +108,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -138,22 +142,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -172,22 +176,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -205,22 +209,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -238,22 +242,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -271,22 +275,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0, 1.396),
-            end: const Offset(0, 0),
+            begin: Offset(0, 1.396),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 300.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -305,22 +309,22 @@ class _Success03WidgetState extends State<Success03Widget>
             curve: Curves.easeInOut,
             delay: 350.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.8, 0.8),
-            end: const Offset(1.0, 1.0),
+            begin: Offset(0.8, 0.8),
+            end: Offset(1.0, 1.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 350.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(1.222, 0),
-            end: const Offset(0, 0),
+            begin: Offset(1.222, 0),
+            end: Offset(0, 0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 350.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 40.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 40.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -339,14 +343,17 @@ class _Success03WidgetState extends State<Success03Widget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -357,18 +364,18 @@ class _Success03WidgetState extends State<Success03Widget>
             children: [
               Expanded(
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 12.0),
                     child: Container(
                       width: double.infinity,
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 770.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
                             blurRadius: 3.0,
                             color: Color(0x33000000),
@@ -384,7 +391,7 @@ class _Success03WidgetState extends State<Success03Widget>
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 12.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -392,9 +399,9 @@ class _Success03WidgetState extends State<Success03Widget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 44.0, 0.0, 0.0),
                                 child: Container(
                                   width: 120.0,
@@ -409,7 +416,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Container(
                                       width: 140.0,
                                       height: 140.0,
@@ -421,10 +428,10 @@ class _Success03WidgetState extends State<Success03Widget>
                                             FlutterFlowTheme.of(context)
                                                 .secondary
                                           ],
-                                          stops: const [0.0, 1.0],
+                                          stops: [0.0, 1.0],
                                           begin:
-                                              const AlignmentDirectional(0.0, -1.0),
-                                          end: const AlignmentDirectional(0, 1.0),
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
                                         ),
                                         shape: BoxShape.circle,
                                         border: Border.all(
@@ -446,7 +453,7 @@ class _Success03WidgetState extends State<Success03Widget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Text(
                                 'Congrats!',
                                 style: FlutterFlowTheme.of(context)
@@ -459,7 +466,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                   animationsMap['textOnPageLoadAnimation1']!),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, -1.0),
+                              alignment: AlignmentDirectional(0.0, -1.0),
                               child: Text(
                                 'Welcome to classCalendar!',
                                 style: FlutterFlowTheme.of(context)
@@ -473,7 +480,7 @@ class _Success03WidgetState extends State<Success03Widget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     12.0, 40.0, 12.0, 120.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -521,7 +528,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                           'textOnPageLoadAnimation5']!),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -531,10 +538,10 @@ class _Success03WidgetState extends State<Success03Widget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 20.0, 0.0, 0.0),
                                             child: Stack(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               children: [
                                                 Container(
@@ -547,7 +554,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                                     shape: BoxShape.circle,
                                                   ),
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Icon(
                                                     Icons
@@ -559,7 +566,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           200.0, 0.0, 0.0, 0.0),
                                                   child: Container(
@@ -573,7 +580,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                                       shape: BoxShape.circle,
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Icon(
                                                       Icons.task_alt,
@@ -586,7 +593,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 200.0, 0.0),
                                                   child: Container(
@@ -600,7 +607,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                                       shape: BoxShape.circle,
                                                     ),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Icon(
                                                       Icons.schedule,
@@ -615,18 +622,18 @@ class _Success03WidgetState extends State<Success03Widget>
                                               ],
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 12.0)),
+                                        ].divide(SizedBox(width: 12.0)),
                                       ),
                                     ),
                                   ]
-                                      .divide(const SizedBox(height: 4.0))
-                                      .addToEnd(const SizedBox(height: 12.0)),
+                                      .divide(SizedBox(height: 4.0))
+                                      .addToEnd(SizedBox(height: 12.0)),
                                 ).animateOnPageLoad(animationsMap[
                                     'columnOnPageLoadAnimation3']!),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 50.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -634,15 +641,15 @@ class _Success03WidgetState extends State<Success03Widget>
                                       'SUCCESS03_EXPLORE_THE_APP_BTN_ON_TAP');
                                   logFirebaseEvent('Button_navigate_to');
 
-                                  context.pushNamed('TestHome');
+                                  context.pushNamed(TestHomeWidget.routeName);
                                 },
                                 text: 'Explore The App',
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 48.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -653,7 +660,7 @@ class _Success03WidgetState extends State<Success03Widget>
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
@@ -662,7 +669,7 @@ class _Success03WidgetState extends State<Success03Widget>
                               ).animateOnPageLoad(
                                   animationsMap['buttonOnPageLoadAnimation']!),
                             ),
-                          ].divide(const SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 8.0)),
                         ).animateOnPageLoad(
                             animationsMap['columnOnPageLoadAnimation2']!),
                       ),

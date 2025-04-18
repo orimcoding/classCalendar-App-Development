@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'clothes_color_shop_widget.dart' show ClothesColorShopWidget;
 import 'package:flutter/material.dart';
 

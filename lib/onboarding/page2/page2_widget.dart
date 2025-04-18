@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,9 @@ export 'page2_model.dart';
 
 class Page2Widget extends StatefulWidget {
   const Page2Widget({super.key});
+
+  static String routeName = 'Page2';
+  static String routePath = '/Page2';
 
   @override
   State<Page2Widget> createState() => _Page2WidgetState();
@@ -60,7 +64,7 @@ class _Page2WidgetState extends State<Page2Widget>
             curve: Curves.easeInOut,
             delay: 300.0.ms,
             duration: 1200.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -80,8 +84,8 @@ class _Page2WidgetState extends State<Page2Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 50.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 50.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -100,8 +104,8 @@ class _Page2WidgetState extends State<Page2Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 70.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 70.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -144,20 +148,23 @@ class _Page2WidgetState extends State<Page2Widget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           title: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: GradientText(
               'Profile Customizing',
               style: FlutterFlowTheme.of(context).displaySmall.override(
                     fontFamily: 'Outfit',
-                    color: const Color(0xFF0F1113),
+                    color: Color(0xFF0F1113),
                     fontSize: 32.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.w500,
@@ -171,7 +178,7 @@ class _Page2WidgetState extends State<Page2Widget>
               gradientType: GradientType.linear,
             ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation3']!),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -188,9 +195,9 @@ class _Page2WidgetState extends State<Page2Widget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Question 2/4',
@@ -198,7 +205,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
+                                  color: Color(0xFF57636C),
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -208,22 +215,22 @@ class _Page2WidgetState extends State<Page2Widget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
                         child: LinearPercentIndicator(
                           percent: 0.5,
                           width: MediaQuery.sizeOf(context).width * 0.96,
                           lineHeight: 12.0,
                           animation: true,
                           animateFromLastPercent: true,
-                          progressColor: const Color(0xFF827AE1),
-                          backgroundColor: const Color(0xFFE0E3E7),
-                          barRadius: const Radius.circular(24.0),
+                          progressColor: Color(0xFF827AE1),
+                          backgroundColor: Color(0xFFE0E3E7),
+                          barRadius: Radius.circular(24.0),
                           padding: EdgeInsets.zero,
                         ).animateOnPageLoad(
                             animationsMap['progressBarOnPageLoadAnimation']!),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 100.0, 0.0, 0.0),
                         child: Text(
                           'Type in a username.',
@@ -231,7 +238,7 @@ class _Page2WidgetState extends State<Page2Widget>
                               .displaySmall
                               .override(
                                 fontFamily: 'Outfit',
-                                color: const Color(0xFF0F1113),
+                                color: Color(0xFF0F1113),
                                 fontSize: 32.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
@@ -241,13 +248,13 @@ class _Page2WidgetState extends State<Page2Widget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                         child: Text(
                           'Please be appropriate. This is permanent.',
                           style:
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
+                                    color: Color(0xFF57636C),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -266,7 +273,7 @@ class _Page2WidgetState extends State<Page2Widget>
                         clipBehavior: Clip.none,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -275,9 +282,9 @@ class _Page2WidgetState extends State<Page2Widget>
                                   child: Opacity(
                                     opacity: 0.9999,
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 16.0),
-                                      child: SizedBox(
+                                      child: Container(
                                         width: double.infinity,
                                         child: TextFormField(
                                           controller: _model
@@ -287,7 +294,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                           onChanged: (_) =>
                                               EasyDebounce.debounce(
                                             '_model.usernameCreateTextController',
-                                            const Duration(milliseconds: 2000),
+                                            Duration(milliseconds: 2000),
                                             () async {
                                               logFirebaseEvent(
                                                   'PAGE2_username_create_ON_TEXTFIELD_CHANG');
@@ -323,7 +330,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -346,7 +353,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                                                 .primaryText,
                                                       ),
                                                     ),
-                                                    duration: const Duration(
+                                                    duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
                                                         FlutterFlowTheme.of(
@@ -370,7 +377,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                             safeSetState(() {});
                                           },
                                           autofocus: true,
-                                          autofillHints: const [AutofillHints.email],
+                                          autofillHints: [AutofillHints.email],
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'Username',
@@ -427,7 +434,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             contentPadding:
-                                                const EdgeInsets.all(24.0),
+                                                EdgeInsets.all(24.0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyLarge
@@ -461,7 +468,7 @@ class _Page2WidgetState extends State<Page2Widget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 32.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('PAGE2_PAGE_NEXT_QUESTION_BTN_ON_TAP');
@@ -469,10 +476,6 @@ class _Page2WidgetState extends State<Page2Widget>
                         FFAppState().userName =
                             _model.usernameCreateTextController.text;
                         FFAppState().update(() {});
-                        logFirebaseEvent('Button_navigate_to');
-
-                        context.pushNamed('Page4');
-
                         logFirebaseEvent('Button_backend_call');
 
                         await currentUserReference!
@@ -480,15 +483,18 @@ class _Page2WidgetState extends State<Page2Widget>
                           displayName: functions.addAtPrefix(
                               _model.usernameCreateTextController.text),
                         ));
+                        logFirebaseEvent('Button_navigate_to');
+
+                        context.pushNamed(Page3Widget.routeName);
                       },
                       text: 'Next Question',
                       options: FFButtonOptions(
                         width: 300.0,
                         height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -496,7 +502,7 @@ class _Page2WidgetState extends State<Page2Widget>
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 10.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

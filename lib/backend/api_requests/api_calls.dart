@@ -11,12 +11,16 @@ export 'api_manager.dart' show ApiCallResponse;
 const _kPrivateApiFunctionName = 'classCalendarPrivateApiCall';
 
 class FetchCoursesCall {
-  static Future<ApiCallResponse> call() async {
+  static Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
     final response = await makeCloudCall(
       _kPrivateApiFunctionName,
       {
         'callName': 'FetchCoursesCall',
-        'variables': {},
+        'variables': {
+          'authToken': authToken,
+        },
       },
     );
     return ApiCallResponse.fromCloudCallResponse(response);
@@ -40,80 +44,76 @@ class FetchCoursesCall {
       );
 }
 
-class FetchAssignmentsCall {
+class GetAccessTokenCall {
   static Future<ApiCallResponse> call({
-    String? courseId = '',
+    String? idToken = '',
   }) async {
-    final response = await makeCloudCall(
-      _kPrivateApiFunctionName,
-      {
-        'callName': 'FetchAssignmentsCall',
-        'variables': {
-          'courseId': courseId,
-        },
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Access Token',
+      apiUrl: 'https://getaccesstokenhttp-veibnge4ka-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer ${idToken}',
+        'Content-Type': 'application/json',
       },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
-    return ApiCallResponse.fromCloudCallResponse(response);
   }
-
-  static dynamic assignmentsList(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"]''',
-      );
-  static dynamic assignmentsId(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"][0]["id"]''',
-      );
-  static dynamic assignmentsTitle(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"][0]["title"]''',
-      );
-  static dynamic dueDateYear(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"][0]["dueDate"]["year"]''',
-      );
-  static dynamic dueDateMonth(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"][0]["dueDate"]["month"]''',
-      );
-  static dynamic dueDateDay(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"][0]["dueDate"]["day"]''',
-      );
-  static dynamic assignmentState(dynamic response) => getJsonField(
-        response,
-        r'''$["courseWork"][0]["state"]''',
-      );
 }
 
-class FetchIncompleteSubmissionsCall {
-  static Future<ApiCallResponse> call() async {
-    final response = await makeCloudCall(
-      _kPrivateApiFunctionName,
-      {
-        'callName': 'FetchIncompleteSubmissionsCall',
-        'variables': {},
+class FetchCourseWorkCall {
+  static Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'FetchCourseWork',
+      apiUrl:
+          'https://classroom.googleapis.com/v1/courses/{{courseId}}/courseWork',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${authToken}',
       },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
-    return ApiCallResponse.fromCloudCallResponse(response);
   }
+}
 
-  static dynamic submissionsList(dynamic response) => getJsonField(
-        response,
-        r'''$["studentSubmissions"]''',
-      );
-  static dynamic submissionId(dynamic response) => getJsonField(
-        response,
-        r'''$["studentSubmissions"][0]["id"]''',
-      );
-  static dynamic submissionState(dynamic response) => getJsonField(
-        response,
-        r'''$["studentSubmissions"][0]["state"]''',
-      );
-  static dynamic isLate(dynamic response) => getJsonField(
-        response,
-        r'''$["studentSubmissions"][0]["late"]''',
-      );
+class FetchSubmissionsCall {
+  static Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'FetchSubmissions',
+      apiUrl:
+          'https://classroom.googleapis.com/v1/courses/{{courseId}}/courseWork/{{courseWorkId}}/studentSubmissions',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${authToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

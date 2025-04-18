@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -12,6 +13,9 @@ export 'processing_visit_model.dart';
 
 class ProcessingVisitWidget extends StatefulWidget {
   const ProcessingVisitWidget({super.key});
+
+  static String routeName = 'processingVisit';
+  static String routePath = '/processingVisit';
 
   @override
   State<ProcessingVisitWidget> createState() => _ProcessingVisitWidgetState();
@@ -46,7 +50,7 @@ class _ProcessingVisitWidgetState extends State<ProcessingVisitWidget> {
       _model.timerController.onStartTimer();
       logFirebaseEvent('processingVisit_navigate_to');
 
-      context.pushNamed('TestHome');
+      context.pushNamed(TestHomeWidget.routeName);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -62,7 +66,10 @@ class _ProcessingVisitWidgetState extends State<ProcessingVisitWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -81,7 +88,7 @@ class _ProcessingVisitWidgetState extends State<ProcessingVisitWidget> {
                     milliSecond: false,
                   ),
                   controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
+                  updateStateInterval: Duration(milliseconds: 1000),
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
@@ -113,9 +120,9 @@ class _ProcessingVisitWidgetState extends State<ProcessingVisitWidget> {
                     logFirebaseEvent('Timer_navigate_to');
 
                     context.pushNamed(
-                      'processingGeneral',
+                      ProcessingGeneralWidget.routeName,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: const TransitionInfo(
+                        kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),

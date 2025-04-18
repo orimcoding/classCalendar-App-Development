@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'tops_shop_model.dart';
@@ -11,6 +12,9 @@ export 'tops_shop_model.dart';
 
 class TopsShopWidget extends StatefulWidget {
   const TopsShopWidget({super.key});
+
+  static String routeName = 'TopsShop';
+  static String routePath = '/shopTopsCopy';
 
   @override
   State<TopsShopWidget> createState() => _TopsShopWidgetState();
@@ -38,7 +42,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -62,7 +66,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -74,8 +78,8 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -94,12 +98,15 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           leading: InkWell(
             splashColor: Colors.transparent,
@@ -121,7 +128,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
             'Tops',
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Outfit',
-                  color: const Color(0xFF0F1113),
+                  color: Color(0xFF0F1113),
                   fontSize: 30.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
@@ -129,7 +136,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
           ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
           actions: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.asset(
@@ -141,15 +148,15 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
               ).animateOnPageLoad(animationsMap['imageOnPageLoadAnimation']!),
             ),
             Align(
-              alignment: const AlignmentDirectional(0.0, 0.0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
                 child: AuthUserStreamWidget(
                   builder: (context) => Text(
                     valueOrDefault(currentUserDocument?.coins, 0).toString(),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Outfit',
-                          color: const Color(0xFF060606),
+                          color: Color(0xFF060606),
                           fontSize: 25.0,
                           letterSpacing: 0.0,
                         ),
@@ -161,7 +168,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
           centerTitle: false,
           elevation: 0.0,
         ),
-        body: SizedBox(
+        body: Container(
           height: 1200.0,
           child: Stack(
             children: [
@@ -171,12 +178,12 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 25.0),
                             child: Text(
                               'Choose a hair or cover type below.',
@@ -184,7 +191,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
+                                    color: Color(0xFF57636C),
                                     fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -197,7 +204,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                     ),
                     Flexible(
                       child: Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: AuthUserStreamWidget(
                           builder: (context) => Builder(
                             builder: (context) {
@@ -215,7 +222,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                 itemBuilder: (context, topsShopIndex) {
                                   final topsShopItem = topsShop[topsShopIndex];
                                   return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 8.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -286,52 +293,49 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                                 'coins': FieldValue.increment(
                                                     -(valueOrDefault<int>(
                                                   () {
-                                                    if ((topsShopItem ==
-                                                            'Eyepatch') ||
+                                                    if ((topsShopItem == 'winterHat02') ||
                                                         (topsShopItem ==
-                                                            'WinterHat2') ||
+                                                            'winterHat03') ||
                                                         (topsShopItem ==
-                                                            'WinterHat3') ||
-                                                        (topsShopItem ==
-                                                            'WinterHat4')) {
+                                                            'winterHat04')) {
                                                       return 10;
                                                     } else if ((topsShopItem ==
-                                                            'LongHairDreads') ||
+                                                            'dreads') ||
                                                         (topsShopItem ==
-                                                            'LongHairFrida') ||
+                                                            'frida') ||
                                                         (topsShopItem ==
-                                                            'LongHairFro') ||
+                                                            'fro') ||
                                                         (topsShopItem ==
-                                                            'LongHairFroBand') ||
+                                                            'froBand') ||
                                                         (topsShopItem ==
-                                                            'LongHairNotTooLong') ||
+                                                            'longButNotTooLong') ||
                                                         (topsShopItem ==
-                                                            'LongHairShavedSides') ||
+                                                            'shavedSides') ||
                                                         (topsShopItem ==
-                                                            'LongHairMiaWallace') ||
+                                                            'miaWallace') ||
                                                         (topsShopItem ==
-                                                            'LongHairStraight') ||
+                                                            'straight01') ||
                                                         (topsShopItem ==
-                                                            'LongHairStraight2') ||
+                                                            'straight02') ||
                                                         (topsShopItem ==
-                                                            'LongHairStraightStrand')) {
+                                                            'straightAndStrand')) {
                                                       return 10;
                                                     } else if ((topsShopItem ==
-                                                            'ShortHairShaggyMullet') ||
+                                                            'shaggyMullet') ||
                                                         (topsShopItem ==
-                                                            'ShortHairShortCurly') ||
+                                                            'shortCurly') ||
                                                         (topsShopItem ==
-                                                            'ShortHairShortFlat') ||
+                                                            'shortFlat') ||
                                                         (topsShopItem ==
-                                                            'ShortHairShortRound') ||
+                                                            'shortRound') ||
                                                         (topsShopItem ==
-                                                            'ShortHairShortWaved') ||
+                                                            'shortWaved') ||
                                                         (topsShopItem ==
-                                                            'ShortHairSides') ||
+                                                            'sides') ||
                                                         (topsShopItem ==
-                                                            'ShortHairTheCaesar') ||
+                                                            'theCaesar') ||
                                                         (topsShopItem ==
-                                                            'ShortHairTheCaesarSidePart')) {
+                                                            'theCaesarAndSidePart')) {
                                                       return 10;
                                                     } else {
                                                       return 0;
@@ -371,7 +375,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -392,7 +396,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
@@ -403,13 +407,14 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                         logFirebaseEvent(
                                             'menuItem_navigate_to');
 
-                                        context.pushNamed('TestProfile');
+                                        context.pushNamed(
+                                            TestProfileWidget.routeName);
                                       },
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
                                           color: Colors.white,
-                                          boxShadow: const [
+                                          boxShadow: [
                                             BoxShadow(
                                               blurRadius: 3.0,
                                               color: Color(0x411D2429),
@@ -423,22 +428,22 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                               BorderRadius.circular(8.0),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
+                                          padding: EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               FlutterFlowWebView(
                                                 content:
-                                                    'https://api.dicebear.com/9.x/avataaars/svg?accessories=${valueOrDefault(currentUserDocument?.selectedAccessories, '')}&accessoriesProbability=${valueOrDefault(currentUserDocument?.selectedAccessories, '') == '' ? '0' : '100'}&clothesColor=${valueOrDefault(currentUserDocument?.selectedColorFabric, '')}&clothing=${valueOrDefault(currentUserDocument?.selectedClothes, '')}&eyebrows=${valueOrDefault(currentUserDocument?.selectedEyebrows, '')}&eyes=${valueOrDefault(currentUserDocument?.selectedEyes, '')}&facialHair=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '')}&facialHairColor=${valueOrDefault(currentUserDocument?.selectedFacialHairColors, '')}&facialHairProbability=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '') == '' ? '0' : '100'}&hairColor=${valueOrDefault(currentUserDocument?.selectedHairColors, '')}&hatColor=${valueOrDefault(currentUserDocument?.selectedHatColors, '')}&mouth=${valueOrDefault(currentUserDocument?.selectedMouth, '')}&skinColor=${valueOrDefault(currentUserDocument?.selectedSkin, '')}&top=$topsShopItem&topProbability=${valueOrDefault(currentUserDocument?.selectedTop, '') == '' ? '0' : '100'}',
+                                                    'https://api.dicebear.com/9.x/avataaars/svg?${valueOrDefault(currentUserDocument?.selectedAccessories, '') == '' ? 'accessoriesProbability=0' : 'accessoriesProbability=100&accessories=${valueOrDefault(currentUserDocument?.selectedAccessories, '')}'}&clothesColor=${valueOrDefault(currentUserDocument?.selectedColorFabric, '')}&clothing=${valueOrDefault(currentUserDocument?.selectedClothes, '')}&eyebrows=${valueOrDefault(currentUserDocument?.selectedEyebrows, '')}&eyes=${valueOrDefault(currentUserDocument?.selectedEyes, '')}&facialHair=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '')}&facialHairColor=${valueOrDefault(currentUserDocument?.selectedFacialHairColors, '')}&facialHairProbability=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '') == '' ? '0' : '100'}&hairColor=${valueOrDefault(currentUserDocument?.selectedHairColors, '')}&hatColor=${valueOrDefault(currentUserDocument?.selectedHatColors, '')}&mouth=${valueOrDefault(currentUserDocument?.selectedMouth, '')}&skinColor=${valueOrDefault(currentUserDocument?.selectedSkin, '')}&top=${topsShopItem}&topProbability=100',
                                                 bypass: false,
-                                                width: 70.0,
-                                                height: 70.0,
+                                                width: 75.0,
+                                                height: 75.0,
                                                 verticalScroll: false,
                                                 horizontalScroll: false,
                                               ),
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 8.0, 4.0, 0.0),
                                                   child: Column(
@@ -459,7 +464,7 @@ class _TopsShopWidgetState extends State<TopsShopWidget>
                                                             .override(
                                                               fontFamily:
                                                                   'Outfit',
-                                                              color: const Color(
+                                                              color: Color(
                                                                   0xFF0F1113),
                                                               fontSize: 20.0,
                                                               letterSpacing:

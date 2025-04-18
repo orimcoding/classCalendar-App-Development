@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'hat_colors_shop_widget.dart' show HatColorsShopWidget;
 import 'package:flutter/material.dart';
 

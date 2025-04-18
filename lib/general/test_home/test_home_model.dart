@@ -1,6 +1,7 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'test_home_widget.dart' show TestHomeWidget;
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ class TestHomeModel extends FlutterFlowModel<TestHomeWidget> {
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex =>
+      tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for Calendar widget.
   DateTimeRange? calendarSelectedDay1;

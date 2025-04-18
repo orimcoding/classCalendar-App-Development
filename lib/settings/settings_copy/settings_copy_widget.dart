@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -10,6 +11,9 @@ export 'settings_copy_model.dart';
 
 class SettingsCopyWidget extends StatefulWidget {
   const SettingsCopyWidget({super.key});
+
+  static String routeName = 'SettingsCopy';
+  static String routePath = '/settingsCopy';
 
   @override
   State<SettingsCopyWidget> createState() => _SettingsCopyWidgetState();
@@ -38,7 +42,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -50,8 +54,8 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -70,7 +74,10 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -90,7 +97,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                       letterSpacing: 0.0,
                     ),
               ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
-              actions: const [],
+              actions: [],
               centerTitle: true,
               elevation: 5.0,
             )
@@ -98,8 +105,8 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
           body: Builder(
             builder: (context) {
               return Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                child: SizedBox(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                child: Container(
                   height: 1500.0,
                   child: Stack(
                     children: [
@@ -110,7 +117,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                         scrollDirection: Axis.vertical,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -125,14 +132,15 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.goNamedAuth('Login', context.mounted);
+                                context.goNamedAuth(
+                                    LoginWidget.routeName, context.mounted);
                               },
                               child: Container(
                                 width: double.infinity,
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -145,14 +153,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -162,7 +170,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -173,7 +181,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -198,7 +206,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -210,14 +218,15 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                     'SETTINGS_COPY_PAGE_menuItem_ON_TAP');
                                 logFirebaseEvent('menuItem_navigate_to');
 
-                                context.pushNamed('forgotPassword');
+                                context
+                                    .pushNamed(ForgotPasswordWidget.routeName);
                               },
                               child: Container(
                                 width: double.infinity,
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -230,14 +239,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -247,7 +256,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -258,7 +267,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -283,7 +292,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -302,7 +311,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -315,14 +324,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -332,7 +341,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -343,7 +352,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -368,7 +377,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -380,14 +389,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                     'SETTINGS_COPY_PAGE_menuItem_ON_TAP');
                                 logFirebaseEvent('menuItem_navigate_to');
 
-                                context.pushNamed('ChangeGrade');
+                                context.pushNamed(ChangeGradeWidget.routeName);
                               },
                               child: Container(
                                 width: double.infinity,
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -400,14 +409,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -417,7 +426,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -428,7 +437,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -453,7 +462,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -472,7 +481,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -485,14 +494,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -502,7 +511,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -513,7 +522,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -538,7 +547,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -557,7 +566,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -570,14 +579,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -587,7 +596,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -598,7 +607,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -623,7 +632,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -642,7 +651,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -655,14 +664,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -672,7 +681,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -683,7 +692,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -708,7 +717,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 0.0, 16.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -725,8 +734,8 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                           builder: (alertDialogContext) {
                                             return WebViewAware(
                                               child: AlertDialog(
-                                                title: const Text('Deleting Account'),
-                                                content: const Text(
+                                                title: Text('Deleting Account'),
+                                                content: Text(
                                                     'Are you sure that you want to delete your account? This action cannot be undone.'),
                                                 actions: [
                                                   TextButton(
@@ -734,14 +743,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             false),
-                                                    child: const Text('Cancel'),
+                                                    child: Text('Cancel'),
                                                   ),
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext,
                                                             true),
-                                                    child: const Text('Confirm'),
+                                                    child: Text('Confirm'),
                                                   ),
                                                 ],
                                               ),
@@ -754,7 +763,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   await authManager.deleteUser(context);
                                   logFirebaseEvent('menuItem_navigate_to');
 
-                                  context.pushNamed('Login');
+                                  context.pushNamed(LoginWidget.routeName);
                                 } else {
                                   logFirebaseEvent('menuItem_navigate_back');
                                   context.pop();
@@ -765,7 +774,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: const [
+                                  boxShadow: [
                                     BoxShadow(
                                       blurRadius: 3.0,
                                       color: Color(0x411D2429),
@@ -778,14 +787,14 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 8.0, 4.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -795,7 +804,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
@@ -806,7 +815,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                                                       .override(
                                                         fontFamily: 'Outfit',
                                                         color:
-                                                            const Color(0xFF0F1113),
+                                                            Color(0xFF0F1113),
                                                         fontSize: 20.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
@@ -830,7 +839,7 @@ class _SettingsCopyWidgetState extends State<SettingsCopyWidget>
                               ),
                             ),
                           ),
-                        ].divide(const SizedBox(height: 15.0)),
+                        ].divide(SizedBox(height: 15.0)),
                       ),
                     ],
                   ),

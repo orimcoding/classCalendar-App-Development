@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -12,6 +13,9 @@ export 'process_g_model.dart';
 
 class ProcessGWidget extends StatefulWidget {
   const ProcessGWidget({super.key});
+
+  static String routeName = 'processG';
+  static String routePath = '/processG';
 
   @override
   State<ProcessGWidget> createState() => _ProcessGWidgetState();
@@ -37,7 +41,7 @@ class _ProcessGWidgetState extends State<ProcessGWidget> {
       _model.timerController.onStartTimer();
       logFirebaseEvent('processG_navigate_to');
 
-      context.pushNamed('TestHome');
+      context.pushNamed(TestHomeWidget.routeName);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -53,7 +57,10 @@ class _ProcessGWidgetState extends State<ProcessGWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -72,7 +79,7 @@ class _ProcessGWidgetState extends State<ProcessGWidget> {
                     milliSecond: false,
                   ),
                   controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
+                  updateStateInterval: Duration(milliseconds: 1000),
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
@@ -117,7 +124,7 @@ class _ProcessGWidgetState extends State<ProcessGWidget> {
 
                     logFirebaseEvent('Timer_navigate_to');
 
-                    context.pushNamed('TestHome');
+                    context.pushNamed(TestHomeWidget.routeName);
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(

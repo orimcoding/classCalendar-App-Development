@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -15,6 +16,9 @@ export 'page1_model.dart';
 
 class Page1Widget extends StatefulWidget {
   const Page1Widget({super.key});
+
+  static String routeName = 'Page1';
+  static String routePath = '/Page1';
 
   @override
   State<Page1Widget> createState() => _Page1WidgetState();
@@ -55,7 +59,7 @@ class _Page1WidgetState extends State<Page1Widget>
             curve: Curves.easeInOut,
             delay: 300.0.ms,
             duration: 1000.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -75,8 +79,8 @@ class _Page1WidgetState extends State<Page1Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 50.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 50.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -95,8 +99,8 @@ class _Page1WidgetState extends State<Page1Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1200.0.ms,
-            begin: const Offset(0.0, 70.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 70.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -127,20 +131,23 @@ class _Page1WidgetState extends State<Page1Widget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           title: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: GradientText(
               'Profile Customizing',
               style: FlutterFlowTheme.of(context).displaySmall.override(
                     fontFamily: 'Outfit',
-                    color: const Color(0xFF0F1113),
+                    color: Color(0xFF0F1113),
                     fontSize: 32.0,
                     letterSpacing: 0.0,
                     fontWeight: FontWeight.w500,
@@ -154,7 +161,7 @@ class _Page1WidgetState extends State<Page1Widget>
               gradientType: GradientType.linear,
             ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation3']!),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 0.0,
         ),
@@ -171,9 +178,9 @@ class _Page1WidgetState extends State<Page1Widget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                        alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               16.0, 12.0, 0.0, 0.0),
                           child: Text(
                             'Question 1/4',
@@ -181,7 +188,7 @@ class _Page1WidgetState extends State<Page1Widget>
                                 .labelMedium
                                 .override(
                                   fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
+                                  color: Color(0xFF57636C),
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -191,22 +198,22 @@ class _Page1WidgetState extends State<Page1Widget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
                         child: LinearPercentIndicator(
                           percent: 0.25,
                           width: MediaQuery.sizeOf(context).width * 0.96,
                           lineHeight: 12.0,
                           animation: true,
                           animateFromLastPercent: true,
-                          progressColor: const Color(0xFF827AE1),
-                          backgroundColor: const Color(0xFFE0E3E7),
-                          barRadius: const Radius.circular(24.0),
+                          progressColor: Color(0xFF827AE1),
+                          backgroundColor: Color(0xFFE0E3E7),
+                          barRadius: Radius.circular(24.0),
                           padding: EdgeInsets.zero,
                         ).animateOnPageLoad(
                             animationsMap['progressBarOnPageLoadAnimation']!),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 100.0, 0.0, 0.0),
                         child: Text(
                           'What grade are you in?',
@@ -214,7 +221,7 @@ class _Page1WidgetState extends State<Page1Widget>
                               .displaySmall
                               .override(
                                 fontFamily: 'Outfit',
-                                color: const Color(0xFF0F1113),
+                                color: Color(0xFF0F1113),
                                 fontSize: 32.0,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w500,
@@ -224,13 +231,13 @@ class _Page1WidgetState extends State<Page1Widget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 0.0, 0.0),
                         child: Text(
                           'Please answer truthfully.',
                           style:
                               FlutterFlowTheme.of(context).labelLarge.override(
                                     fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
+                                    color: Color(0xFF57636C),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
@@ -249,7 +256,7 @@ class _Page1WidgetState extends State<Page1Widget>
                         clipBehavior: Clip.none,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 12.0, 16.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -302,7 +309,7 @@ class _Page1WidgetState extends State<Page1Widget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 32.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 32.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent('PAGE1_PAGE_NEXT_QUESTION_BTN_ON_TAP');
@@ -317,16 +324,16 @@ class _Page1WidgetState extends State<Page1Widget>
                         ));
                         logFirebaseEvent('Button_navigate_to');
 
-                        context.pushNamed('Page2');
+                        context.pushNamed(Page2Widget.routeName);
                       },
                       text: 'Next Question',
                       options: FFButtonOptions(
                         width: 300.0,
                         height: 50.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -334,7 +341,7 @@ class _Page1WidgetState extends State<Page1Widget>
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 10.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),

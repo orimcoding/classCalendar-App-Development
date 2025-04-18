@@ -4,22 +4,7 @@ export '/onboarding/page1/page1_widget.dart' show Page1Widget;
 export '/tasks/create04_task/create04_task_widget.dart' show Create04TaskWidget;
 export '/onboarding/page4/page4_widget.dart' show Page4Widget;
 export '/tasks/todos/todos_widget.dart' show TodosWidget;
-export '/assignment/assignment_notebook/assignment_notebook_widget.dart'
-    show AssignmentNotebookWidget;
 export '/onboarding/login/login_widget.dart' show LoginWidget;
-export '/assignment/create_new_assignment/create_new_assignment_widget.dart'
-    show CreateNewAssignmentWidget;
-export '/assignment/assingment_descript/assingment_descript_widget.dart'
-    show AssingmentDescriptWidget;
-export '/assignment/all_assg/all_assg_widget.dart' show AllAssgWidget;
-export '/assignment/create_class/create_class_widget.dart'
-    show CreateClassWidget;
-export '/assignment/current_classes/current_classes_widget.dart'
-    show CurrentClassesWidget;
-export '/assignment/classestasks/classestasks_widget.dart'
-    show ClassestasksWidget;
-export '/assignment/edit_classes/edit_classes_widget.dart'
-    show EditClassesWidget;
 export '/settings/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/settings/change_grade/change_grade_widget.dart' show ChangeGradeWidget;
@@ -74,11 +59,12 @@ export '/streak_logic/processing_visit/processing_visit_widget.dart'
     show ProcessingVisitWidget;
 export '/streak_logic/processing_general/processing_general_widget.dart'
     show ProcessingGeneralWidget;
-export '/chat_flow/chat_2_details/chat2_details_widget.dart'
-    show Chat2DetailsWidget;
-export '/chat_flow/chat_2_main/chat2_main_widget.dart' show Chat2MainWidget;
-export '/chat_flow/chat_2_invite_users/chat2_invite_users_widget.dart'
-    show Chat2InviteUsersWidget;
-export '/chat_flow/image_details/image_details_widget.dart'
-    show ImageDetailsWidget;
 export '/onboarding/page3/page3_widget.dart' show Page3Widget;
+export '/chat_groupwbubbles/chat_2_details/chat2_details_widget.dart'
+    show Chat2DetailsWidget;
+export '/chat_groupwbubbles/chat_2_main/chat2_main_widget.dart'
+    show Chat2MainWidget;
+export '/chat_groupwbubbles/chat_2_invite_users/chat2_invite_users_widget.dart'
+    show Chat2InviteUsersWidget;
+export '/chat_groupwbubbles/image_details/image_details_widget.dart'
+    show ImageDetailsWidget;

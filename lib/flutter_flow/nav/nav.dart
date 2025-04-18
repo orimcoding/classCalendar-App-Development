@@ -8,14 +8,17 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
-import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -74,174 +77,120 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const NavBarPage() : const LoginWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
         ),
         FFRoute(
-          name: 'Page2',
-          path: '/Page2',
-          builder: (context, params) => const Page2Widget(),
+          name: Page2Widget.routeName,
+          path: Page2Widget.routePath,
+          builder: (context, params) => Page2Widget(),
         ),
         FFRoute(
-          name: 'Page1',
-          path: '/Page1',
-          builder: (context, params) => const Page1Widget(),
+          name: Page1Widget.routeName,
+          path: Page1Widget.routePath,
+          builder: (context, params) => Page1Widget(),
         ),
         FFRoute(
-          name: 'Create04Task',
-          path: '/create04Task',
-          builder: (context, params) => const Create04TaskWidget(),
+          name: Create04TaskWidget.routeName,
+          path: Create04TaskWidget.routePath,
+          builder: (context, params) => Create04TaskWidget(),
         ),
         FFRoute(
-          name: 'Page4',
-          path: '/Page4',
-          builder: (context, params) => const Page4Widget(),
+          name: Page4Widget.routeName,
+          path: Page4Widget.routePath,
+          builder: (context, params) => Page4Widget(),
         ),
         FFRoute(
-          name: 'Todos',
-          path: '/todos',
+          name: TodosWidget.routeName,
+          path: TodosWidget.routePath,
           builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'Todos') : const TodosWidget(),
+              params.isEmpty ? NavBarPage(initialPage: 'Todos') : TodosWidget(),
         ),
         FFRoute(
-          name: 'AssignmentNotebook',
-          path: '/assignmentNotebook',
-          builder: (context, params) => const AssignmentNotebookWidget(),
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => const LoginWidget(),
+          name: ForgotPasswordWidget.routeName,
+          path: ForgotPasswordWidget.routePath,
+          builder: (context, params) => ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: 'CreateNewAssignment',
-          path: '/createNewAssignment',
-          builder: (context, params) => const CreateNewAssignmentWidget(),
+          name: ChangeGradeWidget.routeName,
+          path: ChangeGradeWidget.routePath,
+          builder: (context, params) => ChangeGradeWidget(),
         ),
         FFRoute(
-          name: 'AssingmentDescript',
-          path: '/AssingmentDescript',
-          builder: (context, params) => AssingmentDescriptWidget(
-            data: params.getParam(
-              'data',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['Assignments'],
-            ),
-          ),
+          name: OwnedTopsWidget.routeName,
+          path: OwnedTopsWidget.routePath,
+          builder: (context, params) => OwnedTopsWidget(),
         ),
         FFRoute(
-          name: 'allAssg',
-          path: '/allAssg',
-          builder: (context, params) => const AllAssgWidget(),
+          name: OwnedAccesssoriesWidget.routeName,
+          path: OwnedAccesssoriesWidget.routePath,
+          builder: (context, params) => OwnedAccesssoriesWidget(),
         ),
         FFRoute(
-          name: 'CreateClass',
-          path: '/createClass',
-          builder: (context, params) => const CreateClassWidget(),
+          name: OwnedHairColorsWidget.routeName,
+          path: OwnedHairColorsWidget.routePath,
+          builder: (context, params) => OwnedHairColorsWidget(),
         ),
         FFRoute(
-          name: 'CurrentClasses',
-          path: '/currentClasses',
-          builder: (context, params) => const CurrentClassesWidget(),
+          name: OwnedHatColorsWidget.routeName,
+          path: OwnedHatColorsWidget.routePath,
+          builder: (context, params) => OwnedHatColorsWidget(),
         ),
         FFRoute(
-          name: 'Classestasks',
-          path: '/classestasks',
-          asyncParams: {
-            'className': getDoc(['Classes'], ClassesRecord.fromSnapshot),
-          },
-          builder: (context, params) => ClassestasksWidget(
-            className: params.getParam(
-              'className',
-              ParamType.Document,
-            ),
-          ),
+          name: OwnedFacialHairWidget.routeName,
+          path: OwnedFacialHairWidget.routePath,
+          builder: (context, params) => OwnedFacialHairWidget(),
         ),
         FFRoute(
-          name: 'EditClasses',
-          path: '/editClasses',
-          builder: (context, params) => const EditClassesWidget(),
+          name: OwnedFacialHairColorWidget.routeName,
+          path: OwnedFacialHairColorWidget.routePath,
+          builder: (context, params) => OwnedFacialHairColorWidget(),
         ),
         FFRoute(
-          name: 'forgotPassword',
-          path: '/forgotPassword',
-          builder: (context, params) => const ForgotPasswordWidget(),
+          name: OwnedClothesWidget.routeName,
+          path: OwnedClothesWidget.routePath,
+          builder: (context, params) => OwnedClothesWidget(),
         ),
         FFRoute(
-          name: 'ChangeGrade',
-          path: '/ChangGrade',
-          builder: (context, params) => const ChangeGradeWidget(),
+          name: OwnedClothesColorWidget.routeName,
+          path: OwnedClothesColorWidget.routePath,
+          builder: (context, params) => OwnedClothesColorWidget(),
         ),
         FFRoute(
-          name: 'OwnedTops',
-          path: '/ownedTops',
-          builder: (context, params) => const OwnedTopsWidget(),
+          name: OwnedEyesWidget.routeName,
+          path: OwnedEyesWidget.routePath,
+          builder: (context, params) => OwnedEyesWidget(),
         ),
         FFRoute(
-          name: 'OwnedAccesssories',
-          path: '/ownedAccesssories',
-          builder: (context, params) => const OwnedAccesssoriesWidget(),
+          name: OwnedEyebrowWidget.routeName,
+          path: OwnedEyebrowWidget.routePath,
+          builder: (context, params) => OwnedEyebrowWidget(),
         ),
         FFRoute(
-          name: 'OwnedHairColors',
-          path: '/ownedHairColors',
-          builder: (context, params) => const OwnedHairColorsWidget(),
+          name: OwnedMouthWidget.routeName,
+          path: OwnedMouthWidget.routePath,
+          builder: (context, params) => OwnedMouthWidget(),
         ),
         FFRoute(
-          name: 'OwnedHatColors',
-          path: '/ownedHatColors',
-          builder: (context, params) => const OwnedHatColorsWidget(),
+          name: OwnedSkinWidget.routeName,
+          path: OwnedSkinWidget.routePath,
+          builder: (context, params) => OwnedSkinWidget(),
         ),
         FFRoute(
-          name: 'OwnedFacialHair',
-          path: '/OwnedFacialHair',
-          builder: (context, params) => const OwnedFacialHairWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedFacialHairColor',
-          path: '/OwnedFacialHairColor',
-          builder: (context, params) => const OwnedFacialHairColorWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedClothes',
-          path: '/OwnedClothes',
-          builder: (context, params) => const OwnedClothesWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedClothesColor',
-          path: '/OwnedClothesColor',
-          builder: (context, params) => const OwnedClothesColorWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedEyes',
-          path: '/OwnedEyes',
-          builder: (context, params) => const OwnedEyesWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedEyebrow',
-          path: '/OwnedEyebrow',
-          builder: (context, params) => const OwnedEyebrowWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedMouth',
-          path: '/OwnedMouth',
-          builder: (context, params) => const OwnedMouthWidget(),
-        ),
-        FFRoute(
-          name: 'OwnedSkin',
-          path: '/OwnedSkin',
-          builder: (context, params) => const OwnedSkinWidget(),
-        ),
-        FFRoute(
-          name: 'TaskDescript',
-          path: '/TaskDescript',
+          name: TaskDescriptWidget.routeName,
+          path: TaskDescriptWidget.routePath,
           builder: (context, params) => TaskDescriptWidget(
             data: params.getParam(
               'data',
@@ -252,124 +201,129 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ClothesColorShop',
-          path: '/shopClothingColor',
-          builder: (context, params) => const ClothesColorShopWidget(),
+          name: ClothesColorShopWidget.routeName,
+          path: ClothesColorShopWidget.routePath,
+          builder: (context, params) => ClothesColorShopWidget(),
         ),
         FFRoute(
-          name: 'ClothesShop',
-          path: '/ShopClothes',
-          builder: (context, params) => const ClothesShopWidget(),
+          name: ClothesShopWidget.routeName,
+          path: ClothesShopWidget.routePath,
+          builder: (context, params) => ClothesShopWidget(),
         ),
         FFRoute(
-          name: 'MouthShop',
-          path: '/ShopMouth',
-          builder: (context, params) => const MouthShopWidget(),
+          name: MouthShopWidget.routeName,
+          path: MouthShopWidget.routePath,
+          builder: (context, params) => MouthShopWidget(),
         ),
         FFRoute(
-          name: 'FacialHairShop',
-          path: '/ShopFacialHair',
-          builder: (context, params) => const FacialHairShopWidget(),
+          name: FacialHairShopWidget.routeName,
+          path: FacialHairShopWidget.routePath,
+          builder: (context, params) => FacialHairShopWidget(),
         ),
         FFRoute(
-          name: 'HatColorsShop',
-          path: '/shopHatColorsCopy',
-          builder: (context, params) => const HatColorsShopWidget(),
+          name: HatColorsShopWidget.routeName,
+          path: HatColorsShopWidget.routePath,
+          builder: (context, params) => HatColorsShopWidget(),
         ),
         FFRoute(
-          name: 'EyeShop',
-          path: '/shopEyes',
-          builder: (context, params) => const EyeShopWidget(),
+          name: EyeShopWidget.routeName,
+          path: EyeShopWidget.routePath,
+          builder: (context, params) => EyeShopWidget(),
         ),
         FFRoute(
-          name: 'HairColorsShop',
-          path: '/shopHairColorsCopy',
-          builder: (context, params) => const HairColorsShopWidget(),
+          name: HairColorsShopWidget.routeName,
+          path: HairColorsShopWidget.routePath,
+          builder: (context, params) => HairColorsShopWidget(),
         ),
         FFRoute(
-          name: 'EyebrowShop',
-          path: '/shopEyebrow',
-          builder: (context, params) => const EyebrowShopWidget(),
+          name: EyebrowShopWidget.routeName,
+          path: EyebrowShopWidget.routePath,
+          builder: (context, params) => EyebrowShopWidget(),
         ),
         FFRoute(
-          name: 'AccessoryShop',
-          path: '/shopAccesssoriesCopy',
-          builder: (context, params) => const AccessoryShopWidget(),
+          name: AccessoryShopWidget.routeName,
+          path: AccessoryShopWidget.routePath,
+          builder: (context, params) => AccessoryShopWidget(),
         ),
         FFRoute(
-          name: 'TopsShop',
-          path: '/shopTopsCopy',
-          builder: (context, params) => const TopsShopWidget(),
+          name: TopsShopWidget.routeName,
+          path: TopsShopWidget.routePath,
+          builder: (context, params) => TopsShopWidget(),
         ),
         FFRoute(
-          name: 'FacialHairColorShop',
-          path: '/ShopFacialHairColor',
-          builder: (context, params) => const FacialHairColorShopWidget(),
+          name: FacialHairColorShopWidget.routeName,
+          path: FacialHairColorShopWidget.routePath,
+          builder: (context, params) => FacialHairColorShopWidget(),
         ),
         FFRoute(
-          name: 'MainShop',
-          path: '/mainShop',
-          builder: (context, params) => const MainShopWidget(),
+          name: MainShopWidget.routeName,
+          path: MainShopWidget.routePath,
+          builder: (context, params) => MainShopWidget(),
         ),
         FFRoute(
-          name: 'TestHome',
-          path: '/testHome',
+          name: TestHomeWidget.routeName,
+          path: TestHomeWidget.routePath,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'TestHome')
-              : const TestHomeWidget(),
+              ? NavBarPage(initialPage: 'TestHome')
+              : TestHomeWidget(),
         ),
         FFRoute(
-          name: 'TestProfile',
-          path: '/oldting2',
+          name: TestProfileWidget.routeName,
+          path: TestProfileWidget.routePath,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'TestProfile')
-              : const TestProfileWidget(),
+              ? NavBarPage(initialPage: 'TestProfile')
+              : TestProfileWidget(),
         ),
         FFRoute(
-          name: 'processV',
-          path: '/processV',
-          builder: (context, params) => const ProcessVWidget(),
+          name: ProcessVWidget.routeName,
+          path: ProcessVWidget.routePath,
+          builder: (context, params) => ProcessVWidget(),
         ),
         FFRoute(
-          name: 'processE',
-          path: '/processE',
-          builder: (context, params) => const ProcessEWidget(),
+          name: ProcessEWidget.routeName,
+          path: ProcessEWidget.routePath,
+          builder: (context, params) => ProcessEWidget(),
         ),
         FFRoute(
-          name: 'processG',
-          path: '/processG',
-          builder: (context, params) => const ProcessGWidget(),
+          name: ProcessGWidget.routeName,
+          path: ProcessGWidget.routePath,
+          builder: (context, params) => ProcessGWidget(),
         ),
         FFRoute(
-          name: 'SettingsCopy',
-          path: '/settingsCopy',
+          name: SettingsCopyWidget.routeName,
+          path: SettingsCopyWidget.routePath,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'SettingsCopy')
-              : const SettingsCopyWidget(),
+              ? NavBarPage(initialPage: 'SettingsCopy')
+              : SettingsCopyWidget(),
         ),
         FFRoute(
-          name: 'Success03',
-          path: '/success03',
-          builder: (context, params) => const Success03Widget(),
+          name: Success03Widget.routeName,
+          path: Success03Widget.routePath,
+          builder: (context, params) => Success03Widget(),
         ),
         FFRoute(
-          name: 'processingExcercise',
-          path: '/processingExcercise',
-          builder: (context, params) => const ProcessingExcerciseWidget(),
+          name: ProcessingExcerciseWidget.routeName,
+          path: ProcessingExcerciseWidget.routePath,
+          builder: (context, params) => ProcessingExcerciseWidget(),
         ),
         FFRoute(
-          name: 'processingVisit',
-          path: '/processingVisit',
-          builder: (context, params) => const ProcessingVisitWidget(),
+          name: ProcessingVisitWidget.routeName,
+          path: ProcessingVisitWidget.routePath,
+          builder: (context, params) => ProcessingVisitWidget(),
         ),
         FFRoute(
-          name: 'processingGeneral',
-          path: '/processingGeneral',
-          builder: (context, params) => const ProcessingGeneralWidget(),
+          name: ProcessingGeneralWidget.routeName,
+          path: ProcessingGeneralWidget.routePath,
+          builder: (context, params) => ProcessingGeneralWidget(),
         ),
         FFRoute(
-          name: 'chat_2_Details',
-          path: '/chat2Details',
+          name: Page3Widget.routeName,
+          path: Page3Widget.routePath,
+          builder: (context, params) => Page3Widget(),
+        ),
+        FFRoute(
+          name: Chat2DetailsWidget.routeName,
+          path: Chat2DetailsWidget.routePath,
           asyncParams: {
             'chatRef': getDoc(['chats'], ChatsRecord.fromSnapshot),
           },
@@ -381,15 +335,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'chat_2_main',
-          path: '/chat2Main',
+          name: Chat2MainWidget.routeName,
+          path: Chat2MainWidget.routePath,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'chat_2_main')
-              : const Chat2MainWidget(),
+              ? NavBarPage(initialPage: 'chat_2_main')
+              : Chat2MainWidget(),
         ),
         FFRoute(
-          name: 'chat_2_InviteUsers',
-          path: '/chat2InviteUsers',
+          name: Chat2InviteUsersWidget.routeName,
+          path: Chat2InviteUsersWidget.routePath,
           asyncParams: {
             'chatRef': getDoc(['chats'], ChatsRecord.fromSnapshot),
           },
@@ -401,8 +355,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'image_Details',
-          path: '/imageDetails',
+          name: ImageDetailsWidget.routeName,
+          path: ImageDetailsWidget.routePath,
           asyncParams: {
             'chatMessage':
                 getDoc(['chat_messages'], ChatMessagesRecord.fromSnapshot),
@@ -413,11 +367,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'Page3',
-          path: '/Page3',
-          builder: (context, params) => const Page3Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -652,7 +601,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(
+  static TransitionInfo appDefault() => TransitionInfo(
         hasTransition: true,
         transitionType: PageTransitionType.fade,
         duration: Duration(milliseconds: 300),

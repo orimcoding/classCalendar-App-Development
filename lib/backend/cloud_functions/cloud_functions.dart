@@ -5,7 +5,7 @@ Future<Map<String, dynamic>> makeCloudCall(
   Map<String, dynamic> input,
 ) async {
   try {
-    final response = await FirebaseFunctions.instance
+    final response = await FirebaseFunctions.instanceFor(region: 'us-central1')
         .httpsCallable(callName, options: HttpsCallableOptions())
         .call(input);
     return response.data is Map
@@ -13,13 +13,13 @@ Future<Map<String, dynamic>> makeCloudCall(
         : {};
   } on FirebaseFunctionsException catch (e) {
     print(
-      'Cloud call error!\n'
+      'Cloud call error!\n ${callName}'
       'Code: ${e.code}\n'
       'Details: ${e.details}\n'
       'Message: ${e.message}',
     );
   } catch (e) {
-    print('Cloud call error: $e');
+    print('Cloud call error:${callName} $e');
   }
   return {};
 }

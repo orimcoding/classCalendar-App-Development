@@ -105,3 +105,76 @@ String extractFriendUid(
   }
   return ""; // Return an empty string if no friend UID is found
 }
+
+bool filterDueAssignments(
+  List<String> titles,
+  List<String> descriptions,
+  List<String> dueDates,
+  List<String> courseNames,
+  List<bool> submittedStatuses,
+  List<String> filteredTitles,
+  List<String> filteredDescriptions,
+  List<String> filteredDueDates,
+  List<String> filteredCourseNames,
+) {
+  for (int i = 0; i < titles.length; i++) {
+    // Parse the due date string into DateTime
+    DateTime now = DateTime.now();
+    DateTime dueDate = DateTime.parse(dueDates[i]);
+
+    // Check if the assignment is due and not submitted
+    if (dueDate.isAfter(now) && !submittedStatuses[i]) {
+      filteredTitles.add(titles[i]);
+      filteredDescriptions.add(descriptions[i]);
+      filteredDueDates.add(dueDates[i]);
+      filteredCourseNames.add(courseNames[i]);
+    }
+  }
+
+  // Return true to indicate success
+  return true;
+}
+
+bool processAssignments(
+  List<dynamic> assignments,
+  List<String> titles,
+  List<String> descriptions,
+  List<DateTime> dueDates,
+) {
+  try {
+    for (var assignment in assignments) {
+      // Extract title and description
+      String title = assignment['title'] ?? 'Untitled Assignment';
+      String description =
+          assignment['description'] ?? 'No description provided';
+
+      // Extract and parse due date
+      DateTime dueDate;
+      if (assignment.containsKey('dueDate') &&
+          assignment['dueDate'] != null &&
+          assignment['dueDate']['year'] != null &&
+          assignment['dueDate']['month'] != null &&
+          assignment['dueDate']['day'] != null) {
+        dueDate = DateTime(
+          assignment['dueDate']['year'],
+          assignment['dueDate']['month'],
+          assignment['dueDate']['day'],
+          23, // Default hour
+          59, // Default minute
+          59, // Default second
+        );
+      } else {
+        dueDate = DateTime.now(); // Use the current date/time as fallback
+      }
+
+      // Add to respective lists
+      titles.add(title);
+      descriptions.add(description);
+      dueDates.add(dueDate);
+    }
+    return true; // Success
+  } catch (e) {
+    print('Error processing assignments: $e');
+    return false; // Failure
+  }
+}

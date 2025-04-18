@@ -1,11 +1,15 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import '/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -14,6 +18,9 @@ export 'create04_task_model.dart';
 
 class Create04TaskWidget extends StatefulWidget {
   const Create04TaskWidget({super.key});
+
+  static String routeName = 'Create04Task';
+  static String routePath = '/create04Task';
 
   @override
   State<Create04TaskWidget> createState() => _Create04TaskWidgetState();
@@ -39,6 +46,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
+
     _model.taskTextController1 ??= TextEditingController();
     _model.taskFocusNode1 ??= FocusNode();
 
@@ -71,7 +79,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -83,7 +91,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -95,7 +103,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -107,7 +115,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -127,7 +135,10 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -157,20 +168,20 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                 ),
               ),
               title: Align(
-                alignment: const AlignmentDirectional(-1.0, 0.0),
+                alignment: AlignmentDirectional(-1.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Text(
                         'Create Task or Assignment',
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .override(
                               fontFamily: 'Outfit',
-                              color: const Color(0xFF15161E),
+                              color: Color(0xFF15161E),
                               fontSize: 24.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w500,
@@ -179,13 +190,13 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                           animationsMap['textOnPageLoadAnimation1']!),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Text(
                         'Please fill out the form below to continue.',
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Outfit',
-                                  color: const Color(0xFF606A85),
+                                  color: Color(0xFF606A85),
                                   fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -193,10 +204,10 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                       ).animateOnPageLoad(
                           animationsMap['textOnPageLoadAnimation2']!),
                     ),
-                  ].divide(const SizedBox(height: 4.0)),
+                  ].divide(SizedBox(height: 4.0)),
                 ),
               ),
-              actions: const [],
+              actions: [],
               centerTitle: false,
               elevation: 0.0,
             )
@@ -205,7 +216,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
             builder: (context) {
               return SafeArea(
                 top: false,
-                child: SizedBox(
+                child: Container(
                   height: 1200.0,
                   child: Stack(
                     children: [
@@ -218,7 +229,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                 child: Column(
                                   children: [
                                     Align(
-                                      alignment: const Alignment(0.0, 0),
+                                      alignment: Alignment(0.0, 0),
                                       child: TabBar(
                                         labelColor: FlutterFlowTheme.of(context)
                                             .primaryText,
@@ -242,11 +253,11 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                             FlutterFlowTheme.of(context)
                                                 .primary,
                                         tabs: [
-                                          const Tab(
+                                          Tab(
                                             text: 'Tasks',
                                           ).animateOnPageLoad(animationsMap[
                                               'tabOnPageLoadAnimation1']!),
-                                          const Tab(
+                                          Tab(
                                             text: 'Assignments',
                                           ).animateOnPageLoad(animationsMap[
                                               'tabOnPageLoadAnimation2']!),
@@ -261,7 +272,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                       child: TabBarView(
                                         controller: _model.tabBarController,
                                         children: [
-                                          SizedBox(
+                                          Container(
                                             height: 1400.0,
                                             child: Stack(
                                               children: [
@@ -273,19 +284,19 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, -1.0),
                                                         child: Container(
                                                           height: 800.0,
                                                           constraints:
-                                                              const BoxConstraints(
+                                                              BoxConstraints(
                                                             maxWidth: 770.0,
                                                           ),
                                                           decoration:
-                                                              const BoxDecoration(),
+                                                              BoxDecoration(),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         12.0,
@@ -327,7 +338,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Outfit',
                                                                             color:
-                                                                                const Color(0xFF606A85),
+                                                                                Color(0xFF606A85),
                                                                             fontSize:
                                                                                 24.0,
                                                                             letterSpacing:
@@ -342,7 +353,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Outfit',
                                                                             color:
-                                                                                const Color(0xFF606A85),
+                                                                                Color(0xFF606A85),
                                                                             fontSize:
                                                                                 14.0,
                                                                             letterSpacing:
@@ -357,7 +368,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Figtree',
                                                                             color:
-                                                                                const Color(0xFFFF5963),
+                                                                                Color(0xFFFF5963),
                                                                             fontSize:
                                                                                 12.0,
                                                                             letterSpacing:
@@ -368,7 +379,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       enabledBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0xFFE5E7EB),
                                                                           width:
@@ -380,7 +391,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       focusedBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0xFF6F61EF),
                                                                           width:
@@ -392,7 +403,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       errorBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0xFFFF5963),
                                                                           width:
@@ -404,7 +415,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       focusedErrorBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0xFFFF5963),
                                                                           width:
@@ -418,7 +429,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       fillColor:
                                                                           Colors
                                                                               .white,
-                                                                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      contentPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           20.0,
                                                                           16.0,
@@ -431,7 +442,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF15161E),
+                                                                              Color(0xFF15161E),
                                                                           fontSize:
                                                                               24.0,
                                                                           letterSpacing:
@@ -440,7 +451,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                               FontWeight.w500,
                                                                         ),
                                                                     cursorColor:
-                                                                        const Color(
+                                                                        Color(
                                                                             0xFF6F61EF),
                                                                     validator: _model
                                                                         .taskTextController1Validator
@@ -448,7 +459,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             context),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             30.0,
@@ -477,7 +488,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .labelLarge
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF606A85),
+                                                                              color: Color(0xFF606A85),
                                                                               fontSize: 16.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w500,
@@ -488,7 +499,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .labelMedium
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF606A85),
+                                                                              color: Color(0xFF606A85),
                                                                               fontSize: 14.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w500,
@@ -497,7 +508,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: 'Figtree',
-                                                                              color: const Color(0xFFFF5963),
+                                                                              color: Color(0xFFFF5963),
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w600,
@@ -505,7 +516,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         enabledBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0xFFE5E7EB),
                                                                             width:
@@ -517,7 +528,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         focusedBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0xFF6F61EF),
                                                                             width:
@@ -529,7 +540,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         errorBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0xFFFF5963),
                                                                             width:
@@ -541,7 +552,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         focusedErrorBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0xFFFF5963),
                                                                             width:
@@ -554,7 +565,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             true,
                                                                         fillColor:
                                                                             Colors.white,
-                                                                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        contentPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             16.0,
                                                                             16.0,
@@ -567,7 +578,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Figtree',
                                                                             color:
-                                                                                const Color(0xFF15161E),
+                                                                                Color(0xFF15161E),
                                                                             fontSize:
                                                                                 16.0,
                                                                             letterSpacing:
@@ -585,7 +596,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           MaxLengthEnforcement
                                                                               .enforced,
                                                                       cursorColor:
-                                                                          const Color(
+                                                                          Color(
                                                                               0xFF6F61EF),
                                                                       validator: _model
                                                                           .descriptionTextController1Validator
@@ -602,7 +613,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
@@ -630,7 +641,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           'CREATE04_TASK_PAGE_Start_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'Start_date_time_picker');
-                                                                      final datePicked1Date =
+                                                                      final _datePicked1Date =
                                                                           await showDatePicker(
                                                                         context:
                                                                             context,
@@ -652,7 +663,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                                 FlutterFlowTheme.of(context).info,
                                                                             headerTextStyle: FlutterFlowTheme.of(context).headlineLarge.override(
                                                                                   fontFamily: 'Outfit',
-                                                                                  color: const Color(0xFF15161E),
+                                                                                  color: Color(0xFF15161E),
                                                                                   fontSize: 32.0,
                                                                                   letterSpacing: 0.0,
                                                                                   fontWeight: FontWeight.w600,
@@ -674,10 +685,10 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       );
 
                                                                       TimeOfDay?
-                                                                          datePicked1Time;
-                                                                      if (datePicked1Date !=
+                                                                          _datePicked1Time;
+                                                                      if (_datePicked1Date !=
                                                                           null) {
-                                                                        datePicked1Time =
+                                                                        _datePicked1Time =
                                                                             await showTimePicker(
                                                                           context:
                                                                               context,
@@ -692,7 +703,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                               headerForegroundColor: FlutterFlowTheme.of(context).info,
                                                                               headerTextStyle: FlutterFlowTheme.of(context).headlineLarge.override(
                                                                                     fontFamily: 'Outfit',
-                                                                                    color: const Color(0xFF15161E),
+                                                                                    color: Color(0xFF15161E),
                                                                                     fontSize: 32.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w600,
@@ -708,20 +719,28 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         );
                                                                       }
 
-                                                                      if (datePicked1Date !=
+                                                                      if (_datePicked1Date !=
                                                                               null &&
-                                                                          datePicked1Time !=
+                                                                          _datePicked1Time !=
                                                                               null) {
                                                                         safeSetState(
                                                                             () {
                                                                           _model.datePicked1 =
                                                                               DateTime(
-                                                                            datePicked1Date.year,
-                                                                            datePicked1Date.month,
-                                                                            datePicked1Date.day,
-                                                                            datePicked1Time!.hour,
-                                                                            datePicked1Time.minute,
+                                                                            _datePicked1Date.year,
+                                                                            _datePicked1Date.month,
+                                                                            _datePicked1Date.day,
+                                                                            _datePicked1Time!.hour,
+                                                                            _datePicked1Time.minute,
                                                                           );
+                                                                        });
+                                                                      } else if (_model
+                                                                              .datePicked1 !=
+                                                                          null) {
+                                                                        safeSetState(
+                                                                            () {
+                                                                          _model.datePicked1 =
+                                                                              getCurrentTimestamp;
                                                                         });
                                                                       }
                                                                     },
@@ -740,19 +759,19 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         border:
                                                                             Border.all(
                                                                           color:
-                                                                              const Color(0xFFE5E7EB),
+                                                                              Color(0xFFE5E7EB),
                                                                           width:
                                                                               2.0,
                                                                         ),
                                                                       ),
                                                                       child:
                                                                           Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               12.0,
                                                                               0.0,
                                                                               0.0,
@@ -775,7 +794,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -790,7 +809,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Outfit',
                                                                             color:
-                                                                                const Color(0xFF606A85),
+                                                                                Color(0xFF606A85),
                                                                             fontSize:
                                                                                 14.0,
                                                                             letterSpacing:
@@ -800,7 +819,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                  SizedBox(
+                                                                  Container(
                                                                     width: double
                                                                         .infinity,
                                                                     child:
@@ -825,7 +844,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .labelLarge
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF606A85),
+                                                                              color: Color(0xFF606A85),
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w500,
                                                                             ),
@@ -835,14 +854,14 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .labelMedium
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF15161E),
+                                                                              color: Color(0xFF15161E),
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                         enabledBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0x00000000),
                                                                             width:
@@ -854,7 +873,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         focusedBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0x00000000),
                                                                             width:
@@ -899,7 +918,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Figtree',
                                                                             color:
-                                                                                const Color(0xFF15161E),
+                                                                                Color(0xFF15161E),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
@@ -927,7 +946,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -942,7 +961,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Outfit',
                                                                             color:
-                                                                                const Color(0xFF606A85),
+                                                                                Color(0xFF606A85),
                                                                             fontSize:
                                                                                 14.0,
                                                                             letterSpacing:
@@ -952,7 +971,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                  SizedBox(
+                                                                  Container(
                                                                     width: double
                                                                         .infinity,
                                                                     child:
@@ -980,7 +999,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .labelLarge
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF57636C),
+                                                                              color: Color(0xFF57636C),
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w500,
                                                                             ),
@@ -990,14 +1009,14 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .labelMedium
                                                                             .override(
                                                                               fontFamily: 'Outfit',
-                                                                              color: const Color(0xFF15161E),
+                                                                              color: Color(0xFF15161E),
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.w600,
                                                                             ),
                                                                         enabledBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0x00000000),
                                                                             width:
@@ -1009,7 +1028,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         focusedBorder:
                                                                             OutlineInputBorder(
                                                                           borderSide:
-                                                                              const BorderSide(
+                                                                              BorderSide(
                                                                             color:
                                                                                 Color(0x00000000),
                                                                             width:
@@ -1054,7 +1073,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Figtree',
                                                                             color:
-                                                                                const Color(0xFF15161E),
+                                                                                Color(0xFF15161E),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
@@ -1075,7 +1094,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -1090,7 +1109,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Outfit',
                                                                             color:
-                                                                                const Color(0xFF606A85),
+                                                                                Color(0xFF606A85),
                                                                             fontSize:
                                                                                 14.0,
                                                                             letterSpacing:
@@ -1103,10 +1122,10 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                   FlutterFlowDropDown<
                                                                       int>(
                                                                     controller: _model
-                                                                            .dropDownValueController1 ??=
+                                                                            .dropDownValueController ??=
                                                                         FormFieldController<
                                                                             int>(
-                                                                      _model.dropDownValue1 ??=
+                                                                      _model.dropDownValue ??=
                                                                           60,
                                                                     ),
                                                                     options: List<
@@ -1120,7 +1139,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       4320,
                                                                       10080
                                                                     ]),
-                                                                    optionLabels: const [
+                                                                    optionLabels: [
                                                                       '5 Minutes Before',
                                                                       '15 Minutes Before',
                                                                       '30 Minutes Before',
@@ -1132,7 +1151,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     ],
                                                                     onChanged: (val) =>
                                                                         safeSetState(() =>
-                                                                            _model.dropDownValue1 =
+                                                                            _model.dropDownValue =
                                                                                 val),
                                                                     width:
                                                                         200.0,
@@ -1145,7 +1164,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF15161E),
+                                                                              Color(0xFF15161E),
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight:
@@ -1174,7 +1193,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         0.0,
                                                                     borderRadius:
                                                                         8.0,
-                                                                    margin: const EdgeInsetsDirectional
+                                                                    margin: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             12.0,
                                                                             0.0,
@@ -1190,7 +1209,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         false,
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             20.0,
@@ -1217,13 +1236,13 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                               taskType: 'Task',
                                                                               emojiRepresentation: _model.textController3.text,
                                                                               taskLocation: _model.textController4.text,
-                                                                              notificationTime: _model.dropDownValue1,
+                                                                              notificationTime: _model.dropDownValue,
                                                                             ));
                                                                         logFirebaseEvent(
                                                                             'Button_navigate_to');
 
                                                                         context.pushNamed(
-                                                                            'TestHome');
+                                                                            TestHomeWidget.routeName);
 
                                                                         logFirebaseEvent(
                                                                             'Button_show_snack_bar');
@@ -1238,7 +1257,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                               ),
                                                                             ),
                                                                             duration:
-                                                                                const Duration(milliseconds: 4000),
+                                                                                Duration(milliseconds: 4000),
                                                                             backgroundColor:
                                                                                 FlutterFlowTheme.of(context).secondary,
                                                                           ),
@@ -1252,12 +1271,12 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             .infinity,
                                                                         height:
                                                                             48.0,
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             24.0,
                                                                             0.0,
                                                                             24.0,
                                                                             0.0),
-                                                                        iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -1273,7 +1292,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         elevation:
                                                                             10.0,
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Colors.transparent,
                                                                           width:
@@ -1287,10 +1306,10 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     ),
                                                                   ),
                                                                 ]
-                                                                    .divide(const SizedBox(
+                                                                    .divide(SizedBox(
                                                                         height:
                                                                             12.0))
-                                                                    .addToEnd(const SizedBox(
+                                                                    .addToEnd(SizedBox(
                                                                         height:
                                                                             32.0)),
                                                               ),
@@ -1316,7 +1335,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                           .spaceBetween,
                                                   children: [
                                                     Container(
-                                                      decoration: const BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         shape:
                                                             BoxShape.rectangle,
                                                       ),
@@ -1325,21 +1344,21 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, -1.0),
                                                   child: Container(
                                                     height: 800.0,
-                                                    constraints: const BoxConstraints(
+                                                    constraints: BoxConstraints(
                                                       maxWidth: 770.0,
                                                     ),
-                                                    decoration: const BoxDecoration(),
-                                                    child: SizedBox(
+                                                    decoration: BoxDecoration(),
+                                                    child: Container(
                                                       height: 750.0,
                                                       child: Stack(
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         12.0,
@@ -1376,7 +1395,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               24.0,
                                                                           letterSpacing:
@@ -1391,7 +1410,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
@@ -1406,7 +1425,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Figtree',
                                                                           color:
-                                                                              const Color(0xFFFF5963),
+                                                                              Color(0xFFFF5963),
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -1417,7 +1436,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     enabledBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFFE5E7EB),
                                                                         width:
@@ -1430,7 +1449,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     focusedBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFF6F61EF),
                                                                         width:
@@ -1443,7 +1462,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     errorBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFFFF5963),
                                                                         width:
@@ -1456,7 +1475,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     focusedErrorBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFFFF5963),
                                                                         width:
@@ -1472,7 +1491,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         Colors
                                                                             .white,
                                                                     contentPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             20.0,
                                                                             16.0,
@@ -1484,7 +1503,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       .override(
                                                                         fontFamily:
                                                                             'Outfit',
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0xFF15161E),
                                                                         fontSize:
                                                                             24.0,
@@ -1494,7 +1513,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             FontWeight.w500,
                                                                       ),
                                                                   cursorColor:
-                                                                      const Color(
+                                                                      Color(
                                                                           0xFF6F61EF),
                                                                   validator: _model
                                                                       .taskTextController2Validator
@@ -1524,7 +1543,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               16.0,
                                                                           letterSpacing:
@@ -1541,7 +1560,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
@@ -1556,7 +1575,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Figtree',
                                                                           color:
-                                                                              const Color(0xFFFF5963),
+                                                                              Color(0xFFFF5963),
                                                                           fontSize:
                                                                               12.0,
                                                                           letterSpacing:
@@ -1567,7 +1586,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     enabledBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFFE5E7EB),
                                                                         width:
@@ -1580,7 +1599,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     focusedBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFF6F61EF),
                                                                         width:
@@ -1593,7 +1612,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     errorBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFFFF5963),
                                                                         width:
@@ -1606,7 +1625,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     focusedErrorBorder:
                                                                         OutlineInputBorder(
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Color(
                                                                             0xFFFF5963),
                                                                         width:
@@ -1622,7 +1641,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         Colors
                                                                             .white,
                                                                     contentPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             16.0,
                                                                             16.0,
@@ -1634,7 +1653,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       .override(
                                                                         fontFamily:
                                                                             'Outfit',
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0xFF15161E),
                                                                         fontSize:
                                                                             16.0,
@@ -1651,7 +1670,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       MaxLengthEnforcement
                                                                           .enforced,
                                                                   cursorColor:
-                                                                      const Color(
+                                                                      Color(
                                                                           0xFF6F61EF),
                                                                   validator: _model
                                                                       .descriptionTextController2Validator
@@ -1666,7 +1685,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       .override(
                                                                         fontFamily:
                                                                             'Outfit',
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0xFF606A85),
                                                                         fontSize:
                                                                             14.0,
@@ -1693,7 +1712,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         'CREATE04_TASK_PAGE_Start_ON_TAP');
                                                                     logFirebaseEvent(
                                                                         'Start_date_time_picker');
-                                                                    final datePicked2Date =
+                                                                    final _datePicked2Date =
                                                                         await showDatePicker(
                                                                       context:
                                                                           context,
@@ -1719,7 +1738,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                               .headlineLarge
                                                                               .override(
                                                                                 fontFamily: 'Outfit',
-                                                                                color: const Color(0xFF15161E),
+                                                                                color: Color(0xFF15161E),
                                                                                 fontSize: 32.0,
                                                                                 letterSpacing: 0.0,
                                                                                 fontWeight: FontWeight.w600,
@@ -1741,10 +1760,10 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     );
 
                                                                     TimeOfDay?
-                                                                        datePicked2Time;
-                                                                    if (datePicked2Date !=
+                                                                        _datePicked2Time;
+                                                                    if (_datePicked2Date !=
                                                                         null) {
-                                                                      datePicked2Time =
+                                                                      _datePicked2Time =
                                                                           await showTimePicker(
                                                                         context:
                                                                             context,
@@ -1762,7 +1781,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                                 FlutterFlowTheme.of(context).info,
                                                                             headerTextStyle: FlutterFlowTheme.of(context).headlineLarge.override(
                                                                                   fontFamily: 'Outfit',
-                                                                                  color: const Color(0xFF15161E),
+                                                                                  color: Color(0xFF15161E),
                                                                                   fontSize: 32.0,
                                                                                   letterSpacing: 0.0,
                                                                                   fontWeight: FontWeight.w600,
@@ -1784,25 +1803,33 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       );
                                                                     }
 
-                                                                    if (datePicked2Date !=
+                                                                    if (_datePicked2Date !=
                                                                             null &&
-                                                                        datePicked2Time !=
+                                                                        _datePicked2Time !=
                                                                             null) {
                                                                       safeSetState(
                                                                           () {
                                                                         _model.datePicked2 =
                                                                             DateTime(
-                                                                          datePicked2Date
+                                                                          _datePicked2Date
                                                                               .year,
-                                                                          datePicked2Date
+                                                                          _datePicked2Date
                                                                               .month,
-                                                                          datePicked2Date
+                                                                          _datePicked2Date
                                                                               .day,
-                                                                          datePicked2Time!
+                                                                          _datePicked2Time!
                                                                               .hour,
-                                                                          datePicked2Time
+                                                                          _datePicked2Time
                                                                               .minute,
                                                                         );
+                                                                      });
+                                                                    } else if (_model
+                                                                            .datePicked2 !=
+                                                                        null) {
+                                                                      safeSetState(
+                                                                          () {
+                                                                        _model.datePicked2 =
+                                                                            getCurrentTimestamp;
                                                                       });
                                                                     }
                                                                   },
@@ -1822,7 +1849,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       border:
                                                                           Border
                                                                               .all(
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0xFFE5E7EB),
                                                                         width:
                                                                             2.0,
@@ -1831,12 +1858,12 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                     child:
                                                                         Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               -1.0,
                                                                               0.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             12.0,
                                                                             0.0,
                                                                             0.0,
@@ -1862,7 +1889,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -1880,7 +1907,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
@@ -1890,7 +1917,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         ),
                                                                   ),
                                                                 ),
-                                                                SizedBox(
+                                                                Container(
                                                                   width: double
                                                                       .infinity,
                                                                   child:
@@ -1931,7 +1958,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             fontFamily:
                                                                                 'Outfit',
                                                                             color:
-                                                                                const Color(0xFF15161E),
+                                                                                Color(0xFF15161E),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             fontWeight:
@@ -1940,7 +1967,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       enabledBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0x00000000),
                                                                           width:
@@ -1952,7 +1979,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       focusedBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0x00000000),
                                                                           width:
@@ -1998,7 +2025,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Figtree',
                                                                           color:
-                                                                              const Color(0xFF15161E),
+                                                                              Color(0xFF15161E),
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight:
@@ -2026,7 +2053,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -2041,7 +2068,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
@@ -2051,7 +2078,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         ),
                                                                   ),
                                                                 ),
-                                                                SizedBox(
+                                                                Container(
                                                                   width: 400.0,
                                                                   child:
                                                                       TextFormField(
@@ -2097,7 +2124,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       enabledBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0x00000000),
                                                                           width:
@@ -2109,7 +2136,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       focusedBorder:
                                                                           OutlineInputBorder(
                                                                         borderSide:
-                                                                            const BorderSide(
+                                                                            BorderSide(
                                                                           color:
                                                                               Color(0x00000000),
                                                                           width:
@@ -2171,7 +2198,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -2186,7 +2213,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           fontFamily:
                                                                               'Outfit',
                                                                           color:
-                                                                              const Color(0xFF606A85),
+                                                                              Color(0xFF606A85),
                                                                           fontSize:
                                                                               14.0,
                                                                           letterSpacing:
@@ -2196,94 +2223,131 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         ),
                                                                   ),
                                                                 ),
-                                                                FlutterFlowDropDown<
-                                                                    int>(
-                                                                  controller: _model
-                                                                          .dropDownValueController2 ??=
-                                                                      FormFieldController<
-                                                                          int>(
-                                                                    _model.dropDownValue2 ??=
-                                                                        60,
-                                                                  ),
-                                                                  options: List<
-                                                                      int>.from([
-                                                                    5,
-                                                                    15,
-                                                                    30,
-                                                                    60,
-                                                                    180,
-                                                                    1440,
-                                                                    4320,
-                                                                    10080
-                                                                  ]),
-                                                                  optionLabels: const [
-                                                                    '5 Minutes Before',
-                                                                    '15 Minutes Before',
-                                                                    '30 Minutes Before',
-                                                                    '1 Hour Before',
-                                                                    '3 Hours Before',
-                                                                    '1 Day Before',
-                                                                    '3 Days Before',
-                                                                    '1 Week Before'
-                                                                  ],
-                                                                  onChanged: (val) =>
-                                                                      safeSetState(() =>
-                                                                          _model.dropDownValue2 =
-                                                                              val),
-                                                                  width: 200.0,
-                                                                  height: 40.0,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Outfit',
-                                                                        color: const Color(
-                                                                            0xFF15161E),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                  hintText:
-                                                                      'Select...',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .keyboard_arrow_down_rounded,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  fillColor: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  elevation:
-                                                                      2.0,
-                                                                  borderColor:
+                                                                InkWell(
+                                                                  splashColor:
                                                                       Colors
                                                                           .transparent,
-                                                                  borderWidth:
-                                                                      0.0,
-                                                                  borderRadius:
-                                                                      8.0,
-                                                                  margin: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0),
-                                                                  hidesUnderline:
-                                                                      true,
-                                                                  isOverButton:
-                                                                      false,
-                                                                  isSearchable:
-                                                                      false,
-                                                                  isMultiSelect:
-                                                                      false,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    logFirebaseEvent(
+                                                                        'CREATE04_TASK_PAGE_Start_ON_TAP');
+                                                                    logFirebaseEvent(
+                                                                        'Start_date_time_picker');
+                                                                    await showModalBottomSheet<
+                                                                            bool>(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (context) {
+                                                                          final _datePicked3CupertinoTheme =
+                                                                              CupertinoTheme.of(context);
+                                                                          return ScrollConfiguration(
+                                                                            behavior:
+                                                                                const MaterialScrollBehavior().copyWith(
+                                                                              dragDevices: {
+                                                                                PointerDeviceKind.mouse,
+                                                                                PointerDeviceKind.touch,
+                                                                                PointerDeviceKind.stylus,
+                                                                                PointerDeviceKind.unknown
+                                                                              },
+                                                                            ),
+                                                                            child:
+                                                                                Container(
+                                                                              height: MediaQuery.of(context).size.height / 3,
+                                                                              width: MediaQuery.of(context).size.width,
+                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              child: CupertinoTheme(
+                                                                                data: _datePicked3CupertinoTheme.copyWith(
+                                                                                  textTheme: _datePicked3CupertinoTheme.textTheme.copyWith(
+                                                                                    dateTimePickerTextStyle: FlutterFlowTheme.of(context).headlineMedium.override(
+                                                                                          fontFamily: 'Outfit',
+                                                                                          color: Color(0xFF15161E),
+                                                                                          fontSize: 24.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.w500,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                child: CupertinoDatePicker(
+                                                                                  mode: CupertinoDatePickerMode.dateAndTime,
+                                                                                  minimumDate: (getCurrentTimestamp ?? DateTime(1900)),
+                                                                                  initialDateTime: getCurrentTimestamp,
+                                                                                  maximumDate: DateTime(2050),
+                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  use24hFormat: false,
+                                                                                  onDateTimeChanged: (newDateTime) => safeSetState(() {
+                                                                                    _model.datePicked3 = newDateTime;
+                                                                                  }),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          );
+                                                                        });
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height:
+                                                                        48.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                      border:
+                                                                          Border
+                                                                              .all(
+                                                                        color: Color(
+                                                                            0xFFE5E7EB),
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            12.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          dateTimeFormat(
+                                                                            "M/d h:mm a",
+                                                                            _model.datePicked3,
+                                                                            locale:
+                                                                                FFLocalizations.of(context).languageCode,
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .labelLarge
+                                                                              .override(
+                                                                                fontFamily: 'Outfit',
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           15.0,
@@ -2321,26 +2385,26 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             emojiRepresentation:
                                                                                 _model.textController7.text,
                                                                             notificationTime:
-                                                                                _model.dropDownValue2,
+                                                                                _model.datePicked3?.secondsSinceEpoch,
                                                                           ));
                                                                       logFirebaseEvent(
-                                                                          'Button_navigate_to');
-
-                                                                      context
-                                                                          .pushNamed(
-                                                                        'TestHome',
-                                                                        extra: <String,
-                                                                            dynamic>{
-                                                                          kTransitionInfoKey:
-                                                                              const TransitionInfo(
-                                                                            hasTransition:
-                                                                                true,
-                                                                            transitionType:
-                                                                                PageTransitionType.bottomToTop,
-                                                                          ),
-                                                                        },
+                                                                          'Button_trigger_push_notification');
+                                                                      triggerPushNotification(
+                                                                        notificationTitle:
+                                                                            'Submit On Time!',
+                                                                        notificationText:
+                                                                            'Assignment due soon! Tap for details.',
+                                                                        scheduledTime:
+                                                                            _model.datePicked3!,
+                                                                        notificationSound:
+                                                                            'default',
+                                                                        userRefs: [
+                                                                          currentUserReference!
+                                                                        ],
+                                                                        initialPageName:
+                                                                            'Todos',
+                                                                        parameterData: {},
                                                                       );
-
                                                                       logFirebaseEvent(
                                                                           'Button_show_snack_bar');
                                                                       ScaffoldMessenger.of(
@@ -2356,10 +2420,28 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                             ),
                                                                           ),
                                                                           duration:
-                                                                              const Duration(milliseconds: 4000),
+                                                                              Duration(milliseconds: 4000),
                                                                           backgroundColor:
                                                                               FlutterFlowTheme.of(context).secondary,
                                                                         ),
+                                                                      );
+                                                                      logFirebaseEvent(
+                                                                          'Button_navigate_to');
+
+                                                                      context
+                                                                          .goNamed(
+                                                                        TestHomeWidget
+                                                                            .routeName,
+                                                                        extra: <String,
+                                                                            dynamic>{
+                                                                          kTransitionInfoKey:
+                                                                              TransitionInfo(
+                                                                            hasTransition:
+                                                                                true,
+                                                                            transitionType:
+                                                                                PageTransitionType.bottomToTop,
+                                                                          ),
+                                                                        },
                                                                       );
                                                                     },
                                                                     text:
@@ -2370,12 +2452,12 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                           .infinity,
                                                                       height:
                                                                           48.0,
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           24.0,
                                                                           0.0,
                                                                           24.0,
                                                                           0.0),
-                                                                      iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2395,7 +2477,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                       elevation:
                                                                           10.0,
                                                                       borderSide:
-                                                                          const BorderSide(
+                                                                          BorderSide(
                                                                         color: Colors
                                                                             .transparent,
                                                                         width:
@@ -2412,7 +2494,7 @@ class _Create04TaskWidgetState extends State<Create04TaskWidget>
                                                                         false,
                                                                   ),
                                                                 ),
-                                                              ].divide(const SizedBox(
+                                                              ].divide(SizedBox(
                                                                   height:
                                                                       12.0)),
                                                             ),

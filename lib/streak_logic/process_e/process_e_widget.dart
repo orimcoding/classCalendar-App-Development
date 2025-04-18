@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -12,6 +13,9 @@ export 'process_e_model.dart';
 
 class ProcessEWidget extends StatefulWidget {
   const ProcessEWidget({super.key});
+
+  static String routeName = 'processE';
+  static String routePath = '/processE';
 
   @override
   State<ProcessEWidget> createState() => _ProcessEWidgetState();
@@ -50,7 +54,7 @@ class _ProcessEWidgetState extends State<ProcessEWidget> {
       _model.timerController.onStartTimer();
       logFirebaseEvent('processE_navigate_to');
 
-      context.pushNamed('TestHome');
+      context.pushNamed(TestHomeWidget.routeName);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -66,7 +70,10 @@ class _ProcessEWidgetState extends State<ProcessEWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -85,7 +92,7 @@ class _ProcessEWidgetState extends State<ProcessEWidget> {
                     milliSecond: false,
                   ),
                   controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
+                  updateStateInterval: Duration(milliseconds: 1000),
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
@@ -118,7 +125,7 @@ class _ProcessEWidgetState extends State<ProcessEWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                           ),
-                          duration: const Duration(milliseconds: 4000),
+                          duration: Duration(milliseconds: 4000),
                           backgroundColor:
                               FlutterFlowTheme.of(context).secondary,
                         ),
@@ -134,7 +141,7 @@ class _ProcessEWidgetState extends State<ProcessEWidget> {
 
                     logFirebaseEvent('Timer_navigate_to');
 
-                    context.pushNamed('processG');
+                    context.pushNamed(ProcessGWidget.routeName);
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(

@@ -157,7 +157,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_selectedTop', value);
   }
 
-  String _selectedAccessory = '';
+  String _selectedAccessory = 'kurt';
   String get selectedAccessory => _selectedAccessory;
   set selectedAccessory(String value) {
     _selectedAccessory = value;
@@ -369,7 +369,6 @@ class FFAppState extends ChangeNotifier {
   }
 
   List<String> _accessories = [
-    'kurt',
     'prescription01',
     'prescription02',
     'sunglasses',
@@ -404,7 +403,7 @@ class FFAppState extends ChangeNotifier {
     accessories.insert(index, value);
   }
 
-  List<String> _ownedAccessories = [''];
+  List<String> _ownedAccessories = ['kurt'];
   List<String> get ownedAccessories => _ownedAccessories;
   set ownedAccessories(List<String> value) {
     _ownedAccessories = value;
@@ -832,7 +831,7 @@ class FFAppState extends ChangeNotifier {
 
   List<String> _mouth = [
     'concerned',
-    'disbeleif',
+    'disbelief',
     'eating',
     'grimace',
     'sad',
@@ -917,7 +916,6 @@ class FFAppState extends ChangeNotifier {
     'shortCurly',
     'shortFlat',
     'shortRound',
-    'ShortHairShortWaved',
     'shortWaved',
     'theCaesar',
     'theCaesarAndSidePart',
@@ -1179,6 +1177,24 @@ class FFAppState extends ChangeNotifier {
   String get googleAccessToken => _googleAccessToken;
   set googleAccessToken(String value) {
     _googleAccessToken = value;
+  }
+
+  String _idToken = '';
+  String get idToken => _idToken;
+  set idToken(String value) {
+    _idToken = value;
+  }
+
+  String _accesstoken = '';
+  String get accesstoken => _accesstoken;
+  set accesstoken(String value) {
+    _accesstoken = value;
+  }
+
+  String _randomFunctionNull = '';
+  String get randomFunctionNull => _randomFunctionNull;
+  set randomFunctionNull(String value) {
+    _randomFunctionNull = value;
   }
 
   final _userDocQueryManager = FutureRequestManager<UsersRecord>();

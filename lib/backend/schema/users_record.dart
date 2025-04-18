@@ -10,9 +10,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -371,11 +371,6 @@ class UsersRecord extends FirestoreRecord {
   String get title => _title ?? '';
   bool hasTitle() => _title != null;
 
-  // "access_token" field.
-  String? _accessToken;
-  String get accessToken => _accessToken ?? '';
-  bool hasAccessToken() => _accessToken != null;
-
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -449,7 +444,6 @@ class UsersRecord extends FirestoreRecord {
     _lastActiveTime = snapshotData['last_active_time'] as DateTime?;
     _role = snapshotData['role'] as String?;
     _title = snapshotData['title'] as String?;
-    _accessToken = snapshotData['access_token'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -534,7 +528,6 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? lastActiveTime,
   String? role,
   String? title,
-  String? accessToken,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -586,7 +579,6 @@ Map<String, dynamic> createUsersRecordData({
       'last_active_time': lastActiveTime,
       'role': role,
       'title': title,
-      'access_token': accessToken,
     }.withoutNulls,
   );
 
@@ -671,8 +663,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.shortDescription == e2?.shortDescription &&
         e1?.lastActiveTime == e2?.lastActiveTime &&
         e1?.role == e2?.role &&
-        e1?.title == e2?.title &&
-        e1?.accessToken == e2?.accessToken;
+        e1?.title == e2?.title;
   }
 
   @override
@@ -747,8 +738,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.shortDescription,
         e?.lastActiveTime,
         e?.role,
-        e?.title,
-        e?.accessToken
+        e?.title
       ]);
 
   @override

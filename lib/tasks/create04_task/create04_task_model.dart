@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/index.dart';
 import 'create04_task_widget.dart' show Create04TaskWidget;
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,8 @@ class Create04TaskModel extends FlutterFlowModel<Create04TaskWidget> {
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex =>
+      tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for task widget.
   FocusNode? taskFocusNode1;
@@ -29,8 +32,8 @@ class Create04TaskModel extends FlutterFlowModel<Create04TaskWidget> {
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for DropDown widget.
-  int? dropDownValue1;
-  FormFieldController<int>? dropDownValueController1;
+  int? dropDownValue;
+  FormFieldController<int>? dropDownValueController;
   // State field(s) for task widget.
   FocusNode? taskFocusNode2;
   TextEditingController? taskTextController2;
@@ -48,9 +51,7 @@ class Create04TaskModel extends FlutterFlowModel<Create04TaskWidget> {
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController8;
   String? Function(BuildContext, String?)? textController8Validator;
-  // State field(s) for DropDown widget.
-  int? dropDownValue2;
-  FormFieldController<int>? dropDownValueController2;
+  DateTime? datePicked3;
 
   @override
   void initState(BuildContext context) {}

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,6 +14,9 @@ export 'owned_tops_model.dart';
 
 class OwnedTopsWidget extends StatefulWidget {
   const OwnedTopsWidget({super.key});
+
+  static String routeName = 'OwnedTops';
+  static String routePath = '/ownedTops';
 
   @override
   State<OwnedTopsWidget> createState() => _OwnedTopsWidgetState();
@@ -40,7 +44,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -52,7 +56,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -64,7 +68,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -76,7 +80,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
             curve: Curves.linear,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            color: const Color(0x80FFFFFF),
+            color: Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -88,8 +92,8 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
             curve: Curves.easeOut,
             delay: 0.0.ms,
             duration: 450.0.ms,
-            begin: const Offset(100.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -108,12 +112,15 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: const Color(0xFFF1F5F8),
+          backgroundColor: Color(0xFFF1F5F8),
           automaticallyImplyLeading: false,
           leading: InkWell(
             splashColor: Colors.transparent,
@@ -135,7 +142,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
             'Tops',
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Outfit',
-                  color: const Color(0xFF0F1113),
+                  color: Color(0xFF0F1113),
                   fontSize: 32.0,
                   letterSpacing: 0.0,
                   fontWeight: FontWeight.w500,
@@ -143,7 +150,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
           ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation1']!),
           actions: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 15.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 15.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -153,7 +160,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
                   logFirebaseEvent('OWNED_TOPS_PAGE_Icon_6afftcr5_ON_TAP');
                   logFirebaseEvent('Icon_navigate_to');
 
-                  context.pushNamed('OwnedHairColors');
+                  context.pushNamed(OwnedHairColorsWidget.routeName);
                 },
                 child: FaIcon(
                   FontAwesomeIcons.palette,
@@ -163,13 +170,13 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
               ).animateOnPageLoad(animationsMap['iconOnPageLoadAnimation']!),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 44.0,
-                icon: const Icon(
+                icon: Icon(
                   Icons.shopping_cart_outlined,
                   color: Color(0xFF57636C),
                   size: 24.0,
@@ -178,7 +185,7 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
                   logFirebaseEvent('OWNED_TOPS_shopping_cart_outlined_ICN_ON');
                   logFirebaseEvent('IconButton_navigate_to');
 
-                  context.pushNamed('TopsShop');
+                  context.pushNamed(TopsShopWidget.routeName);
                 },
               ).animateOnPageLoad(
                   animationsMap['iconButtonOnPageLoadAnimation']!),
@@ -187,190 +194,168 @@ class _OwnedTopsWidgetState extends State<OwnedTopsWidget>
           centerTitle: false,
           elevation: 0.0,
         ),
-        body: SizedBox(
-          height: 1200.0,
-          child: Stack(
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              SingleChildScrollView(
-                child: Column(
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 25.0),
-                            child: Text(
-                              'Choose a hair or cover type below.',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: const Color(0xFF57636C),
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ).animateOnPageLoad(
-                                animationsMap['textOnPageLoadAnimation2']!),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: Container(
-                        decoration: const BoxDecoration(),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => Builder(
-                            builder: (context) {
-                              final topsOWN =
-                                  (currentUserDocument?.ownedTops.toList() ??
-                                          [])
-                                      .toList();
-
-                              return ListView.builder(
-                                padding: EdgeInsets.zero,
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: topsOWN.length,
-                                itemBuilder: (context, topsOWNIndex) {
-                                  final topsOWNItem = topsOWN[topsOWNIndex];
-                                  return Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 8.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        logFirebaseEvent(
-                                            'OWNED_TOPS_PAGE_menuItem_ON_TAP');
-                                        logFirebaseEvent(
-                                            'menuItem_backend_call');
-
-                                        await currentUserReference!
-                                            .update(createUsersRecordData(
-                                          selectedTop: topsOWNItem,
-                                        ));
-                                        logFirebaseEvent(
-                                            'menuItem_navigate_to');
-
-                                        context.pushNamed('TestProfile');
-                                      },
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              blurRadius: 3.0,
-                                              color: Color(0x411D2429),
-                                              offset: Offset(
-                                                0.0,
-                                                1.0,
-                                              ),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              FlutterFlowWebView(
-                                                content:
-                                                    'https://api.dicebear.com/9.x/avataaars/svg?accessories=${valueOrDefault(currentUserDocument?.selectedAccessories, '')}&accessoriesProbability=${valueOrDefault(currentUserDocument?.selectedAccessories, '') == '' ? '0' : '100'}&clothesColor=${valueOrDefault(currentUserDocument?.selectedColorFabric, '')}&clothing=${valueOrDefault(currentUserDocument?.selectedClothes, '')}&eyebrows=${valueOrDefault(currentUserDocument?.selectedEyebrows, '')}&eyes=${valueOrDefault(currentUserDocument?.selectedEyes, '')}&facialHair=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '')}&facialHairColor=${valueOrDefault(currentUserDocument?.selectedFacialHairColors, '')}&facialHairProbability=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '') == '' ? '0' : '100'}&hairColor=${valueOrDefault(currentUserDocument?.selectedHairColors, '')}&hatColor=${valueOrDefault(currentUserDocument?.selectedHatColors, '')}&mouth=${valueOrDefault(currentUserDocument?.selectedMouth, '')}&skinColor=${valueOrDefault(currentUserDocument?.selectedSkin, '')}&top=$topsOWNItem&topProbability=${topsOWNItem == '' ? '0' : '100'}',
-                                                bypass: false,
-                                                width: 70.0,
-                                                height: 70.0,
-                                                verticalScroll: false,
-                                                horizontalScroll: false,
-                                              ),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 8.0, 4.0, 0.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        topsOWNItem == ''
-                                                            ? 'No hair'
-                                                            : topsOWNItem,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .headlineSmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Outfit',
-                                                              color: const Color(
-                                                                  0xFF0F1113),
-                                                              fontSize: 20.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                0.0, 0.0),
-                                                    child: Icon(
-                                                      Icons
-                                                          .chevron_right_rounded,
-                                                      color: Color(0xFF57636C),
-                                                      size: 24.0,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ).animateOnPageLoad(animationsMap[
-                                  'listViewOnPageLoadAnimation']!);
-                            },
-                          ),
-                        ),
-                      ),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                      child: Text(
+                        'Choose a hair or cover type below.',
+                        style:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  color: Color(0xFF57636C),
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                      ).animateOnPageLoad(
+                          animationsMap['textOnPageLoadAnimation2']!),
                     ),
                   ],
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Container(
+                  decoration: BoxDecoration(),
+                  child: AuthUserStreamWidget(
+                    builder: (context) => Builder(
+                      builder: (context) {
+                        final topsOWN =
+                            (currentUserDocument?.ownedTops.toList() ?? [])
+                                .toList();
+
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          primary: false,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: topsOWN.length,
+                          itemBuilder: (context, topsOWNIndex) {
+                            final topsOWNItem = topsOWN[topsOWNIndex];
+                            return Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 8.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'OWNED_TOPS_PAGE_menuItem_ON_TAP');
+                                  logFirebaseEvent('menuItem_backend_call');
+
+                                  await currentUserReference!
+                                      .update(createUsersRecordData(
+                                    selectedTop: topsOWNItem,
+                                  ));
+                                  logFirebaseEvent('menuItem_navigate_to');
+
+                                  context
+                                      .pushNamed(TestProfileWidget.routeName);
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 3.0,
+                                        color: Color(0x411D2429),
+                                        offset: Offset(
+                                          0.0,
+                                          1.0,
+                                        ),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        FlutterFlowWebView(
+                                          content:
+                                              'https://api.dicebear.com/9.x/avataaars/svg?${valueOrDefault(currentUserDocument?.selectedAccessories, '') == '' ? 'accessoriesProbability=0' : 'accessoriesProbability=100&accessories=${valueOrDefault(currentUserDocument?.selectedAccessories, '')}'}&clothesColor=${valueOrDefault(currentUserDocument?.selectedColorFabric, '')}&clothing=${valueOrDefault(currentUserDocument?.selectedClothes, '')}&eyebrows=${valueOrDefault(currentUserDocument?.selectedEyebrows, '')}&eyes=${valueOrDefault(currentUserDocument?.selectedEyes, '')}&facialHair=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '')}&facialHairColor=${valueOrDefault(currentUserDocument?.selectedFacialHairColors, '')}&facialHairProbability=${valueOrDefault(currentUserDocument?.selectedFacialHairs, '') == '' ? '0' : '100'}&hairColor=${valueOrDefault(currentUserDocument?.selectedHairColors, '')}&hatColor=${valueOrDefault(currentUserDocument?.selectedHatColors, '')}&mouth=${valueOrDefault(currentUserDocument?.selectedMouth, '')}&skinColor=${valueOrDefault(currentUserDocument?.selectedSkin, '')}&top=${topsOWNItem}&topProbability=${topsOWNItem == '' ? '0' : '100'}',
+                                          bypass: false,
+                                          width: 75.0,
+                                          height: 75.0,
+                                          verticalScroll: false,
+                                          horizontalScroll: false,
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 8.0, 4.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  topsOWNItem == ''
+                                                      ? 'No hair'
+                                                      : topsOWNItem,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .headlineSmall
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            Color(0xFF0F1113),
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                              child: Icon(
+                                                Icons.chevron_right_rounded,
+                                                color: Color(0xFF57636C),
+                                                size: 24.0,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ).animateOnPageLoad(
+                            animationsMap['listViewOnPageLoadAnimation']!);
+                      },
+                    ),
+                  ),
                 ),
               ),
             ],

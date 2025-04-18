@@ -5,56 +5,12 @@ async function _fetchCoursesCall(context, ffVariables) {
   if (!context.auth) {
     return _unauthenticatedResponse;
   }
+  var authToken = ffVariables["authToken"];
 
   var url = `https://classroom.googleapis.com/v1/courses`;
   var headers = {
     "Content-Type": `application/json`,
-    Authorization: `Bearer {{googleAccessToken}}`,
-  };
-  var params = {};
-  var ffApiRequestBody = undefined;
-
-  return makeApiRequest({
-    method: "get",
-    url,
-    headers,
-    params,
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-async function _fetchAssignmentsCall(context, ffVariables) {
-  if (!context.auth) {
-    return _unauthenticatedResponse;
-  }
-  var courseId = ffVariables["courseId"];
-
-  var url = `https://classroom.googleapis.com/v1/courses/{courseId}/courseWork`;
-  var headers = {
-    "Content-Type": `application/json`,
-    Authorization: `Bearer {{googleAccessToken}}`,
-  };
-  var params = {};
-  var ffApiRequestBody = undefined;
-
-  return makeApiRequest({
-    method: "get",
-    url,
-    headers,
-    params,
-    returnBody: true,
-    isStreamingApi: false,
-  });
-}
-async function _fetchIncompleteSubmissionsCall(context, ffVariables) {
-  if (!context.auth) {
-    return _unauthenticatedResponse;
-  }
-
-  var url = `https://classroom.googleapis.com/v1/courses/{{courseId}}/courseWork/{{courseWorkId}}/studentSubmissions`;
-  var headers = {
-    "Content-Type": `application/json`,
-    Authorization: `Bearer {{googleAccessToken}}`,
+    Authorization: `Bearer ${authToken}`,
   };
   var params = {};
   var ffApiRequestBody = undefined;
@@ -77,8 +33,6 @@ async function makeApiCall(context, data) {
 
   const callMap = {
     FetchCoursesCall: _fetchCoursesCall,
-    FetchAssignmentsCall: _fetchAssignmentsCall,
-    FetchIncompleteSubmissionsCall: _fetchIncompleteSubmissionsCall,
   };
 
   if (!(callName in callMap)) {

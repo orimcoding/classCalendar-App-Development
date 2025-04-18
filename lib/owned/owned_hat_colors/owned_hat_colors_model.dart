@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'owned_hat_colors_widget.dart' show OwnedHatColorsWidget;
 import 'package:flutter/material.dart';
 
