@@ -1,6 +1,6 @@
-# class-calendar-development
+# classCalendar Development Display
 
-**ClassCalendar** is a completed student scheduling and productivity app.  
+**classCalendar** is a completed student scheduling and productivity app.  
 It was developed in **FlutterFlow (Dart)** with **Firebase** powering authentication, Firestore, and storage.  
 The app was later packaged and published through the **Apple Developer Program**.  
 
