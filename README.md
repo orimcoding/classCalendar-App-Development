@@ -27,4 +27,4 @@ The app was later packaged and published through the **Apple Developer Program**
 This repository is **archived and provided for display/reference purposes only**.  
 It is not intended for active development, reuse, or distribution.
 
-Created with help form @okotwal17
+Created with help from @okotwal17
